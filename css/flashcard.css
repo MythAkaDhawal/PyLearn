@@ -1,0 +1,235 @@
+/* ===================================================
+   PyLearn — Flashcard Styles
+   =================================================== */
+
+/* ─── Flashcard Page ─────────────────────────────── */
+.fc-header {
+  text-align: center;
+  padding: var(--sp-10) 0 var(--sp-6);
+}
+
+.fc-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-8);
+}
+
+.fc-select {
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--r-full);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--ease);
+  min-width: 220px;
+}
+.fc-select:focus { border-color: var(--orange); }
+
+.fc-mode-tabs {
+  display: flex;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--r-full);
+  padding: 3px;
+  gap: 3px;
+}
+.fc-mode-tab {
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--r-full);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  border: none;
+  background: transparent;
+  transition: all var(--ease);
+  font-family: var(--font-body);
+}
+.fc-mode-tab.active {
+  background: var(--orange);
+  color: white;
+}
+
+/* ─── Card Area ──────────────────────────────────── */
+.fc-arena {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+  min-height: 400px;
+}
+
+.fc-progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.fc-progress-bar-wrap { flex: 1; max-width: 300px; }
+
+/* ─── Card (3D Flip) ─────────────────────────────── */
+.fc-card-wrap {
+  width: 100%;
+  max-width: 580px;
+  height: 320px;
+  perspective: 1400px;
+  cursor: pointer;
+}
+
+.fc-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fc-card.flipped { transform: rotateY(180deg); }
+
+.fc-face {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-10);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.fc-front {
+  background: var(--surface);
+  border: 2px solid var(--border);
+}
+
+.fc-back {
+  background: linear-gradient(135deg, #1A1A2E, #252545);
+  border: 2px solid rgba(255,107,53,0.3);
+  transform: rotateY(180deg);
+}
+
+.fc-face-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-4);
+  opacity: 0.5;
+}
+.fc-front .fc-face-label { color: var(--text-muted); }
+.fc-back  .fc-face-label { color: rgba(255,255,255,0.4); }
+
+.fc-face-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+.fc-front .fc-face-text { color: var(--text); }
+.fc-back  .fc-face-text { color: #f0f0ff; }
+
+.fc-code-example {
+  margin-top: var(--sp-4);
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--r-sm);
+  padding: var(--sp-3) var(--sp-4);
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  color: #a6e3a1;
+  text-align: left;
+  width: 100%;
+}
+
+.fc-flip-hint {
+  font-size: 0.8rem;
+  margin-top: var(--sp-4);
+  opacity: 0.4;
+  font-weight: 600;
+}
+.fc-front .fc-flip-hint { color: var(--text-muted); }
+.fc-back  .fc-flip-hint { color: rgba(255,255,255,0.4); }
+
+/* ─── Action Buttons ─────────────────────────────── */
+.fc-actions {
+  display: flex;
+  gap: var(--sp-4);
+  opacity: 0;
+  transition: opacity var(--ease);
+  pointer-events: none;
+}
+.fc-actions.visible { opacity: 1; pointer-events: all; }
+
+.fc-action-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.7rem 1.8rem;
+  border-radius: var(--r-full);
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 2px solid;
+  font-family: var(--font-body);
+  transition: all var(--ease-bounce);
+}
+.fc-action-btn.got-it {
+  background: var(--mint);
+  color: white;
+  border-color: var(--mint);
+}
+.fc-action-btn.got-it:hover { background: var(--mint-dark); transform: scale(1.05); }
+.fc-action-btn.review {
+  background: transparent;
+  color: var(--orange);
+  border-color: var(--orange);
+}
+.fc-action-btn.review:hover { background: var(--orange); color: white; transform: scale(1.05); }
+
+/* ─── Speed Mode Timer ───────────────────────────── */
+.fc-timer {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--orange);
+  transition: color var(--ease);
+}
+.fc-timer.urgent { color: #FF4444; animation: pulse-ring 0.5s infinite; }
+
+/* ─── Test Mode Input ────────────────────────────── */
+.fc-test-input {
+  width: 100%;
+  max-width: 500px;
+  padding: var(--sp-4) var(--sp-5);
+  border: 2px solid var(--border);
+  border-radius: var(--r-full);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--ease);
+  text-align: center;
+}
+.fc-test-input:focus { border-color: var(--orange); }
+
+/* ─── Session Complete ───────────────────────────── */
+.fc-complete {
+  text-align: center;
+  padding: var(--sp-12);
+}
+.fc-complete img { width: 140px; margin: 0 auto var(--sp-6); }
+.fc-complete h2 { color: var(--text); margin-bottom: var(--sp-3); }
+.fc-complete p  { margin-bottom: var(--sp-8); }

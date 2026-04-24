@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 4: Doing Things Again — PyLearn</title>
+  <meta name="description" content="For loops and while loops — the art of not writing the same line 100 times. Stage 4 of PyLearn."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/lesson.css"/>
+  <link rel="stylesheet" href="css/playground.css"/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+
+  <div class="lesson-topbar">
+    <div class="lesson-topbar-left">
+      <span class="lesson-stage-badge">Stage 4</span>
+      <span class="lesson-title-sm">Doing Things Again</span>
+    </div>
+    <span class="lesson-progress-text">Lesson 4 of 12</span>
+  </div>
+
+  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
+    <h1>🔁 Doing Things Again</h1>
+    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">For loops and while loops — the art of not writing the same line 100 times.</p>
+  </div>
+
+  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
+    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
+    <div class="bubble-wrap">
+      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    </div>
+  </div>
+
+  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 4</div>
+  <div id="playground-4" style="margin-bottom:var(--sp-8)"></div>
+
+  <div class="summary-box" style="margin-bottom:var(--sp-8)">
+    <h3>Coming Soon for Stage 4 ✨</h3>
+    <ul>
+      <li>Full concept explanations with real-life analogies</li>
+      <li>Illustrated diagrams and Sarpanch comic strips</li>
+      <li>Mid-lesson quiz with XP rewards</li>
+      <li>Detailed code examples with line-by-line explanations</li>
+    </ul>
+  </div>
+
+  <div class="lesson-nav-btns">
+    <a href="lesson-3.html" class="btn btn-outline">← Stage 3: Making Decisions</a>
+    <a href="practice.html?module=4" class="btn btn-mint">✏️ Take Stage 4 Test</a>
+    <a href="lesson-5.html" class="btn btn-primary">Stage 5: Grouping Stuff →</a>
+  </div>
+</div>
+</div>
+<script src="js/app.js"></script>
+<script src="js/playground.js"></script>
+<script>
+  renderNavbar('lessons.html');
+  renderFooter();
+  if (!localStorage.getItem('lesson_4_read')) {
+    localStorage.setItem('lesson_4_read', '1');
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(4, { status: 'unlocked', progress: 30 }); }, 2000);
+  }
+  initPlayground({
+    containerId: 'playground-4',
+    defaultCode: $code
+  });
+</script>
+</body>
+</html>

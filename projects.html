@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Projects — PyLearn</title>
+  <meta name="description" content="Build 6 real Python programs: Talking Calculator, Nickname Generator, Guessing Game, To-Do List, Grade Calculator, Word Counter."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/playground.css"/>
+  <style>
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--sp-6); margin-top:var(--sp-8); }
+    .project-card {
+      background:var(--surface); border-radius:var(--r-lg); overflow:hidden;
+      border:2px solid var(--border); cursor:pointer; transition:all var(--ease);
+      text-decoration:none; display:block;
+    }
+    .project-card:hover { border-color:var(--orange); transform:translateY(-5px); box-shadow:var(--shadow-lg); }
+    .project-card-banner { height:8px; }
+    .project-card-body { padding:var(--sp-6); }
+    .project-num { font-size:0.78rem; font-weight:800; color:var(--text-muted); letter-spacing:0.06em; margin-bottom:var(--sp-2); }
+    .project-emoji { font-size:2.4rem; margin-bottom:var(--sp-3); }
+    .project-title { font-family:var(--font-heading); font-size:1.3rem; color:var(--text); margin-bottom:var(--sp-2); }
+    .project-desc  { font-size:0.9rem; color:var(--text-secondary); line-height:1.65; margin-bottom:var(--sp-4); }
+    .project-tags  { display:flex; flex-wrap:wrap; gap:var(--sp-2); }
+
+    /* Workspace */
+    .project-workspace { display:none; max-width:900px; margin:0 auto; }
+    .project-workspace.active { display:block; }
+    .pw-header { display:flex;align-items:center;gap:var(--sp-4);margin-bottom:var(--sp-6);flex-wrap:wrap; }
+    .pw-back { background:none; border:none; cursor:pointer; color:var(--orange); font-weight:800; font-family:var(--font-body); font-size:0.95rem; display:flex;align-items:center;gap:var(--sp-2); }
+    .pw-steps { counter-reset:step; display:grid; gap:var(--sp-4); margin-bottom:var(--sp-6); }
+    .pw-step { background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-md);padding:var(--sp-5); display:flex;gap:var(--sp-4);align-items:flex-start; }
+    .pw-step-num { width:32px;height:32px;border-radius:50%;background:var(--orange);color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0; }
+    .pw-step-text { font-size:0.95rem;color:var(--text);font-weight:600;line-height:1.6; }
+    .solution-btn { display:inline-flex;align-items:center;gap:var(--sp-2); }
+    .solution-reveal { display:none; margin-top:var(--sp-4); }
+    .solution-reveal.show { display:block; }
+    .solution-confirm { background:rgba(255,107,53,0.08);border:2px dashed var(--orange);border-radius:var(--r-md);padding:var(--sp-5);text-align:center; }
+  </style>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container">
+
+  <div style="text-align:center;padding:var(--sp-10) 0 var(--sp-4)" class="observe">
+    <div class="pill pill-orange" style="margin-bottom:var(--sp-4)">🚀 Mini Projects</div>
+    <h1>Build Something Real</h1>
+    <p style="max-width:540px;margin:var(--sp-3) auto 0">Six guided projects where you actually build programs that do things. Starter code provided. Solution hidden (for your own good).</p>
+  </div>
+
+  <!-- Project Grid -->
+  <div class="projects-grid stagger" id="projects-grid">
+    <!-- Injected by JS -->
+  </div>
+
+  <!-- Workspace (shown when project selected) -->
+  <div class="project-workspace" id="project-workspace">
+    <div class="pw-header">
+      <button class="pw-back" onclick="closeWorkspace()">← Back to Projects</button>
+      <div id="pw-title" style="font-family:var(--font-heading);font-size:1.5rem;color:var(--text)"></div>
+    </div>
+    <div id="pw-content"></div>
+  </div>
+
+</div>
+</div>
+<script src="js/app.js"></script>
+<script src="js/playground.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+<script>
+  renderNavbar('projects.html');
+  renderFooter();
+
+  const PROJECTS = [
+    {
+      id:1, emoji:'🧮', title:'The Talking Calculator',
+      desc:'A calculator that does math AND gives sarcastic comments on the results. "4. Even Sarpanch could do that."',
+      tags:['Variables','Input','If/Else','Math'],
+      color:'#FF6B35',
+      steps:[
+        'Ask the user to enter two numbers using input()',
+        'Ask what operation they want: +, -, *, /',
+        'Calculate the result using if/elif/else',
+        'Print the result AND a sarcastic comment based on the numbers',
+      ],
+      starter:`# 🧮 The Talking Calculator
+# Your job: make this calculator sarcastic!
+
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+op   = input("Operation (+, -, *, /): ")
+
+# TODO: calculate the result
+# TODO: print the result
+# TODO: add a sarcastic comment based on the result!
+
+# Hint: Use if/elif/else to check the operation
+# Hint: if result == 0: print("You got zero. Congratulations on nothing.")`,
+      solution:`# ✅ SOLUTION: The Talking Calculator
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+op   = input("Operation (+, -, *, /): ")
+
+if op == "+":
+    result = num1 + num2
+elif op == "-":
+    result = num1 - num2
+elif op == "*":
+    result = num1 * num2
+elif op == "/" and num2 != 0:
+    result = num1 / num2
+else:
+    print("Invalid operation or division by zero!")
+    result = None
+
+if result is not None:
+    print(f"Result: {result}")
+    if result == 0:
+        print("Zero. You worked so hard for... nothing.")
+    elif result > 1000:
+        print("Whoa. Big number energy.")
+    elif result < 0:
+        print("Negative. Relatable.")
+    else:
+        print(f"{result}. Even Sarpanch could do that.")`
+    },
+    {
+      id:2, emoji:'🎭', title:'The Nickname Generator',
+      desc:'Enter your name and get a funny Python-themed nickname. "Param" → "PyParam the Debugger".',
+      tags:['Strings','Functions','Lists','String Methods'],
+      color:'#2EC4B6',
+      steps:[
+        'Get the user\'s name using input()',
+        'Create lists of Python-themed adjectives and titles',
+        'Randomly pick one from each list using random.choice()',
+        'Combine them with the name to create the nickname',
+      ],
+      starter:`# 🎭 The Nickname Generator
+import random
+
+adjectives = ["Pythonic", "Recursive", "Compiled", "Buggy", "Optimised"]
+titles     = ["the Debugger", "the Loop Lord", "the Print Master", "the Indenter"]
+
+name = input("Enter your name: ")
+
+# TODO: generate and print a nickname using random.choice()
+# Format: "[adjective] [name] [title]"
+# Example: "Pythonic Sarpanch the Loop Lord"`,
+      solution:`import random
+
+adjectives = ["Pythonic","Recursive","Compiled","Buggy","Optimised","Legendary","Async"]
+titles     = ["the Debugger","the Loop Lord","the Print Master","the Indenter","of Stack Overflow"]
+
+name      = input("Enter your name: ").strip().title()
+adj       = random.choice(adjectives)
+title     = random.choice(titles)
+initial   = name[0].upper()
+
+print(f"\\n🐍 Your Python nickname is:")
+print(f"   {adj} {name} {title}")
+print(f"   Also known as: Py{initial} 🔥")`
+    },
+    {
+      id:3, emoji:'🎯', title:'The Guessing Game',
+      desc:'Program picks a random number 1-100. You guess. It says "Too high!" or "Too low!" until you get it.',
+      tags:['Loops','Random','If/Else','Input'],
+      color:'#FFD166',
+      steps:[
+        'Import the random module',
+        'Generate a random number between 1 and 100',
+        'Use a while loop to keep asking for guesses',
+        'Tell the user if their guess is too high, too low, or correct',
+        'Count the number of guesses and report it at the end',
+      ],
+      starter:`# 🎯 The Guessing Game
+import random
+
+secret = random.randint(1, 100)
+guesses = 0
+
+print("I'm thinking of a number between 1 and 100...")
+print("Can you guess it?")
+
+# TODO: Use a while loop to keep asking for guesses
+# TODO: Compare the guess to secret and give feedback
+# TODO: Count guesses and show total at the end`,
+      solution:`import random
+
+secret  = random.randint(1, 100)
+guesses = 0
+
+print("🎯 Guessing Game! I'm thinking of a number (1-100).")
+
+while True:
+    try:
+        guess = int(input("Your guess: "))
+        guesses += 1
+        if guess < secret:
+            print("Too low! Go higher. 📈")
+        elif guess > secret:
+            print("Too high! Come down. 📉")
+        else:
+            print(f"\\n✅ Correct! It was {secret}!")
+            print(f"You got it in {guesses} guess{'es' if guesses > 1 else ''}!")
+            if guesses <= 5:
+                print("Incredible! You're a mind reader.")
+            elif guesses <= 10:
+                print("Not bad at all!")
+            else:
+                print("You got there eventually. Sarpanch is proud.")
+            break
+    except ValueError:
+        print("Enter a number please!")`
+    },
+    {
+      id:4, emoji:'📝', title:'The To-Do List App',
+      desc:'Add, view, and remove tasks. Saved in a text file so it remembers even when you close the program.',
+      tags:['Lists','File Handling','Functions','Loops'],
+      color:'#9B59B6',
+      steps:[
+        'Create functions: add_task(), view_tasks(), remove_task()',
+        'Store tasks in a list AND save to a file',
+        'Load existing tasks from the file when the program starts',
+        'Use a while loop with a menu for the user to choose actions',
+      ],
+      starter:`# 📝 To-Do List App
+# Tasks are saved to todo.txt
+
+FILE = "todo.txt"
+
+def load_tasks():
+    # TODO: Read tasks from FILE, return as list
+    pass
+
+def save_tasks(tasks):
+    # TODO: Write all tasks to FILE
+    pass
+
+def add_task(tasks, task):
+    # TODO: Add task to list and save
+    pass
+
+def remove_task(tasks, index):
+    # TODO: Remove task at index and save
+    pass
+
+tasks = load_tasks()
+# TODO: Build the menu loop`,
+      solution:`FILE = "todo.txt"
+
+def load_tasks():
+    try:
+        with open(FILE, "r") as f:
+            return [line.strip() for line in f if line.strip()]
+    except FileNotFoundError:
+        return []
+
+def save_tasks(tasks):
+    with open(FILE, "w") as f:
+        for task in tasks:
+            f.write(task + "\\n")
+
+tasks = load_tasks()
+
+while True:
+    print("\\n📝 TO-DO LIST")
+    print("1. View tasks")
+    print("2. Add task")
+    print("3. Remove task")
+    print("4. Quit")
+
+    choice = input("\\nChoice (1-4): ")
+
+    if choice == "1":
+        if tasks:
+            for i, t in enumerate(tasks, 1):
+                print(f"  {i}. {t}")
+        else:
+            print("No tasks yet!")
+    elif choice == "2":
+        task = input("New task: ").strip()
+        if task:
+            tasks.append(task)
+            save_tasks(tasks)
+            print(f"✅ Added: {task}")
+    elif choice == "3":
+        if tasks:
+            for i, t in enumerate(tasks, 1):
+                print(f"  {i}. {t}")
+            try:
+                idx = int(input("Remove which number? ")) - 1
+                removed = tasks.pop(idx)
+                save_tasks(tasks)
+                print(f"🗑️ Removed: {removed}")
+            except (ValueError, IndexError):
+                print("Invalid number.")
+        else:
+            print("Nothing to remove!")
+    elif choice == "4":
+        print("Bye! Your tasks are saved. 👋")
+        break`
+    },
+    {
+      id:5, emoji:'📊', title:'The Grade Calculator',
+      desc:'Enter marks for multiple subjects. Get average, grade, and whether you passed or need a retake.',
+      tags:['Lists','Loops','Functions','Math','If/Else'],
+      color:'#E74C3C',
+      steps:[
+        'Ask for the number of subjects',
+        'Use a loop to collect marks for each subject',
+        'Calculate the average',
+        'Assign a grade (A/B/C/D/F) based on the average',
+        'Print a full report with all subjects and final verdict',
+      ],
+      starter:`# 📊 Grade Calculator
+
+def get_grade(average):
+    # TODO: Return grade letter based on average
+    # A = 90+, B = 75+, C = 60+, D = 50+, F = below 50
+    pass
+
+subjects = []
+marks    = []
+
+n = int(input("How many subjects? "))
+
+# TODO: Use a loop to get subject name and marks
+# TODO: Calculate average
+# TODO: Print full report with grade and verdict`,
+      solution:`def get_grade(avg):
+    if avg >= 90: return "A"
+    elif avg >= 75: return "B"
+    elif avg >= 60: return "C"
+    elif avg >= 50: return "D"
+    else: return "F"
+
+n = int(input("How many subjects? "))
+subjects, marks = [], []
+
+for i in range(n):
+    sub = input(f"Subject {i+1} name: ")
+    while True:
+        try:
+            mark = float(input(f"Marks for {sub} (0-100): "))
+            if 0 <= mark <= 100:
+                break
+            print("Enter a number between 0 and 100.")
+        except ValueError:
+            print("Numbers only!")
+    subjects.append(sub)
+    marks.append(mark)
+
+avg   = sum(marks) / len(marks)
+grade = get_grade(avg)
+
+print("\\n📊 GRADE REPORT")
+print("-" * 30)
+for s, m in zip(subjects, marks):
+    print(f"{s:20} {m:5.1f}")
+print("-" * 30)
+print(f"{'Average':20} {avg:5.1f}")
+print(f"{'Grade':20} {grade}")
+print()
+if grade in ["A","B","C"]:
+    print("✅ Passed! Sarpanch approves.")
+elif grade == "D":
+    print("⚠️ Passed, but barely. More practice needed.")
+else:
+    print("❌ Did not pass. But don't give up! Retry.")`
+    },
+    {
+      id:6, emoji:'📖', title:'The Word Counter',
+      desc:'Paste any text and get: total words, unique words, most repeated word, longest word.',
+      tags:['Strings','Dictionaries','Loops','Functions'],
+      color:'#27AE60',
+      steps:[
+        'Get text from the user using input()',
+        'Split the text into words using .split()',
+        'Count total words using len()',
+        'Use a dictionary to count word frequencies',
+        'Find the most repeated and longest words',
+      ],
+      starter:`# 📖 Word Counter
+
+text = input("Paste your text here: ")
+
+words = text.split()
+total = len(words)
+
+# TODO: Count unique words
+# TODO: Count word frequencies using a dict
+# TODO: Find most repeated word
+# TODO: Find longest word
+# TODO: Print all results`,
+      solution:`text  = input("Paste your text here: \\n> ")
+words = [w.strip(".,!?;:\"'()").lower() for w in text.split()]
+words = [w for w in words if w]
+
+freq  = {}
+for w in words:
+    freq[w] = freq.get(w, 0) + 1
+
+total    = len(words)
+unique   = len(freq)
+most_rep = max(freq, key=freq.get)
+longest  = max(words, key=len)
+
+print(f"\\n📖 WORD COUNT REPORT")
+print(f"Total words:    {total}")
+print(f"Unique words:   {unique}")
+print(f"Most repeated:  '{most_rep}' ({freq[most_rep]} times)")
+print(f"Longest word:   '{longest}' ({len(longest)} characters)")
+print(f"\\nTop 5 words:")
+for word, count in sorted(freq.items(), key=lambda x: -x[1])[:5]:
+    bar = "█" * count
+    print(f"  {word:15} {count:3}  {bar}")`
+    },
+  ];
+
+  const colors = ['#FF6B35','#2EC4B6','#FFD166','#9B59B6','#E74C3C','#27AE60'];
+
+  // Render project cards
+  const grid = document.getElementById('projects-grid');
+  grid.innerHTML = PROJECTS.map((p,i) => `
+    <div class="project-card" data-project="${p.id}">
+      <div class="project-card-banner" style="background:${colors[i%colors.length]}"></div>
+      <div class="project-card-body">
+        <div class="project-num">Project ${p.id} of ${PROJECTS.length}</div>
+        <div class="project-emoji">${p.emoji}</div>
+        <div class="project-title">${p.title}</div>
+        <div class="project-desc">${p.desc}</div>
+        <div class="project-tags">${p.tags.map(t=>`<span class="pill pill-orange">${t}</span>`).join('')}</div>
+        <a class="btn btn-primary btn-sm" style="margin-top:var(--sp-5);width:100%;justify-content:center" onclick="openProject(${p.id}); return false;">▶ Start Project</a>
+      </div>
+    </div>`).join('');
+
+  window.openProject = function(id) {
+    const p = PROJECTS.find(pr => pr.id === id);
+    if (!p) return;
+
+    document.getElementById('projects-grid').style.display = 'none';
+    document.getElementById('project-workspace').classList.add('active');
+    document.getElementById('pw-title').textContent = `${p.emoji} ${p.title}`;
+
+    const stepsHTML = p.steps.map((s,i) => `
+      <div class="pw-step">
+        <div class="pw-step-num">${i+1}</div>
+        <div class="pw-step-text">${s}</div>
+      </div>`).join('');
+
+    document.getElementById('pw-content').innerHTML = `
+      <div class="callout callout-mint" style="margin-bottom:var(--sp-6)">
+        <strong>🎯 Goal:</strong> ${p.desc}
+      </div>
+      <h3 style="margin-bottom:var(--sp-4)">Steps to Build It</h3>
+      <div class="pw-steps">${stepsHTML}</div>
+      <h3 style="margin-bottom:var(--sp-4)">🚀 Starter Code — Complete It!</h3>
+      <div id="project-playground-${id}"></div>
+      <div style="margin-top:var(--sp-6);text-align:center">
+        <button class="btn btn-outline solution-btn" onclick="showSolution(${id})">👀 Show Solution (are you sure?)</button>
+        <div class="solution-reveal" id="solution-${id}">
+          <div class="solution-confirm">
+            <p style="font-weight:700;margin-bottom:var(--sp-4)">Really? You want to see the answer before trying? Sarpanch is disappointed but supportive. 🐍</p>
+            <button class="btn btn-primary" onclick="revealSolution(${id})">Yes, show me the solution</button>
+          </div>
+        </div>
+        <div id="solution-code-${id}" style="display:none;margin-top:var(--sp-5);text-align:left">
+          <div class="lesson-section-label">✅ Solution</div>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre id="sol-pre-${id}"></pre></div>
+        </div>
+      </div>
+    `;
+
+    initPlayground({ containerId: `project-playground-${id}`, defaultCode: p.starter });
+  };
+
+  window.closeWorkspace = function() {
+    document.getElementById('project-workspace').classList.remove('active');
+    document.getElementById('projects-grid').style.display = 'grid';
+  };
+
+  window.showSolution = function(id) {
+    document.getElementById(`solution-${id}`).classList.add('show');
+  };
+
+  window.revealSolution = function(id) {
+    const p = PROJECTS.find(pr => pr.id === id);
+    document.getElementById(`solution-${id}`).classList.remove('show');
+    const codeDiv = document.getElementById(`solution-code-${id}`);
+    document.getElementById(`sol-pre-${id}`).textContent = p.solution;
+    codeDiv.style.display = 'block';
+  };
+</script>
+</body>
+</html>

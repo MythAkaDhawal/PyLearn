@@ -1,0 +1,40 @@
+<svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shadow -->
+  <ellipse cx="90" cy="210" rx="50" ry="10" fill="rgba(26,26,46,0.10)"/>
+  <!-- Body jumping -->
+  <ellipse cx="90" cy="152" rx="48" ry="52" fill="#3DCB7A"/>
+  <ellipse cx="90" cy="152" rx="30" ry="36" fill="#6EE6A0" opacity="0.7"/>
+  <ellipse cx="90" cy="108" rx="28" ry="16" fill="#3DCB7A"/>
+  <!-- Head -->
+  <circle cx="90" cy="80" r="46" fill="#4DDA88"/>
+  <!-- Big happy eyes -->
+  <circle cx="74" cy="68" r="14" fill="white"/>
+  <circle cx="106" cy="68" r="14" fill="white"/>
+  <!-- Happy crescent pupils -->
+  <path d="M 68 70 Q 74 60 80 70" fill="#1A1A2E"/>
+  <path d="M 100 70 Q 106 60 112 70" fill="#1A1A2E"/>
+  <!-- Shine -->
+  <circle cx="77" cy="63" r="3" fill="white"/>
+  <circle cx="109" cy="63" r="3" fill="white"/>
+  <!-- Big smile -->
+  <path d="M 66 92 Q 90 118 114 92" stroke="#1A1A2E" stroke-width="3.5" fill="rgba(255,107,53,0.15)" stroke-linecap="round"/>
+  <!-- Teeth -->
+  <rect x="80" y="97" width="9" height="8" rx="2" fill="white"/>
+  <rect x="91" y="97" width="9" height="8" rx="2" fill="white"/>
+  <!-- Tongue out happy -->
+  <path d="M 90 106 Q 83 118 90 124 Q 97 118 90 106" fill="#FF6B35"/>
+  <!-- Both arms raised in victory -->
+  <path d="M 44 130 Q 20 100 28 72" stroke="#3DCB7A" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <circle cx="27" cy="67" r="11" fill="#4DDA88"/>
+  <path d="M 136 130 Q 160 100 152 72" stroke="#3DCB7A" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <circle cx="153" cy="67" r="11" fill="#4DDA88"/>
+  <!-- Stars around head -->
+  <text x="22" y="52" font-size="18" text-anchor="middle">⭐</text>
+  <text x="152" y="50" font-size="16" text-anchor="middle">✨</text>
+  <text x="90" y="28" font-size="14" text-anchor="middle">🎉</text>
+  <!-- Blush -->
+  <circle cx="62" cy="90" r="10" fill="#FF6B35" opacity="0.30"/>
+  <circle cx="118" cy="90" r="10" fill="#FF6B35" opacity="0.30"/>
+  <!-- Tail -->
+  <path d="M 68 198 Q 50 216 72 222 Q 90 226 86 206" fill="#3DCB7A"/>
+</svg>

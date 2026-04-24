@@ -1,0 +1,38 @@
+<svg viewBox="0 0 180 240" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shadow -->
+  <ellipse cx="90" cy="228" rx="50" ry="10" fill="rgba(26,26,46,0.10)"/>
+  <!-- Body slumped -->
+  <ellipse cx="90" cy="168" rx="50" ry="54" fill="#3DCB7A"/>
+  <ellipse cx="90" cy="168" rx="32" ry="38" fill="#6EE6A0" opacity="0.7"/>
+  <ellipse cx="90" cy="122" rx="28" ry="15" fill="#3DCB7A"/>
+  <!-- Head tilted -->
+  <circle cx="90" cy="94" r="46" fill="#4DDA88"/>
+  <!-- Sad eyes - droopy -->
+  <circle cx="74" cy="84" r="13" fill="white"/>
+  <circle cx="106" cy="84" r="13" fill="white"/>
+  <circle cx="74" cy="87" r="7" fill="#1A1A2E"/>
+  <circle cx="106" cy="87" r="7" fill="#1A1A2E"/>
+  <circle cx="77" cy="84" r="2" fill="white"/>
+  <circle cx="109" cy="84" r="2" fill="white"/>
+  <!-- Sad eyebrows -->
+  <path d="M 64 73 Q 74 78 84 74" stroke="#1A1A2E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 96 74 Q 106 78 116 73" stroke="#1A1A2E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Sad frown -->
+  <path d="M 70 108 Q 90 98 110 108" stroke="#1A1A2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Tears -->
+  <ellipse cx="68" cy="100" rx="3" ry="5" fill="#4AA8FF" opacity="0.7"/>
+  <ellipse cx="112" cy="100" rx="3" ry="5" fill="#4AA8FF" opacity="0.7"/>
+  <ellipse cx="66" cy="110" rx="2.5" ry="4" fill="#4AA8FF" opacity="0.5"/>
+  <ellipse cx="114" cy="108" rx="2.5" ry="4" fill="#4AA8FF" opacity="0.5"/>
+  <!-- Arms drooped down -->
+  <path d="M 44 148 Q 24 172 32 192" stroke="#3DCB7A" stroke-width="15" fill="none" stroke-linecap="round"/>
+  <path d="M 136 148 Q 156 172 148 192" stroke="#3DCB7A" stroke-width="15" fill="none" stroke-linecap="round"/>
+  <!-- Blush sad -->
+  <circle cx="65" cy="98" r="9" fill="#FF6B35" opacity="0.20"/>
+  <circle cx="115" cy="98" r="9" fill="#FF6B35" opacity="0.20"/>
+  <!-- Tail -->
+  <path d="M 68 214 Q 48 232 70 238 Q 90 240 86 220" fill="#3DCB7A"/>
+  <!-- Wavy stress lines -->
+  <path d="M 148 60 Q 155 54 148 48" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 155 68 Q 164 60 155 52" stroke="#FF6B35" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

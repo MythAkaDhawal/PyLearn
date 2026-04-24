@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 2: Building Blocks — PyLearn</title>
+  <meta name="description" content="Learn variables, data types, and basic math in Python. Stage 2 of PyLearn — Building Blocks."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/lesson.css"/>
+  <link rel="stylesheet" href="css/playground.css"/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="lesson-layout">
+
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#variables"  class="sidebar-nav-item"><div class="nav-dot"></div>Variables</a>
+        <a href="#datatypes"  class="sidebar-nav-item"><div class="nav-dot"></div>Data Types</a>
+        <a href="#math"       class="sidebar-nav-item"><div class="nav-dot"></div>Basic Math</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
+    </div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 2</span>
+        <span class="lesson-title-sm">Building Blocks</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 2 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">👋 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Building Blocks: Variables &amp; Data Types</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Every program needs to remember things. A calculator needs to remember the numbers you type.
+          A game needs to remember your score. A weather app needs to remember the temperature.
+          Python uses <strong>variables</strong> to remember stuff. And that's exactly what we're learning today.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Imagine your brain is RAM. Variables are sticky notes you put everywhere so your brain
+            doesn't have to remember everything. Python's brain works the same way. 🧠
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VARIABLES -->
+    <section class="lesson-section" id="variables">
+      <div class="lesson-section-label">📚 Variables</div>
+      <div class="concept-box">
+        <h3>What Is a Variable?</h3>
+        <p>
+          A <span class="tooltip-word">variable<span class="tooltip-content">A variable is a named container that stores a value. You give it a name, Python remembers the value.</span></span>
+          is basically a sticky note for your program. You write something on it, Python remembers it.
+          Later, you can change what's written on it. Simple.
+        </p>
+        <p>Creating a variable in Python looks like this:</p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>variables.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="cmt"># Creating variables</span>
+name = <span class="str">"Sarpanch"</span>
+age = <span class="num">5</span>
+is_snake = <span class="kw">True</span>
+favourite_food = <span class="str">"mice (don't judge)"</span>
+
+<span class="cmt"># Using variables</span>
+<span class="fn">print</span>(name)
+<span class="fn">print</span>(age)
+<span class="fn">print</span>(is_snake)</pre>
+          <div class="code-line-explain"><span class="code-line-num">2</span><span class="code-line-text">name = "Sarpanch"</span><span class="code-line-desc">Creates a variable called <strong>name</strong> and stores the string "Sarpanch" in it.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">age = 5</span><span class="code-line-desc">Creates a variable called <strong>age</strong> and stores the number 5. No quotes — it's a number, not text.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">4</span><span class="code-line-text">is_snake = True</span><span class="code-line-desc"><strong>True</strong> is a boolean (yes/no value). It means: yes, Sarpanch is indeed a snake.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">8–10</span><span class="code-line-text">print(name)...</span><span class="code-line-desc">print() can display a variable — no quotes needed around the variable name!</span></div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:var(--sp-5)">
+        <strong>📏 Variable Naming Rules:</strong>
+        <ul style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Start with a letter or underscore (not a number)</li>
+          <li>Only letters, numbers, and underscores allowed</li>
+          <li>Case-sensitive: <code>Name</code> and <code>name</code> are different variables</li>
+          <li>Use <code>snake_case</code> by convention: <code>my_name</code>, not <code>myName</code></li>
+          <li>Don't use Python keywords like <code>if</code>, <code>for</code>, <code>print</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DATA TYPES -->
+    <section class="lesson-section" id="datatypes">
+      <div class="lesson-section-label">🗂️ Data Types</div>
+      <div class="concept-box">
+        <h3>The 4 Basic Data Types</h3>
+        <p>Every value in Python has a type. Python needs to know what kind of data it's dealing with so it knows what to do with it.</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:var(--sp-5);gap:var(--sp-4)">
+        <div class="card card-orange">
+          <div style="font-size:1.8rem;margin-bottom:var(--sp-2)">🔢</div>
+          <h4>int — Integer</h4>
+          <p style="margin-top:var(--sp-2)">Whole numbers. No decimals.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre>age = <span class="num">25</span>
+score = <span class="num">-10</span>
+floors = <span class="num">100</span></pre></div>
+        </div>
+        <div class="card card-mint">
+          <div style="font-size:1.8rem;margin-bottom:var(--sp-2)">🔣</div>
+          <h4>float — Decimal Number</h4>
+          <p style="margin-top:var(--sp-2)">Numbers with a decimal point.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre>price = <span class="num">9.99</span>
+pi = <span class="num">3.14159</span>
+temp = <span class="num">-0.5</span></pre></div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.8rem;margin-bottom:var(--sp-2)">📝</div>
+          <h4>str — String (Text)</h4>
+          <p style="margin-top:var(--sp-2)">Text in single or double quotes.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre>name = <span class="str">"Sarpanch"</span>
+city = <span class="str">'Mumbai'</span>
+msg = <span class="str">"I code, therefore I am"</span></pre></div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.8rem;margin-bottom:var(--sp-2)">✅</div>
+          <h4>bool — Boolean (True/False)</h4>
+          <p style="margin-top:var(--sp-2)">Only two values: True or False.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre>is_awake = <span class="kw">True</span>
+is_bored = <span class="kw">False</span>
+has_bugs = <span class="kw">True</span>  <span class="cmt"># always</span></pre></div>
+        </div>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-6)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>check_types.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="fn">print</span>(<span class="fn">type</span>(<span class="num">42</span>))        <span class="cmt"># &lt;class 'int'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="num">3.14</span>))      <span class="cmt"># &lt;class 'float'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="str">"hello"</span>))  <span class="cmt"># &lt;class 'str'&gt;</span>
+<span class="fn">print</span>(<span class="fn">type</span>(<span class="kw">True</span>))      <span class="cmt"># &lt;class 'bool'&gt;</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATH -->
+    <section class="lesson-section" id="math">
+      <div class="lesson-section-label">🔢 Basic Math</div>
+      <div class="concept-box">
+        <h3>Python as a Calculator</h3>
+        <p>Python can do math. All the operators you'd expect, plus a few extras:</p>
+        <div class="code-block" style="margin-top:var(--sp-4)">
+          <pre>x = <span class="num">10</span>
+y = <span class="num">3</span>
+
+<span class="fn">print</span>(x + y)   <span class="cmt"># 13  — Addition</span>
+<span class="fn">print</span>(x - y)   <span class="cmt"># 7   — Subtraction</span>
+<span class="fn">print</span>(x * y)   <span class="cmt"># 30  — Multiplication</span>
+<span class="fn">print</span>(x / y)   <span class="cmt"># 3.333... — Division (always float)</span>
+<span class="fn">print</span>(x // y)  <span class="cmt"># 3   — Floor division (no remainder)</span>
+<span class="fn">print</span>(x % y)   <span class="cmt"># 1   — Modulo (remainder only)</span>
+<span class="fn">print</span>(x ** y)  <span class="cmt"># 1000 — Power (10³)</span></pre>
+        </div>
+      </div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
+        <strong>⚠️ "5" + 5 will crash!</strong> — You can't add a string and a number directly.
+        Use <code>int("5") + 5</code> to convert the string first. Type mismatches = errors.
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          A Python variable is like a labelled jar on a kitchen shelf. The label is the variable name.
+          Whatever's inside the jar is the value. You can look inside, change what's inside, or use the
+          contents to cook something (do calculations).
+          <br/><br/>
+          Different jars hold different things: a <strong>spice jar</strong> holds spices (strings),
+          a <strong>number jar</strong> holds quantity (int), a <strong>yes/no jar</strong> is either full or empty (bool).
+          Python's data types are just different kinds of jars.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">Variables: Labelled Boxes</h3>
+        <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" style="max-width:640px">
+          <!-- Box 1 - name -->
+          <rect x="10"  y="40" width="140" height="80" rx="10" fill="rgba(255,107,53,0.10)" stroke="#FF6B35" stroke-width="2"/>
+          <rect x="10"  y="40" width="140" height="28" rx="10" fill="#FF6B35"/>
+          <rect x="10"  y="54" width="140" height="14" rx="0"  fill="#FF6B35"/>
+          <text x="80"  y="57" text-anchor="middle" font-family="Fira Code" font-size="12" fill="white" font-weight="bold">name</text>
+          <text x="80"  y="90" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">"Sarpanch"</text>
+          <text x="80" y="112" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">str</text>
+
+          <!-- Arrow -->
+          <text x="165" y="85" font-size="18" fill="#8A8AA8">=</text>
+
+          <!-- Box 2 - age -->
+          <rect x="190" y="40" width="120" height="80" rx="10" fill="rgba(46,196,182,0.10)" stroke="#2EC4B6" stroke-width="2"/>
+          <rect x="190" y="40" width="120" height="28" rx="10" fill="#2EC4B6"/>
+          <rect x="190" y="54" width="120" height="14" rx="0"  fill="#2EC4B6"/>
+          <text x="250" y="57" text-anchor="middle" font-family="Fira Code" font-size="12" fill="white" font-weight="bold">age</text>
+          <text x="250" y="90" text-anchor="middle" font-family="Nunito" font-size="20" fill="#1A1A2E" font-weight="bold">5</text>
+          <text x="250" y="112" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">int</text>
+
+          <text x="325" y="85" font-size="18" fill="#8A8AA8">=</text>
+
+          <!-- Box 3 - price -->
+          <rect x="350" y="40" width="140" height="80" rx="10" fill="rgba(255,209,102,0.15)" stroke="#FFD166" stroke-width="2"/>
+          <rect x="350" y="40" width="140" height="28" rx="10" fill="#FFD166"/>
+          <rect x="350" y="54" width="140" height="14" rx="0"  fill="#FFD166"/>
+          <text x="420" y="57" text-anchor="middle" font-family="Fira Code" font-size="12" fill="#1A1A2E" font-weight="bold">price</text>
+          <text x="420" y="90" text-anchor="middle" font-family="Nunito" font-size="20" fill="#1A1A2E" font-weight="bold">9.99</text>
+          <text x="420" y="112" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">float</text>
+
+          <text x="505" y="85" font-size="18" fill="#8A8AA8">=</text>
+
+          <!-- Box 4 - is_snake -->
+          <rect x="530" y="40" width="140" height="80" rx="10" fill="rgba(100,200,100,0.12)" stroke="#4CAF50" stroke-width="2"/>
+          <rect x="530" y="40" width="140" height="28" rx="10" fill="#4CAF50"/>
+          <rect x="530" y="54" width="140" height="14" rx="0"  fill="#4CAF50"/>
+          <text x="600" y="57" text-anchor="middle" font-family="Fira Code" font-size="11" fill="white" font-weight="bold">is_snake</text>
+          <text x="600" y="90" text-anchor="middle" font-family="Nunito" font-size="16" fill="#1A1A2E" font-weight="bold">True</text>
+          <text x="600" y="112" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">bool</text>
+
+          <!-- Labels below -->
+          <text x="80"  y="148" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">name = "Sarpanch"</text>
+          <text x="250" y="148" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">age = 5</text>
+          <text x="420" y="148" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">price = 9.99</text>
+          <text x="600" y="148" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">is_snake = True</text>
+        </svg>
+        <div class="diagram-caption">Each variable is a labelled box that stores a value of a specific type.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Variable Incident</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I'll remember everyone's birthday in my head! I don't need variables!"</div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"It's Meena's birthday? No wait — Meena or Reena? The 12th or the 21st?"</div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption"><code style="background:rgba(0,0,0,0.08);padding:2px 5px;border-radius:4px;font-size:0.75rem">meena_bday = "March 12"</code><br/>
+          <span style="font-weight:800;color:var(--mint-dark)">Ah yes. Variables. The solution to everything.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Variables in Action</h3>
+      <p style="margin-bottom:var(--sp-5)">Edit the code below and run it. Try changing the values and watch what happens!</p>
+      <div id="playground-2"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Create a variable with your name and print it.</li>
+          <li>Create two number variables and print their sum.</li>
+          <li>Try <code>print(type(your_variable))</code> to see what type it is.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-2"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Building Blocks — Done! 🧱</h3>
+        <ul>
+          <li>A <strong>variable</strong> stores a value with a name. <code>name = "Sarpanch"</code></li>
+          <li>Python has 4 basic data types: <strong>int</strong>, <strong>float</strong>, <strong>str</strong>, <strong>bool</strong></li>
+          <li>Use <code>type()</code> to find out what type a value is.</li>
+          <li>Python does math with <code>+ - * / // % **</code> operators.</li>
+          <li>You can't mix types carelessly — "5" + 5 is an error. Convert first!</li>
+          <li>Variable names: lowercase, snake_case, no spaces, no keywords.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Variables mastered! Stage 3 is next — If/Else. You'll teach Python to make decisions.
+            Like: "Should I eat? If hungry: yes. Else: also yes." 😎
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-1.html" class="btn btn-outline">← Stage 1: First Steps</a>
+      <a href="practice.html?module=2" class="btn btn-mint">✏️ Take Stage 2 Test</a>
+      <a href="lesson-3.html" class="btn btn-primary">Stage 3: Making Decisions →</a>
+    </div>
+  </main>
+</div>
+</div>
+
+<script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/playground.js"></script>
+<script>
+  renderNavbar('lessons.html');
+  renderFooter();
+
+  if (!localStorage.getItem('lesson_2_read')) {
+    localStorage.setItem('lesson_2_read', '1');
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(2, { status: 'unlocked', progress: 50 }); }, 3000);
+  }
+
+  document.getElementById('sidebar-xp').textContent = getXP() + ' XP';
+
+  initPlayground({
+    containerId: 'playground-2',
+    defaultCode: `# Variables example\nname = "Sarpanch"\nage = 5\nfavourite_number = 42\n\nprint("Name:", name)\nprint("Age:", age)\nprint("Favourite number:", favourite_number)\nprint("Type of age:", type(age))\n\n# Math\nx = 10\ny = 3\nprint("Sum:", x + y)\nprint("Power:", x ** y)`,
+  });
+
+  initInlineQuiz({ containerId: 'quiz-widget-2', moduleId: 2 });
+</script>
+</body>
+</html>

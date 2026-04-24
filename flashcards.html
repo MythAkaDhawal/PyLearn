@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flashcards — PyLearn</title>
+  <meta name="description" content="Quick-fire Python revision flashcards. 3 modes: Normal, Speed (10s), and Test mode. PyLearn Flashcards."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/flashcard.css"/>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container">
+
+  <div class="fc-header observe">
+    <div class="pill pill-mint" style="margin-bottom:var(--sp-4)">🃏 Flashcards</div>
+    <h1>Quick-Fire Revision</h1>
+    <p style="max-width:500px;margin:var(--sp-3) auto 0">Flip through Python concepts one card at a time. Mark what you know, review what you don't. Beat Speed Mode if you dare.</p>
+  </div>
+
+  <!-- Setup Screen -->
+  <div id="fc-setup">
+    <div class="fc-controls">
+      <select class="fc-select" id="fc-module-select">
+        <option value="all">🐍 All Modules</option>
+        <option value="1">Stage 1 — First Steps</option>
+        <option value="2">Stage 2 — Building Blocks</option>
+        <option value="3">Stage 3 — Making Decisions</option>
+        <option value="4">Stage 4 — Loops</option>
+        <option value="5">Stage 5 — Collections</option>
+        <option value="6">Stage 6 — Functions</option>
+        <option value="7">Stage 7 — Modules</option>
+        <option value="8">Stage 8 — Error Handling</option>
+        <option value="9">Stage 9 — File Handling</option>
+        <option value="10">Stage 10 — OOP</option>
+        <option value="11">Stage 11 — Libraries</option>
+        <option value="12">Stage 12 — Projects</option>
+      </select>
+
+      <div class="fc-mode-tabs">
+        <button class="fc-mode-tab active" data-mode="normal">⏱️ Normal</button>
+        <button class="fc-mode-tab" data-mode="speed">⚡ Speed (10s)</button>
+        <button class="fc-mode-tab" data-mode="test">✍️ Test</button>
+      </div>
+
+      <button class="btn btn-primary btn-lg" id="fc-start-btn">▶ Start Session</button>
+    </div>
+
+    <!-- Mode descriptions -->
+    <div class="grid grid-3" style="margin-top:var(--sp-6)">
+      <div class="card" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:var(--sp-3)">⏱️</div>
+        <h4>Normal Mode</h4>
+        <p style="margin-top:var(--sp-2);font-size:0.88rem">No time pressure. Flip at your own pace. Mark each card as "Got It" or "Review Again".</p>
+      </div>
+      <div class="card card-orange" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:var(--sp-3)">⚡</div>
+        <h4>Speed Mode</h4>
+        <p style="margin-top:var(--sp-2);font-size:0.88rem">10 seconds per card. If you don't flip in time, it goes to Review Again. Heart-rate included.</p>
+      </div>
+      <div class="card card-mint" style="text-align:center">
+        <div style="font-size:2rem;margin-bottom:var(--sp-3)">✍️</div>
+        <h4>Test Mode</h4>
+        <p style="margin-top:var(--sp-2);font-size:0.88rem">Type your answer before flipping. No peeking. Self-mark after flipping. Builds real memory.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Arena (rendered by JS) -->
+  <div id="fc-arena" style="margin-top:var(--sp-8);min-height:300px"></div>
+
+</div>
+</div>
+<script src="js/app.js"></script>
+<script src="js/flashcards.js"></script>
+<script>
+  renderNavbar('flashcards.html');
+  renderFooter();
+  initFlashcards();
+</script>
+</body>
+</html>

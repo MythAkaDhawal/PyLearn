@@ -1,0 +1,44 @@
+<svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shadow -->
+  <ellipse cx="90" cy="210" rx="50" ry="10" fill="rgba(26,26,46,0.10)"/>
+  <!-- Body -->
+  <ellipse cx="90" cy="155" rx="48" ry="52" fill="#3DCB7A"/>
+  <ellipse cx="90" cy="155" rx="30" ry="36" fill="#6EE6A0" opacity="0.7"/>
+  <ellipse cx="90" cy="110" rx="28" ry="16" fill="#3DCB7A"/>
+  <!-- Head -->
+  <circle cx="90" cy="82" r="46" fill="#4DDA88"/>
+  <!-- Nervous sweating eyes (big) -->
+  <circle cx="74" cy="72" r="15" fill="white"/>
+  <circle cx="106" cy="72" r="15" fill="white"/>
+  <circle cx="76" cy="73" r="8" fill="#1A1A2E"/>
+  <circle cx="108" cy="73" r="8" fill="#1A1A2E"/>
+  <circle cx="79" cy="70" r="2.5" fill="white"/>
+  <circle cx="111" cy="70" r="2.5" fill="white"/>
+  <!-- Nervous eyebrows (raised) -->
+  <path d="M 62 57 Q 74 52 86 57" stroke="#1A1A2E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <path d="M 94 57 Q 106 52 118 57" stroke="#1A1A2E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Nervous smile (wobbly) -->
+  <path d="M 70 97 Q 78 93 85 97 Q 92 101 100 97 Q 107 93 112 97" stroke="#1A1A2E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Sweat drops -->
+  <ellipse cx="55" cy="68" rx="4" ry="6" fill="#4AA8FF" opacity="0.8"/>
+  <ellipse cx="50" cy="80" rx="3" ry="5" fill="#4AA8FF" opacity="0.6"/>
+  <ellipse cx="125" cy="64" rx="4" ry="6" fill="#4AA8FF" opacity="0.8"/>
+  <!-- Clipboard / paper (holding nervously) -->
+  <rect x="118" y="130" width="40" height="50" rx="4" fill="#FFF8F0" stroke="#1A1A2E" stroke-width="1.5"/>
+  <line x1="124" y1="142" x2="152" y2="142" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="124" y1="150" x2="152" y2="150" stroke="#ccc" stroke-width="1.5"/>
+  <line x1="124" y1="158" x2="144" y2="158" stroke="#ccc" stroke-width="1.5"/>
+  <text x="138" y="136" font-size="8" fill="#FF6B35" font-weight="bold" text-anchor="middle">QUIZ</text>
+  <!-- Arm holding paper -->
+  <path d="M 136 142 Q 148 138 118 130" stroke="#3DCB7A" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Left arm behind back -->
+  <path d="M 44 142 Q 26 162 34 180" stroke="#3DCB7A" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Blush -->
+  <circle cx="62" cy="88" r="10" fill="#FF6B35" opacity="0.28"/>
+  <circle cx="118" cy="88" r="10" fill="#FF6B35" opacity="0.28"/>
+  <!-- Tail -->
+  <path d="M 68 200 Q 50 218 72 224 Q 90 228 86 208" fill="#3DCB7A"/>
+  <!-- Worry lines -->
+  <path d="M 22 52 Q 28 46 22 40" stroke="#FFD166" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 15 62 Q 22 56 15 50" stroke="#FFD166" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

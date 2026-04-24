@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cheatsheets — PyLearn</title>
+  <meta name="description" content="10 downloadable Python cheatsheets. View inline or print as PDF. PyLearn Cheatsheets."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <style>
+    @media print {
+      .navbar, .footer, .cs-sidebar, .cs-list, .btn, .no-print { display:none!important; }
+      .cs-content { padding: 0!important; max-width:100%!important; }
+      body { background: white!important; color: black!important; }
+    }
+    .cs-layout { display:grid; grid-template-columns:260px 1fr; gap:var(--sp-8); max-width:1160px; margin:0 auto; padding:var(--sp-8); }
+    .cs-sidebar { position:sticky; top:90px; height:fit-content; }
+    .cs-list { display:flex; flex-direction:column; gap:var(--sp-2); }
+    .cs-list-item {
+      display:flex; align-items:center; gap:var(--sp-3);
+      padding:var(--sp-3) var(--sp-4); border-radius:var(--r-sm);
+      cursor:pointer; border:none; background:transparent;
+      font-family:var(--font-body); font-weight:700; font-size:0.9rem;
+      color:var(--text-secondary); transition:all var(--ease); text-align:left; width:100%;
+    }
+    .cs-list-item:hover { background:var(--surface-hover); color:var(--orange); }
+    .cs-list-item.active { background:rgba(255,107,53,0.10); color:var(--orange); }
+    .cs-list-item .cs-num { width:24px;height:24px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;flex-shrink:0; }
+    .cs-list-item.active .cs-num { background:var(--orange);color:white; }
+    .cs-content { flex:1; }
+    .cs-sheet { display:none; }
+    .cs-sheet.active { display:block; }
+    .cs-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--sp-8);flex-wrap:wrap;gap:var(--sp-4); }
+    .cs-title { font-family:var(--font-heading); font-size:2rem; color:var(--text); }
+    .cs-subtitle { font-size:1rem; color:var(--text-secondary); margin-top:var(--sp-1); }
+    .cs-section { margin-bottom:var(--sp-8); }
+    .cs-section-title {
+      font-family:var(--font-heading); font-size:1.15rem;
+      color:var(--orange); border-bottom:2px solid rgba(255,107,53,0.2);
+      padding-bottom:var(--sp-2); margin-bottom:var(--sp-4);
+      display:flex; align-items:center; gap:var(--sp-2);
+    }
+    .cs-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:var(--sp-3); }
+    .cs-item { background:var(--surface); border:1px solid var(--border); border-radius:var(--r-sm); padding:var(--sp-4); }
+    .cs-item-label { font-weight:800; font-size:0.88rem; color:var(--text); margin-bottom:var(--sp-2); }
+    .cs-item-code { background:#1e1e2e; border-radius:var(--r-sm); padding:var(--sp-3); font-family:var(--font-code); font-size:0.82rem; color:#cdd6f4; line-height:1.65; white-space:pre-wrap; }
+    .cs-item-desc { font-size:0.82rem; color:var(--text-muted); margin-top:var(--sp-2); }
+    .cs-mascot-corner { position:absolute; top:var(--sp-4); right:var(--sp-4); width:60px; opacity:0.6; }
+    @media(max-width:900px) { .cs-layout{grid-template-columns:1fr;} .cs-sidebar{position:static;} }
+  </style>
+</head>
+<body>
+<div class="main-content hero-bg">
+  <div style="text-align:center;padding:var(--sp-10) 0 var(--sp-4)" class="observe">
+    <div class="pill pill-orange" style="margin-bottom:var(--sp-3)">📄 Cheatsheets</div>
+    <h1>Python Reference Sheets</h1>
+    <p style="max-width:500px;margin:var(--sp-3) auto 0">10 clean, colour-coded reference sheets. View inline or print as PDF. Sarpanch in every corner. 🐍</p>
+  </div>
+
+  <div class="cs-layout">
+    <!-- Sidebar -->
+    <aside class="cs-sidebar no-print">
+      <div style="background:var(--surface);border-radius:var(--r-lg);padding:var(--sp-5);border:1px solid var(--border)">
+        <div style="font-family:var(--font-heading);font-size:1rem;color:var(--text);margin-bottom:var(--sp-4)">📄 Cheatsheets</div>
+        <div class="cs-list" id="cs-nav"></div>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <div class="cs-content" id="cs-content"></div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  renderNavbar('cheatsheets.html');
+  renderFooter();
+
+  const SHEETS = [
+    {
+      id: 1, title: 'Python Basics', subtitle: 'Variables, data types, print, input, type conversion',
+      sections: [
+        { title: '📦 Variables & Assignment', items: [
+          { label:'Create a variable', code:'name = "Sarpanch"\nage = 25\nprice = 9.99\nis_cool = True', desc:'No type declaration needed. Python figures it out.' },
+          { label:'Multiple assignment', code:'x = y = z = 0\na, b, c = 1, 2, 3', desc:'Assign multiple variables at once.' },
+          { label:'Check the type', code:'type(42)       # int\ntype("hello")  # str\ntype(3.14)     # float\ntype(True)     # bool', desc:'type() tells you the data type of any value.' },
+        ]},
+        { title: '🔠 Data Types at a Glance', items: [
+          { label:'int — whole numbers', code:'x = 42\ny = -10\nz = 1_000_000  # underscores OK!', desc:'Whole numbers, positive or negative.' },
+          { label:'float — decimals', code:'pi = 3.14159\nprice = 9.99\ntemp = -0.5', desc:'Numbers with a decimal point.' },
+          { label:'str — text', code:'name = "Sarpanch"\ncity = \'Mumbai\'\nmulti = """Line 1\nLine 2"""', desc:'Text. Use single, double, or triple quotes.' },
+          { label:'bool — yes/no', code:'is_alive = True\nhas_bugs = False\n# True and False are capitalised!', desc:'Only two values: True or False.' },
+        ]},
+        { title: '📺 print() & input()', items: [
+          { label:'Basic print', code:'print("Hello!")\nprint(42)\nprint(name, age)', desc:'Prints to console. Can take multiple values separated by commas.' },
+          { label:'Formatted strings (f-strings)', code:'name = "Sarpanch"\nprint(f"Hello, {name}!")  # Hello, Sarpanch!', desc:'f-strings let you embed variables directly into strings.' },
+          { label:'input()', code:'name = input("What is your name? ")\nprint("Hello,", name)', desc:'input() waits for user to type something. Always returns a string!' },
+        ]},
+        { title: '🔄 Type Conversion', items: [
+          { label:'Convert between types', code:'int("42")      # → 42\nfloat("3.14")  # → 3.14\nstr(42)        # → "42"\nbool(0)        # → False', desc:'Use int(), float(), str(), bool() to convert.' },
+        ]},
+      ]
+    },
+    {
+      id: 2, title: 'Control Flow', subtitle: 'if/elif/else, comparison and logical operators',
+      sections: [
+        { title: '🤔 if / elif / else', items: [
+          { label:'Basic if', code:'if temperature > 30:\n    print("Hot!")', desc:'Runs the block only if condition is True.' },
+          { label:'if-elif-else chain', code:'score = 75\nif score >= 90:\n    grade = "A"\nelif score >= 70:\n    grade = "B"\nelif score >= 50:\n    grade = "C"\nelse:\n    grade = "F"\nprint(grade)', desc:'Python checks conditions top-to-bottom and runs the first True one.' },
+          { label:'One-line if (ternary)', code:'result = "pass" if score >= 50 else "fail"', desc:'Compact if-else for simple cases.' },
+        ]},
+        { title: '⚖️ Comparison Operators', items: [
+          { label:'All comparisons', code:'x == y  # equal to\nx != y  # not equal to\nx > y   # greater than\nx < y   # less than\nx >= y  # greater than or equal\nx <= y  # less than or equal', desc:'All return True or False.' },
+        ]},
+        { title: '🔗 Logical Operators', items: [
+          { label:'and, or, not', code:'age > 18 and has_id    # both must be True\nage < 13 or has_pass   # at least one True\nnot is_banned           # inverts True/False', desc:'Combine conditions. Written as words in Python (not &&, ||, !).' },
+        ]},
+      ]
+    },
+    {
+      id: 3, title: 'Loops', subtitle: 'for, while, break, continue, range()',
+      sections: [
+        { title: '🔁 for loops', items: [
+          { label:'Loop over range', code:'for i in range(5):\n    print(i)  # 0 1 2 3 4', desc:'range(5) gives 0 to 4. range(1,6) gives 1 to 5.' },
+          { label:'Loop over a list', code:'fruits = ["apple","banana","mango"]\nfor fruit in fruits:\n    print(fruit)', desc:'Iterates over each item in a list (or any iterable).' },
+          { label:'enumerate() — index + value', code:'for i, fruit in enumerate(fruits):\n    print(i, fruit)', desc:'enumerate() gives you both the index and the value.' },
+        ]},
+        { title: '🔄 while loops', items: [
+          { label:'Basic while', code:'count = 0\nwhile count < 5:\n    print(count)\n    count += 1', desc:'Runs as long as the condition is True. Always update the variable!' },
+        ]},
+        { title: '⏹️ break, continue, pass', items: [
+          { label:'break — exit loop', code:'for i in range(10):\n    if i == 5:\n        break  # stops at 4', desc:'Immediately exits the loop.' },
+          { label:'continue — skip iteration', code:'for i in range(5):\n    if i == 2:\n        continue  # skips 2\n    print(i)', desc:'Skips rest of current iteration, continues loop.' },
+          { label:'pass — do nothing', code:'for i in range(5):\n    pass  # placeholder', desc:'Syntactic placeholder — does nothing but prevents empty block error.' },
+        ]},
+      ]
+    },
+    {
+      id: 4, title: 'Lists & Collections', subtitle: 'List, Tuple, Set, Dictionary — all the ways to store multiple values',
+      sections: [
+        { title: '📋 Lists', items: [
+          { label:'Create & access', code:'fruits = ["apple","banana","mango"]\nfruits[0]   # apple (first)\nfruits[-1]  # mango (last)\nfruits[1:3] # ["banana","mango"]', desc:'Lists are ordered, mutable, allow duplicates. Zero-indexed.' },
+          { label:'List methods', code:'fruits.append("grape")   # add to end\nfruits.insert(1,"kiwi")  # insert at index\nfruits.remove("apple")   # remove by value\nfruits.pop()             # remove last\nlen(fruits)              # count items\nfruits.sort()            # sort in place', desc:'The most commonly used list operations.' },
+        ]},
+        { title: '📚 Dictionaries', items: [
+          { label:'Create & access', code:'person = {\n    "name": "Sarpanch",\n    "age": 5,\n    "is_snake": True\n}\nprint(person["name"])          # Sarpanch\nprint(person.get("email","?")) # ? (safe)' , desc:'Key-value pairs. Keys must be unique.' },
+          { label:'Dictionary operations', code:'person["city"] = "Mumbai"    # add key\ndel person["age"]           # delete key\nperson.keys()               # all keys\nperson.values()             # all values\nperson.items()              # key-value pairs\n"name" in person            # True', desc:'All the common dict operations.' },
+        ]},
+        { title: '🔘 Sets & Tuples', items: [
+          { label:'Set — unique items', code:'s = {1, 2, 3, 2, 1}\nprint(s)  # {1, 2, 3}  — duplicates gone!', desc:'Sets store unique values. Unordered. No indexing.' },
+          { label:'Tuple — immutable list', code:'t = (1, 2, 3)\nprint(t[0])  # 1\n# t[0] = 99   # ERROR! tuples are immutable', desc:'Like a list, but can\'t be changed after creation.' },
+        ]},
+      ]
+    },
+    {
+      id: 5, title: 'Functions', subtitle: 'def, arguments, return, *args, **kwargs',
+      sections: [
+        { title: '⚙️ Defining Functions', items: [
+          { label:'Basic function', code:'def greet(name):\n    print(f"Hello, {name}!")\n\ngreet("Sarpanch")  # call it', desc:'def defines. Calling the name runs it.' },
+          { label:'Return values', code:'def add(a, b):\n    return a + b\n\nresult = add(3, 5)  # result = 8', desc:'return sends a value back to the caller.' },
+          { label:'Default arguments', code:'def greet(name="friend"):\n    print("Hello,", name)\n\ngreet()          # Hello, friend\ngreet("Reena")   # Hello, Reena', desc:'Default value used if argument not provided.' },
+        ]},
+        { title: '📦 *args and **kwargs', items: [
+          { label:'*args — variable positional args', code:'def total(*args):\n    return sum(args)\n\nprint(total(1, 2, 3, 4))  # 10', desc:'*args collects extra positional arguments as a tuple.' },
+          { label:'**kwargs — keyword args', code:'def info(**kwargs):\n    for key, val in kwargs.items():\n        print(key, "=", val)\n\ninfo(name="Sarpanch", age=5)', desc:'**kwargs collects extra keyword arguments as a dict.' },
+        ]},
+        { title: '🔑 Lambda Functions', items: [
+          { label:'One-line functions', code:'double = lambda x: x * 2\nprint(double(5))  # 10\n\nsorted_list = sorted(data, key=lambda x: x["age"])', desc:'Lambda creates small anonymous functions. Great for sorting.' },
+        ]},
+      ]
+    },
+    {
+      id: 6, title: 'String Methods', subtitle: 'The most useful string operations in Python',
+      sections: [
+        { title: '🔤 Case & Whitespace', items: [
+          { label:'Case methods', code:'s = "hello WORLD"\ns.upper()      # "HELLO WORLD"\ns.lower()      # "hello world"\ns.title()      # "Hello World"\ns.capitalize() # "Hello world"', desc:'Change the case of a string.' },
+          { label:'Whitespace', code:'s = "  hello  "\ns.strip()    # "hello"   (both ends)\ns.lstrip()   # "hello  " (left only)\ns.rstrip()   # "  hello" (right only)', desc:'Remove leading/trailing whitespace.' },
+        ]},
+        { title: '🔍 Search & Replace', items: [
+          { label:'find, replace, count', code:'s = "banana"\ns.find("an")       # 1 (first position)\ns.count("a")       # 3\ns.replace("a","o") # "bonono"\n"an" in s          # True', desc:'Searching and replacing within strings.' },
+        ]},
+        { title: '✂️ Split & Join', items: [
+          { label:'split() and join()', code:'s = "apple,banana,mango"\nfruits = s.split(",")  # list\nprint(fruits[0])       # "apple"\n\n"-".join(fruits)  # "apple-banana-mango"', desc:'split() turns a string into a list. join() turns a list into a string.' },
+        ]},
+        { title: '📐 Formatting', items: [
+          { label:'f-strings (recommended)', code:'name = "Sarpanch"\nage = 5\nprint(f"{name} is {age} years old")\nprint(f"Pi = {3.14159:.2f}")  # 2 decimals', desc:'f-strings are the modern, clean way to format strings in Python.' },
+        ]},
+      ]
+    },
+    {
+      id: 7, title: 'File Handling', subtitle: 'open, read, write, close, with statement',
+      sections: [
+        { title: '📂 Opening Files', items: [
+          { label:'Open modes', code:'"r"   # read (default)\n"w"   # write (overwrites)\n"a"   # append (adds to end)\n"r+"  # read and write\n"rb"  # read binary', desc:'Always use the with statement — it auto-closes the file.' },
+          { label:'Read a file', code:'with open("file.txt", "r") as f:\n    content = f.read()        # whole file\n    # OR\n    lines = f.readlines()     # list of lines\n    # OR\n    for line in f:            # line by line\n        print(line.strip())', desc:'Three ways to read a file.' },
+          { label:'Write a file', code:'with open("output.txt", "w") as f:\n    f.write("Hello!\\n")\n    f.writelines(["Line 1\\n","Line 2\\n"])', desc:'"w" overwrites. "a" appends without deleting existing content.' },
+        ]},
+      ]
+    },
+    {
+      id: 8, title: 'Error Handling', subtitle: 'try/except/finally, common error types',
+      sections: [
+        { title: '🛡️ try / except / finally', items: [
+          { label:'Basic structure', code:'try:\n    result = 10 / 0\nexcept ZeroDivisionError:\n    print("Can\'t divide by zero!")\nexcept ValueError as e:\n    print("Value error:", e)\nexcept Exception as e:\n    print("Something went wrong:", e)\nfinally:\n    print("This always runs")', desc:'Catch specific errors for better error messages.' },
+          { label:'raise your own errors', code:'def check_age(age):\n    if age < 0:\n        raise ValueError("Age cannot be negative!")\n    return age', desc:'raise lets you trigger errors intentionally.' },
+        ]},
+        { title: '⚠️ Common Error Types', items: [
+          { label:'Quick reference', code:'SyntaxError     # Invalid code structure\nNameError       # Variable not defined\nTypeError       # Wrong type for operation\nValueError      # Right type, wrong value\nIndexError      # List index out of range\nKeyError        # Dict key not found\nZeroDivisionError # Divided by zero\nFileNotFoundError # File doesn\'t exist\nAttributeError  # Object has no such method\nImportError     # Module not found', desc:'The most common Python exceptions you\'ll encounter.' },
+        ]},
+      ]
+    },
+    {
+      id: 9, title: 'OOP Cheatsheet', subtitle: 'Classes, objects, methods, inheritance',
+      sections: [
+        { title: '🏗️ Classes & Objects', items: [
+          { label:'Class definition', code:'class Dog:\n    species = "Canis lupus"  # class attribute\n\n    def __init__(self, name, breed):\n        self.name = name   # instance attribute\n        self.breed = breed\n\n    def bark(self):\n        return f"{self.name} says: Woof!"\n\n    def __str__(self):\n        return f"Dog({self.name})"', desc:'__init__ is the constructor. self refers to the current object.' },
+          { label:'Create objects', code:'my_dog = Dog("Bruno", "Labrador")\nprint(my_dog.name)   # Bruno\nprint(my_dog.bark()) # Bruno says: Woof!\nprint(my_dog)        # Dog(Bruno)', desc:'Instantiate objects by calling the class like a function.' },
+        ]},
+        { title: '🧬 Inheritance', items: [
+          { label:'Child class', code:'class Animal:\n    def breathe(self):\n        print("Inhale... Exhale...")\n\nclass Snake(Animal):\n    def hiss(self):\n        print("Ssssss")\n\ns = Snake()\ns.breathe()  # inherited!\ns.hiss()     # own method', desc:'Child class gets all parent methods automatically.' },
+          { label:'super()', code:'class Puppy(Dog):\n    def __init__(self, name):\n        super().__init__(name, "Mixed")\n        self.is_puppy = True', desc:'super() calls the parent class\'s __init__.' },
+        ]},
+      ]
+    },
+    {
+      id: 10, title: 'Built-in Functions', subtitle: 'The most useful Python built-ins — no import needed',
+      sections: [
+        { title: '🔢 Numbers & Math', items: [
+          { label:'Common built-ins', code:'abs(-5)          # 5 (absolute value)\nround(3.7)        # 4\nmax(1, 5, 3)      # 5\nmin(1, 5, 3)      # 1\nsum([1, 2, 3])    # 6\npow(2, 10)        # 1024 (same as 2**10)', desc:'No import needed for these.' },
+        ]},
+        { title: '📋 Sequences', items: [
+          { label:'List/sequence tools', code:'len([1,2,3])           # 3\nsorted([3,1,2])        # [1,2,3]\nreversed([1,2,3])      # iterator\nenumerate(["a","b"])   # (0,"a") (1,"b")\nzip([1,2],[\'a\',\'b\'])   # (1,\'a\') (2,\'b\')\nmap(str, [1,2,3])      # ["1","2","3"]\nfilter(None, [0,1,2])  # [1,2]', desc:'Functional tools for working with sequences.' },
+        ]},
+        { title: '🔁 Type & Conversion', items: [
+          { label:'Convert and check', code:'int("42")      # 42\nfloat("3.14")  # 3.14\nstr(42)        # "42"\nlist((1,2,3))  # [1,2,3]\ntuple([1,2,3]) # (1,2,3)\nset([1,1,2])   # {1,2}\nbool(0)        # False\nbool("hi")     # True\nisinstance(5, int)  # True', desc:'All type conversion and type-checking functions.' },
+        ]},
+      ]
+    },
+  ];
+
+  // ── Render Nav ──
+  const nav = document.getElementById('cs-nav');
+  const content = document.getElementById('cs-content');
+
+  nav.innerHTML = SHEETS.map(s =>
+    `<button class="cs-list-item" data-sheet="${s.id}">
+       <span class="cs-num">${s.id}</span>
+       ${s.title}
+     </button>`
+  ).join('');
+
+  // ── Render Sheet ──
+  function renderSheet(sheet) {
+    const sectionsHTML = sheet.sections.map(sec => `
+      <div class="cs-section">
+        <div class="cs-section-title">${sec.title}</div>
+        <div class="cs-grid">
+          ${sec.items.map(item => `
+            <div class="cs-item">
+              <div class="cs-item-label">${item.label}</div>
+              <div class="cs-item-code">${item.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+              ${item.desc ? `<div class="cs-item-desc">${item.desc}</div>` : ''}
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+
+    return `
+      <div class="cs-sheet active" id="sheet-${sheet.id}" style="position:relative">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch" class="cs-mascot-corner" aria-hidden="true"/>
+        <div class="cs-header">
+          <div>
+            <div class="pill pill-orange" style="margin-bottom:var(--sp-2)">Sheet ${sheet.id} of ${SHEETS.length}</div>
+            <div class="cs-title">${sheet.title}</div>
+            <div class="cs-subtitle">${sheet.subtitle}</div>
+          </div>
+          <div style="display:flex;gap:var(--sp-3)">
+            <button class="btn btn-outline btn-sm no-print" onclick="window.print()">🖨️ Print / Save PDF</button>
+          </div>
+        </div>
+        ${sectionsHTML}
+      </div>`;
+  }
+
+  function showSheet(id) {
+    content.innerHTML = renderSheet(SHEETS.find(s => s.id === id));
+    nav.querySelectorAll('.cs-list-item').forEach(b => b.classList.toggle('active', parseInt(b.dataset.sheet) === id));
+  }
+
+  nav.addEventListener('click', e => {
+    const btn = e.target.closest('.cs-list-item');
+    if (btn) showSheet(parseInt(btn.dataset.sheet));
+  });
+
+  showSheet(1); // default
+</script>
+</body>
+</html>

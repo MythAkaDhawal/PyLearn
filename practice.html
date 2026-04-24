@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice Zone — PyLearn</title>
+  <meta name="description" content="Test your Python knowledge with module tests, the All-in-One Mega Test, and the Debugging Game. PyLearn Practice Zone."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/practice.css"/>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container">
+
+  <div style="text-align:center;padding:var(--sp-10) 0 var(--sp-6)" class="observe">
+    <div class="pill pill-orange" style="margin-bottom:var(--sp-4)">✏️ Practice Zone</div>
+    <h1>Put Yourself to the Test</h1>
+    <p style="max-width:520px;margin:var(--sp-3) auto 0">Module tests, a 50-question mega challenge, and a debugging game. Sarpanch is nervously watching.</p>
+  </div>
+
+  <div class="practice-tabs">
+    <button class="practice-tab active" data-tab="module-tests" id="tab-module">📋 Module Tests</button>
+    <button class="practice-tab" data-tab="mega-test"    id="tab-mega">🏆 Mega Test</button>
+    <button class="practice-tab" data-tab="debug-game"   id="tab-debug">🐛 Debug Game</button>
+  </div>
+
+  <!-- ── Module Tests ── -->
+  <div class="practice-panel active" id="panel-module-tests">
+    <h2 style="margin-bottom:var(--sp-6)">Choose a Module Test</h2>
+    <div class="test-grid" id="module-test-grid"></div>
+  </div>
+
+  <!-- ── Quiz Screen (shown when test is started) ── -->
+  <div class="practice-panel" id="panel-quiz-screen">
+    <div class="quiz-screen" id="quiz-screen-content">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- ── Results Screen ── -->
+  <div class="practice-panel" id="panel-results">
+    <div class="results-screen" id="results-content">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- ── Mega Test ── -->
+  <div class="practice-panel" id="panel-mega-test">
+    <div style="text-align:center;max-width:600px;margin:0 auto">
+      <img src="assets/sarpanch/nervous.svg" style="width:130px;margin:0 auto var(--sp-6)" alt="Sarpanch nervous"/>
+      <h2>All-in-One Mega Test 🏆</h2>
+      <p style="margin:var(--sp-3) 0 var(--sp-8)">50 questions. All topics. Three difficulty levels. Sarpanch is sweating. Are you ready?</p>
+
+      <h3 style="margin-bottom:var(--sp-5)">Pick Your Difficulty</h3>
+      <div class="difficulty-selector">
+        <div class="difficulty-card" data-diff="warmup">
+          <div class="diff-emoji">🌤️</div>
+          <div class="diff-name">Warm Up</div>
+          <div class="diff-desc">Basic recall. Good vibes only.</div>
+        </div>
+        <div class="difficulty-card selected" data-diff="serious">
+          <div class="diff-emoji">🔥</div>
+          <div class="diff-name">Getting Serious</div>
+          <div class="diff-desc">Application questions. Some thinking required.</div>
+        </div>
+        <div class="difficulty-card" data-diff="showoff">
+          <div class="diff-emoji">💀</div>
+          <div class="diff-name">Show Off</div>
+          <div class="diff-desc">Tricky edge cases. Not for the faint-hearted.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:var(--sp-4);justify-content:center;margin-top:var(--sp-8)">
+        <button class="btn btn-primary btn-lg" id="start-mega-btn">🚀 Start Mega Test</button>
+      </div>
+      <p style="margin-top:var(--sp-4);color:var(--text-muted);font-size:0.88rem">50 questions · Randomised · Detailed results at the end</p>
+    </div>
+  </div>
+
+  <!-- ── Debug Game ── -->
+  <div class="practice-panel" id="panel-debug-game">
+    <div style="max-width:720px;margin:0 auto">
+      <div style="text-align:center;margin-bottom:var(--sp-8)">
+        <img src="assets/sarpanch/nervous.svg" style="width:110px;margin:0 auto var(--sp-4)" alt="Sarpanch"/>
+        <h2>🐛 The Debug Game</h2>
+        <p>Find the bug in the broken code. Get it right → earn XP. Fail → Sarpanch judges you gently.</p>
+      </div>
+
+      <div id="debug-game-container">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </div>
+
+</div>
+</div><!-- /main-content -->
+
+<script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
+<script>
+  renderNavbar('practice.html');
+  renderFooter();
+
+  // ── Tabs ──
+  const tabs = document.querySelectorAll('.practice-tab');
+  const panels = document.querySelectorAll('.practice-panel');
+
+  function switchTab(tabId) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
+    panels.forEach(p => p.classList.toggle('active',
+      p.id === 'panel-' + tabId || (tabId === 'module-tests' && p.id === 'panel-module-tests')));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+  // ── Module Test Grid ──
+  const testMeta = [
+    {id:1, name:'First Steps',           icon:'🐣', qs:5,  badge:'first_step'},
+    {id:2, name:'Building Blocks',        icon:'🧱', qs:5,  badge:''},
+    {id:3, name:'Making Decisions',       icon:'🤔', qs:4,  badge:'decision_maker'},
+    {id:4, name:'Doing Things Again',     icon:'🔁', qs:3,  badge:'loop_champion'},
+    {id:5, name:'Grouping Stuff',         icon:'📦', qs:2,  badge:'list_master'},
+    {id:6, name:'Teaching Python Tricks', icon:'⚙️',  qs:2,  badge:'function_writer'},
+    {id:7, name:'Organising Your Code',   icon:'📂', qs:1,  badge:''},
+    {id:8, name:'Handling Trouble',       icon:'🛡️', qs:1,  badge:''},
+    {id:9, name:'Working with Files',     icon:'📁', qs:1,  badge:'file_handler'},
+    {id:10,name:'Going Deeper (OOP)',     icon:'🏗️', qs:1,  badge:''},
+    {id:11,name:'Real World Tools',       icon:'🔧', qs:1,  badge:''},
+    {id:12,name:'Build Something Real',   icon:'🚀', qs:1,  badge:'big_test'},
+  ];
+
+  const grid = document.getElementById('module-test-grid');
+  grid.innerHTML = testMeta.map(m => {
+    const prog = getModuleProgress(m.id);
+    const status = prog.status || (m.id === 1 ? 'unlocked' : 'locked');
+    const locked = status === 'locked';
+    const score  = prog.quizScore;
+    return `<div class="test-card ${status} ${locked ? 'locked' : ''}" data-module="${m.id}" ${locked ? '' : 'style="cursor:pointer"'}>
+      <div class="test-card-header">
+        <span class="test-card-stage">${m.icon} Stage ${m.id}</span>
+        ${score != null ? `<span class="pill pill-mint">${score}%</span>` : locked ? `<span class="pill pill-yellow">🔒</span>` : `<span class="pill pill-orange">New</span>`}
+      </div>
+      <div class="test-card-title">${m.name}</div>
+      <div class="test-card-meta">
+        <span>${m.qs} questions</span>
+        <span>+${m.qs * XP_QUIZ_Q} XP</span>
+        ${m.badge ? '<span>🏅 Badge available</span>' : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Start a module test
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.test-card');
+    if (!card || card.classList.contains('locked')) return;
+    const moduleId = parseInt(card.dataset.module);
+    startModuleTest(moduleId);
+  });
+
+  // ── Quiz Engine ──
+  let activeModule = null;
+  let questions = [];
+  let currentQ = 0;
+  let score = 0;
+  let timerInterval = null;
+  let secondsLeft = 0;
+  let startTime = null;
+
+  function startModuleTest(moduleId) {
+    activeModule = moduleId;
+    questions = [...(QUIZ_DATA[moduleId] || [])];
+    currentQ = 0; score = 0;
+    startTime = Date.now();
+
+    document.getElementById('panel-module-tests').classList.remove('active');
+    document.getElementById('panel-quiz-screen').classList.add('active');
+
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQ];
+    if (!q) { showResults(); return; }
+
+    const content = document.getElementById('quiz-screen-content');
+    const letters = ['A','B','C','D'];
+
+    let optionsHTML = '';
+    if (q.type === 'mc' || q.type === 'output' || q.type === 'bug') {
+      optionsHTML = `<div class="mc-options">${q.options.map((o,i) =>
+        `<button class="mc-option" data-idx="${i}"><span class="opt-letter">${letters[i]}</span><span>${o}</span></button>`
+      ).join('')}</div>`;
+    } else if (q.type === 'tf') {
+      optionsHTML = `<div class="mc-options">
+        <button class="mc-option" data-tf="true"><span class="opt-letter">T</span>True</button>
+        <button class="mc-option" data-tf="false"><span class="opt-letter">F</span>False</button>
+      </div>`;
+    } else if (q.type === 'fill') {
+      optionsHTML = `<input class="fill-blank-input" id="fill-answer" placeholder="Type your answer..." autocomplete="off"/>
+        <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-3)" onclick="checkFill()">Check Answer</button>`;
+    } else if (q.type === 'short') {
+      optionsHTML = `<div class="callout-yellow callout"><strong>Sample answer:</strong> ${q.sampleAnswer}</div>
+        <button class="btn btn-mint" onclick="selfMark()">I understood this ✓</button>`;
+    }
+
+    const codeHTML = q.code ? `<div class="question-code">${q.code}</div>` : '';
+    const typeName = {mc:'Multiple Choice',tf:'True / False',output:'Code Output',bug:'Spot the Bug',fill:'Fill in the Blank',short:'Short Answer'}[q.type] || q.type;
+
+    content.innerHTML = `
+      <div class="quiz-header">
+        <div class="quiz-header-title">Stage ${activeModule} Test</div>
+        <div class="quiz-timer-display" id="q-timer">⏱️ 0:00</div>
+      </div>
+      <div class="quiz-q-progress">
+        <div class="quiz-q-progress-text"><span>Question ${currentQ+1} of ${questions.length}</span><span>${score} correct</span></div>
+        <div class="xp-bar" style="height:10px"><div class="xp-bar-fill" style="width:${(currentQ/questions.length)*100}%"></div></div>
+      </div>
+      <div class="question-card">
+        <div class="question-type-badge">${typeName}</div>
+        <div class="question-text">${q.question}</div>
+        ${codeHTML}
+        <div id="q-options">${optionsHTML}</div>
+        <div class="question-feedback" id="q-feedback"></div>
+      </div>
+      <div class="quiz-nav">
+        <button class="btn btn-outline btn-sm" onclick="skipQuestion()">Skip →</button>
+        <span class="quiz-nav-center">${questions.length - currentQ - 1} more to go</span>
+        <button class="btn btn-primary btn-sm" id="next-btn" style="display:none" onclick="nextQ()">Next →</button>
+      </div>
+    `;
+
+    // Start timer
+    let elapsed = 0;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      elapsed++;
+      const m = Math.floor(elapsed/60), s = elapsed%60;
+      const el = document.getElementById('q-timer');
+      if (el) el.textContent = `⏱️ ${m}:${s.toString().padStart(2,'0')}`;
+    }, 1000);
+
+    // MC/TF click handlers
+    document.querySelectorAll('.mc-option').forEach(btn => {
+      btn.addEventListener('click', () => handleAnswer(btn, q));
+    });
+  }
+
+  function handleAnswer(btn, q) {
+    clearInterval(timerInterval);
+    document.querySelectorAll('.mc-option').forEach(b => b.disabled = true);
+
+    let correct = false;
+    if (q.type === 'tf') {
+      const selected = btn.dataset.tf === 'true';
+      correct = selected === q.correct;
+    } else {
+      correct = parseInt(btn.dataset.idx) === q.correct;
+    }
+
+    if (correct) { btn.classList.add('correct'); score++; addXP(XP_QUIZ_Q); }
+    else {
+      btn.classList.add('wrong');
+      const correctBtn = document.querySelector(`.mc-option[data-idx="${q.correct}"], .mc-option[data-tf="${q.correct}"]`);
+      if (correctBtn) correctBtn.classList.add('correct');
+    }
+
+    const fb = document.getElementById('q-feedback');
+    fb.className = 'question-feedback show ' + (correct ? 'correct' : 'wrong');
+    fb.textContent = (correct ? '✅ Correct! ' : '❌ Not quite. ') + q.explanation;
+
+    document.getElementById('next-btn').style.display = 'flex';
+  }
+
+  window.checkFill = function() {
+    const q = questions[currentQ];
+    const input = document.getElementById('fill-answer');
+    if (!input) return;
+    clearInterval(timerInterval);
+    const correct = input.value.trim().toLowerCase() === q.answer.toLowerCase();
+    input.className = 'fill-blank-input ' + (correct ? 'correct' : 'wrong');
+    input.readOnly = true;
+    if (correct) { score++; addXP(XP_QUIZ_Q); }
+    const fb = document.getElementById('q-feedback');
+    fb.className = 'question-feedback show ' + (correct ? 'correct' : 'wrong');
+    fb.textContent = (correct ? '✅ Correct! ' : '❌ Not quite. ') + q.explanation;
+    document.getElementById('next-btn').style.display = 'flex';
+  };
+
+  window.selfMark = function() { score++; addXP(XP_QUIZ_Q); nextQ(); };
+  window.skipQuestion = function() { nextQ(); };
+  window.nextQ = function() { currentQ++; renderQuestion(); };
+
+  function showResults() {
+    clearInterval(timerInterval);
+    const pct = Math.round((score / questions.length) * 100);
+    const elapsed = Math.round((Date.now() - startTime) / 1000);
+    const mins = Math.floor(elapsed/60);
+    const secs = elapsed % 60;
+
+    document.getElementById('panel-quiz-screen').classList.remove('active');
+    document.getElementById('panel-results').classList.add('active');
+
+    if (pct >= 80) { setModuleProgress(activeModule, { status: 'completed', quizScore: pct }); addXP(XP_MODULE); }
+    if (pct === 100) awardBadge('perfect_score');
+    if (activeModule === 1 && pct >= 60) awardBadge('first_step');
+    if (elapsed < 300) awardBadge('quick_thinker');
+
+    const circumference = 2 * Math.PI * 54;
+    const offset = circumference - (pct / 100) * circumference;
+
+    document.getElementById('results-content').innerHTML = `
+      <img src="assets/sarpanch/${pct >= 80 ? 'victory' : pct >= 60 ? 'happy' : 'sad'}.svg" class="results-mascot" alt="Sarpanch"/>
+      <h2>${pct >= 80 ? '🎉 Excellent!' : pct >= 60 ? '👍 Good job!' : '💪 Keep practising!'}</h2>
+      <p style="margin-top:var(--sp-3)">${pct >= 80 ? 'Badge unlocked! Module complete! Sarpanch is doing a victory dance.' : 'Review the questions below and try again. You\'ve got this!'}</p>
+      <div class="score-ring" style="margin:var(--sp-6) auto">
+        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="10"/>
+          <circle cx="60" cy="60" r="54" fill="none" stroke="${pct >= 80 ? '#2EC4B6' : pct >= 60 ? '#FF6B35' : '#FF4444'}" stroke-width="10" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round" style="transition:stroke-dashoffset 1s ease"/>
+        </svg>
+        <div class="score-ring-text"><div class="score-ring-pct">${pct}%</div><div class="score-ring-label">Score</div></div>
+      </div>
+      <div class="results-stats">
+        <div class="results-stat"><div class="results-stat-num">${score}</div><div class="results-stat-label">Correct</div></div>
+        <div class="results-stat"><div class="results-stat-num">${questions.length - score}</div><div class="results-stat-label">Wrong</div></div>
+        <div class="results-stat"><div class="results-stat-num">${mins}:${secs.toString().padStart(2,'0')}</div><div class="results-stat-label">Time</div></div>
+        <div class="results-stat"><div class="results-stat-num">+${score * XP_QUIZ_Q}</div><div class="results-stat-label">XP Earned</div></div>
+      </div>
+      <div class="results-actions">
+        <button class="btn btn-outline" onclick="retakeTest()">↺ Try Again</button>
+        <a href="lesson-${activeModule+1 <= 12 ? activeModule+1 : 12}.html" class="btn btn-primary">Next Module →</a>
+      </div>
+    `;
+  }
+
+  window.retakeTest = function() {
+    document.getElementById('panel-results').classList.remove('active');
+    document.getElementById('panel-module-tests').classList.add('active');
+    switchTab('module-tests');
+  };
+
+  // ── Difficulty Selector ──
+  document.querySelectorAll('.difficulty-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.difficulty-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+
+  document.getElementById('start-mega-btn').addEventListener('click', () => {
+    // Mega test: combine all quizzes
+    const allQ = Object.values(QUIZ_DATA).flat();
+    const shuffled = allQ.sort(() => Math.random() - 0.5).slice(0, Math.min(50, allQ.length));
+    activeModule = 'mega';
+    questions = shuffled;
+    currentQ = 0; score = 0;
+    startTime = Date.now();
+    document.getElementById('panel-mega-test').classList.remove('active');
+    document.getElementById('panel-quiz-screen').classList.add('active');
+    renderQuestion();
+  });
+
+  // ── Debug Game ──
+  const debugChallenges = [
+    {
+      id:1, title:'The Missing Colon', difficulty:'Easy',
+      broken:`if age > 18\n    print("Adult")`,
+      fixed:`if age > 18:\n    print("Adult")`,
+      hint:'Every if/elif/else/for/while line needs a colon at the end.',
+      options:['Missing colon after condition','Wrong indentation','age is not defined','print is wrong'],
+      correct:0
+    },
+    {
+      id:2, title:'The Variable Typo', difficulty:'Easy',
+      broken:`mesage = "Hello"\nprint(message)`,
+      fixed:`message = "Hello"\nprint(message)`,
+      hint:'Compare the variable name in line 1 and line 2 very carefully.',
+      options:['print() is wrong','Variable name has a typo (mesage vs message)','Missing quotes','Syntax error on line 2'],
+      correct:1
+    },
+    {
+      id:3, title:'The Infinite Loop', difficulty:'Medium',
+      broken:`i = 0\nwhile i < 5:\n    print(i)`,
+      fixed:`i = 0\nwhile i < 5:\n    print(i)\n    i += 1`,
+      hint:'The loop condition never becomes False because something is never updated.',
+      options:['Wrong comparison operator','Missing i = i + 1 inside the loop','print(i) should be print(i+1)','while should be for'],
+      correct:1
+    },
+    {
+      id:4, title:'The Type Crash', difficulty:'Medium',
+      broken:`age = "25"\nnext_age = age + 1\nprint(next_age)`,
+      fixed:`age = int("25")\nnext_age = age + 1\nprint(next_age)`,
+      hint:'You can\'t add a number to a string directly. What does line 1 store?',
+      options:['next_age should be next_Age','age is a string, not a number','print() can\'t show numbers','+ should be +='],
+      correct:1
+    },
+  ];
+
+  let debugIdx = 0;
+  let debugScore = 0;
+
+  function renderDebug() {
+    const ch = debugChallenges[debugIdx];
+    if (!ch) {
+      document.getElementById('debug-game-container').innerHTML = `
+        <div style="text-align:center;padding:var(--sp-8)">
+          <img src="assets/sarpanch/victory.svg" style="width:130px;margin:0 auto var(--sp-5)" alt="Sarpanch"/>
+          <h2>Debug Champion! 🏆</h2>
+          <p>You spotted ${debugScore} out of ${debugChallenges.length} bugs correctly!</p>
+          <button class="btn btn-primary" style="margin-top:var(--sp-6)" onclick="debugIdx=0;debugScore=0;renderDebug()">Play Again ↺</button>
+        </div>`;
+      return;
+    }
+    document.getElementById('debug-game-container').innerHTML = `
+      <div class="question-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-4)">
+          <div class="question-type-badge">🐛 Bug ${debugIdx+1} of ${debugChallenges.length}: ${ch.title}</div>
+          <span class="pill pill-${ch.difficulty==='Easy'?'mint':'orange'}">${ch.difficulty}</span>
+        </div>
+        <div class="question-text">What is wrong with this code?</div>
+        <div class="question-code">${ch.broken}</div>
+        <div class="mc-options" id="debug-options">
+          ${ch.options.map((o,i) => `<button class="mc-option" data-debug-idx="${i}"><span class="opt-letter">${['A','B','C','D'][i]}</span>${o}</button>`).join('')}
+        </div>
+        <div class="question-feedback" id="debug-feedback"></div>
+      </div>
+      <div style="text-align:right;margin-top:var(--sp-4);color:var(--text-muted);font-size:0.85rem;font-weight:700">Score: ${debugScore}/${debugIdx}</div>
+    `;
+    document.querySelectorAll('[data-debug-idx]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-debug-idx]').forEach(b => b.disabled = true);
+        const idx = parseInt(btn.dataset.debugIdx);
+        const correct = idx === ch.correct;
+        if (correct) { btn.classList.add('correct'); debugScore++; addXP(XP_QUIZ_Q); }
+        else { btn.classList.add('wrong'); document.querySelector(`[data-debug-idx="${ch.correct}"]`).classList.add('correct'); }
+        const fb = document.getElementById('debug-feedback');
+        fb.className = 'question-feedback show ' + (correct?'correct':'wrong');
+        fb.innerHTML = `${correct?'✅':'❌'} ${correct?'Correct! ':'Wrong. '}${ch.hint}<br/><strong>Fixed code:</strong> <code style="background:rgba(0,0,0,0.08);padding:2px 5px;border-radius:4px">${ch.fixed.replace(/\n/g,'  ')}</code>`;
+        setTimeout(() => { debugIdx++; renderDebug(); }, 2500);
+      });
+    });
+  }
+
+  // Init debug game when tab shown
+  document.getElementById('tab-debug').addEventListener('click', () => {
+    if (!document.getElementById('debug-game-container').innerHTML.trim()) renderDebug();
+  });
+
+  // Check URL for module param
+  const urlModule = new URLSearchParams(location.search).get('module');
+  if (urlModule) {
+    const m = parseInt(urlModule);
+    const prog = getModuleProgress(m);
+    if (prog.status !== 'locked' || m === 1) startModuleTest(m);
+  }
+</script>
+</body>
+</html>

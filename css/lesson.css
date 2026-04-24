@@ -1,0 +1,332 @@
+/* ===================================================
+   PyLearn — Lesson Page Styles
+   =================================================== */
+
+/* ─── Lesson Layout ──────────────────────────────── */
+.lesson-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--sp-8);
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: var(--sp-8);
+}
+
+@media (max-width: 900px) {
+  .lesson-layout {
+    grid-template-columns: 1fr;
+  }
+  .lesson-sidebar { display: none; }
+}
+
+/* ─── Sidebar ────────────────────────────────────── */
+.lesson-sidebar {
+  position: sticky;
+  top: 90px;
+  height: fit-content;
+}
+
+.sidebar-card {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  border: 1px solid var(--border);
+  margin-bottom: var(--sp-4);
+}
+
+.sidebar-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-3);
+  border-radius: var(--r-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--ease);
+  text-decoration: none;
+}
+.sidebar-nav-item:hover { background: var(--surface-hover); color: var(--orange); }
+.sidebar-nav-item.active { background: rgba(255,107,53,0.10); color: var(--orange); font-weight: 800; }
+.sidebar-nav-item .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-strong); flex-shrink: 0; }
+.sidebar-nav-item.active .nav-dot { background: var(--orange); }
+.sidebar-nav-item.done .nav-dot { background: var(--mint); }
+
+/* ─── Top Bar ────────────────────────────────────── */
+.lesson-topbar {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  border: 1px solid var(--border);
+  margin-bottom: var(--sp-6);
+  flex-wrap: wrap;
+}
+
+.lesson-topbar-left { display: flex; align-items: center; gap: var(--sp-3); }
+.lesson-stage-badge {
+  background: var(--orange);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--r-full);
+}
+.lesson-title-sm {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text);
+}
+.lesson-progress-text { font-size: 0.82rem; color: var(--text-muted); font-weight: 600; }
+
+/* ─── Lesson Sections ────────────────────────────── */
+.lesson-section { margin-bottom: var(--sp-12); scroll-margin-top: 90px; }
+
+.lesson-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: rgba(255,107,53,0.10);
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--r-full);
+  margin-bottom: var(--sp-3);
+}
+
+.lesson-intro-box {
+  background: linear-gradient(135deg, rgba(255,107,53,0.06), rgba(46,196,182,0.06));
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Sarpanch Speech Panel ─────────────────────── */
+.sarpanch-panel {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-6);
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  border: 1.5px solid var(--border);
+  margin: var(--sp-6) 0;
+}
+.sarpanch-panel img { width: 100px; flex-shrink: 0; }
+.sarpanch-panel .bubble-wrap { flex: 1; }
+
+/* ─── Concept Box ────────────────────────────────── */
+.concept-box {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  border: 1.5px solid var(--border);
+  line-height: 1.8;
+}
+.concept-box h4 { color: var(--text); margin-bottom: var(--sp-3); }
+.concept-box p { margin-bottom: var(--sp-4); }
+.concept-box p:last-child { margin-bottom: 0; }
+
+/* ─── Analogy Box ────────────────────────────────── */
+.analogy-box {
+  background: linear-gradient(135deg, rgba(255,209,102,0.10), rgba(255,107,53,0.06));
+  border: 2px dashed var(--yellow);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6) var(--sp-8);
+  position: relative;
+}
+.analogy-box::before {
+  content: '💡';
+  position: absolute;
+  top: -14px;
+  left: var(--sp-6);
+  font-size: 1.6rem;
+  background: var(--bg);
+  padding: 0 var(--sp-2);
+}
+.analogy-box p { color: var(--text); font-weight: 600; font-style: italic; }
+
+/* ─── Code Example Block ─────────────────────────── */
+.code-example {
+  margin: var(--sp-6) 0;
+}
+.code-example-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2a2a3e;
+  border-radius: var(--r-md) var(--r-md) 0 0;
+  padding: var(--sp-3) var(--sp-6);
+}
+.code-example-header span { color: rgba(255,255,255,0.6); font-size: 0.82rem; font-weight: 600; }
+.code-example-header .dots { display: flex; gap: 6px; }
+.code-example-header .dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot-red   { background: #FF5F56; }
+.dot-yellow{ background: #FFBD2E; }
+.dot-green { background: #27C93F; }
+.code-example .code-block { border-radius: 0 0 var(--r-md) var(--r-md); margin: 0; }
+.code-line-explain {
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.85rem;
+  align-items: flex-start;
+}
+.code-line-num { color: #6c7086; font-family: var(--font-code); flex-shrink: 0; min-width: 20px; }
+.code-line-text { color: #cdd6f4; font-family: var(--font-code); flex-shrink: 0; min-width: 200px; }
+.code-line-desc { color: #a6adc8; font-family: var(--font-body); }
+
+/* ─── Diagram ────────────────────────────────────── */
+.diagram-container {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  border: 1.5px solid var(--border);
+  text-align: center;
+}
+.diagram-container svg { max-width: 100%; margin: 0 auto; }
+.diagram-caption { font-size: 0.85rem; color: var(--text-muted); margin-top: var(--sp-3); font-weight: 600; }
+
+/* ─── Comic Strip ────────────────────────────────── */
+.comic-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 3px solid var(--navy);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--navy);
+}
+.comic-panel {
+  background: var(--surface);
+  padding: var(--sp-4);
+  text-align: center;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+.comic-panel img { width: 90px; }
+.comic-panel-num {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  align-self: flex-start;
+}
+.comic-caption {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.4;
+}
+@media (max-width: 640px) {
+  .comic-strip { grid-template-columns: 1fr; }
+}
+
+/* ─── Quiz Widget ────────────────────────────────── */
+.quiz-widget {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+  border: 2px solid var(--mint);
+}
+.quiz-widget-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+.quiz-widget-title { font-family: var(--font-heading); font-size: 1.3rem; color: var(--mint-dark); }
+.quiz-q-count { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+
+.quiz-question { margin-bottom: var(--sp-6); }
+.quiz-question-text {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--sp-4);
+  font-size: 1rem;
+}
+.quiz-options { display: grid; gap: var(--sp-2); }
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-sm);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--ease);
+  font-size: 0.95rem;
+  text-align: left;
+  width: 100%;
+}
+.quiz-option:hover  { border-color: var(--orange); color: var(--text); background: rgba(255,107,53,0.05); }
+.quiz-option.correct { border-color: var(--mint); background: rgba(46,196,182,0.10); color: var(--mint-dark); }
+.quiz-option.wrong   { border-color: #FF4444; background: rgba(255,68,68,0.08); color: #CC2222; }
+.quiz-option-letter { width: 28px; height: 28px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 800; flex-shrink: 0; }
+.quiz-option.correct .quiz-option-letter { background: var(--mint); color: white; }
+.quiz-option.wrong   .quiz-option-letter { background: #FF4444; color: white; }
+
+.quiz-feedback {
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-sm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-top: var(--sp-3);
+}
+.quiz-feedback.correct { background: rgba(46,196,182,0.12); color: var(--mint-dark); }
+.quiz-feedback.wrong   { background: rgba(255,68,68,0.08); color: #CC2222; }
+
+/* ─── Summary Box ────────────────────────────────── */
+.summary-box {
+  background: linear-gradient(135deg, rgba(46,196,182,0.08), rgba(255,107,53,0.05));
+  border: 2px solid var(--mint);
+  border-radius: var(--r-lg);
+  padding: var(--sp-8);
+}
+.summary-box h3 { color: var(--mint-dark); margin-bottom: var(--sp-4); }
+.summary-box ul { list-style: none; display: grid; gap: var(--sp-3); }
+.summary-box li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  font-weight: 600;
+  color: var(--text);
+}
+.summary-box li::before { content: '✅'; flex-shrink: 0; margin-top: 1px; }
+
+/* ─── Lesson Nav Buttons ─────────────────────────── */
+.lesson-nav-btns {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  margin-top: var(--sp-12);
+  flex-wrap: wrap;
+}
+.lesson-nav-btns .btn { flex: 1; min-width: 140px; justify-content: center; }

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 10: Going Deeper (OOP) — PyLearn</title>
+  <meta name="description" content="Object-Oriented Programming — blueprints (classes) that create real things (objects). Stage 10 of PyLearn."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/lesson.css"/>
+  <link rel="stylesheet" href="css/playground.css"/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+
+  <div class="lesson-topbar">
+    <div class="lesson-topbar-left">
+      <span class="lesson-stage-badge">Stage 10</span>
+      <span class="lesson-title-sm">Going Deeper (OOP)</span>
+    </div>
+    <span class="lesson-progress-text">Lesson 10 of 12</span>
+  </div>
+
+  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
+    <h1>🏗️ Going Deeper (OOP)</h1>
+    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Object-Oriented Programming — blueprints (classes) that create real things (objects).</p>
+  </div>
+
+  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
+    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
+    <div class="bubble-wrap">
+      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    </div>
+  </div>
+
+  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 10</div>
+  <div id="playground-10" style="margin-bottom:var(--sp-8)"></div>
+
+  <div class="summary-box" style="margin-bottom:var(--sp-8)">
+    <h3>Coming Soon for Stage 10 ✨</h3>
+    <ul>
+      <li>Full concept explanations with real-life analogies</li>
+      <li>Illustrated diagrams and Sarpanch comic strips</li>
+      <li>Mid-lesson quiz with XP rewards</li>
+      <li>Detailed code examples with line-by-line explanations</li>
+    </ul>
+  </div>
+
+  <div class="lesson-nav-btns">
+    <a href="lesson-9.html" class="btn btn-outline">← Stage 9: File Handling</a>
+    <a href="practice.html?module=10" class="btn btn-mint">✏️ Take Stage 10 Test</a>
+    <a href="lesson-11.html" class="btn btn-primary">Stage 11: Real World Tools →</a>
+  </div>
+</div>
+</div>
+<script src="js/app.js"></script>
+<script src="js/playground.js"></script>
+<script>
+  renderNavbar('lessons.html');
+  renderFooter();
+  if (!localStorage.getItem('lesson_10_read')) {
+    localStorage.setItem('lesson_10_read', '1');
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(10, { status: 'unlocked', progress: 30 }); }, 2000);
+  }
+  initPlayground({
+    containerId: 'playground-10',
+    defaultCode: $code
+  });
+</script>
+</body>
+</html>

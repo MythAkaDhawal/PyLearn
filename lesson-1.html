@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 1: First Steps — PyLearn</title>
+  <meta name="description" content="Learn what Python is, why it matters, and run your very first line of code. Stage 1 of PyLearn."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/lesson.css"/>
+  <link rel="stylesheet" href="css/playground.css"/>
+  <!-- Pyodide CDN -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="lesson-layout">
+
+  <!-- ─── Sidebar ──────────────────────────────────── -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#what"       class="sidebar-nav-item"><div class="nav-dot"></div>What is Python?</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Real-Life Analogy</a>
+        <a href="#first-code" class="sidebar-nav-item"><div class="nav-dot"></div>Your First Code</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
+    </div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
+      <p style="font-size:0.78rem;margin-top:var(--sp-2);color:var(--text-muted)">Complete this lesson to earn 10 XP</p>
+    </div>
+  </aside>
+
+  <!-- ─── Main Content ──────────────────────────────── -->
+  <main>
+    <!-- Top Bar -->
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 1</span>
+        <span class="lesson-title-sm">First Steps</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 1 of 12</span>
+        <span class="xp-display">10 XP on completion</span>
+      </div>
+    </div>
+
+    <!-- ─── INTRO ─────────────────────────────────────── -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">👋 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>First Steps: What Even Is Python?</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          You're here. That already makes you better than 99% of people who said "I'll learn Python someday."
+          Let's not overthink this. Python is just a way to talk to your computer.
+          Your computer is a very powerful machine that understands instructions — but only if you give them
+          in a language it knows. Python is one of those languages. And it's one of the easiest ones to learn.
+        </p>
+      </div>
+
+      <!-- Sarpanch panel -->
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch waving"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Arre bhai! Welcome welcome! Don't be scared. I'm Sarpanch — your Python teacher,
+            best friend, and occasional drama queen. We're going to have fun. Promise. 🐍
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── WHAT IS PYTHON ─────────────────────────────── -->
+    <section class="lesson-section" id="what">
+      <div class="lesson-section-label">📚 The Concept</div>
+
+      <div class="concept-box">
+        <h3>What Is Python?</h3>
+        <p>
+          Python is a <span class="tooltip-word">programming language<span class="tooltip-content">A programming language is a set of rules for writing instructions that a computer can understand and execute. Like grammar, but for computers.</span></span>
+          that lets you tell a computer what to do — step by step.
+        </p>
+        <p>
+          Unlike human languages (which are fuzzy and context-dependent), Python is precise. If you write
+          <code>print("Hello")</code>, the computer does <em>exactly</em> that. No ambiguity. No interpretation.
+          Just: "Print the word Hello. Got it. Done."
+        </p>
+        <p>
+          Python was created in 1991 by a Dutch programmer named
+          <span class="tooltip-word">Guido van Rossum<span class="tooltip-content">Guido van Rossum created Python and was known as its "Benevolent Dictator For Life" (BDFL). He stepped down in 2018 but Python lives on.</span></span>.
+          He wanted a language that was clean, readable, and easy to learn. He succeeded. Also he named it
+          after Monty Python's Flying Circus, not the snake. But Sarpanch the snake is here now. And he's staying.
+        </p>
+        <p>
+          Python is used by NASA, Netflix, Instagram, Spotify, Google, Dropbox — basically every company
+          that does anything cool with data, automation, AI, or web development.
+          Your future employer probably uses it. So let's learn it.
+        </p>
+      </div>
+
+      <div class="callout callout-mint" style="margin-top:var(--sp-6)">
+        <strong>🐍 Fun fact:</strong> Python is the #1 most popular programming language in the world according to
+        multiple indices. It's used in data science, AI, web development, automation, research, and film VFX.
+        One language. A thousand careers.
+      </div>
+    </section>
+
+    <!-- ─── ANALOGY ────────────────────────────────────── -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+
+      <div class="analogy-box">
+        <p>
+          Imagine your computer is an incredibly fast but incredibly literal robot chef.
+          You can ask it to cook anything — but you need to give it the exact recipe, step by step.
+          "Put water in the pot" — okay. "Boil" — okay. "Add pasta" — okay.
+          <br/><br/>
+          If you just say "make pasta," it freezes. It needs instructions. That's what a Python program is —
+          a recipe. You write the steps, and the chef (your computer) executes them perfectly, every single time.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── FIRST CODE ─────────────────────────────────── -->
+    <section class="lesson-section" id="first-code">
+      <div class="lesson-section-label">💻 Your First Code</div>
+
+      <h3 style="margin-bottom:var(--sp-4)">The Most Famous Line of Code in History</h3>
+      <p style="margin-bottom:var(--sp-5)">
+        Every programmer, across every language, writes this as their very first line.
+        It's tradition. It's a rite of passage. It's also extremely anticlimactic. Here it is:
+      </p>
+
+      <div class="code-example">
+        <div class="code-example-header">
+          <div class="dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <span>hello.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="fn">print</span>(<span class="str">"Hello, World!"</span>)</pre>
+          <div class="code-line-explain">
+            <span class="code-line-num">1</span>
+            <span class="code-line-text">print("Hello, World!")</span>
+            <span class="code-line-desc"><strong>print()</strong> is a built-in Python function that displays text. Whatever you put inside the brackets appears on screen.</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin:var(--sp-5) 0">
+        When you run this, the computer will display: <strong>Hello, World!</strong>
+        That's it. That's the whole program. One line. Welcome to programming.
+        <br/><br/>
+        But we at PyLearn don't do boring examples. So here's the Sarpanch-approved version:
+      </p>
+
+      <div class="code-example">
+        <div class="code-example-header">
+          <div class="dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <span>sarpanch_intro.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="fn">print</span>(<span class="str">"Hello! I am Sarpanch."</span>)
+<span class="fn">print</span>(<span class="str">"I am not a robot. Probably."</span>)
+<span class="fn">print</span>(<span class="str">"I am definitely a snake."</span>)
+<span class="fn">print</span>(<span class="str">"Let's learn Python together! 🐍"</span>)</pre>
+          <div class="code-line-explain">
+            <span class="code-line-num">1</span>
+            <span class="code-line-text">print("Hello! I am Sarpanch.")</span>
+            <span class="code-line-desc">Prints the first line of text on screen.</span>
+          </div>
+          <div class="code-line-explain">
+            <span class="code-line-num">2</span>
+            <span class="code-line-text">print("I am not a robot. Probably.")</span>
+            <span class="code-line-desc">Each print() runs on a new line. Python reads top-to-bottom.</span>
+          </div>
+          <div class="code-line-explain">
+            <span class="code-line-num">3–4</span>
+            <span class="code-line-text">print("...")...</span>
+            <span class="code-line-desc">More print statements. Every line runs in order. That's it!</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:var(--sp-6)">
+        <strong>🔑 Key Terms:</strong>
+        <ul style="margin-top:var(--sp-2);list-style:none;display:grid;gap:var(--sp-2)">
+          <li>• <strong>Function</strong> — A named action that does something. print() is a function.</li>
+          <li>• <strong>String</strong> — Text in quotes. "Hello" is a string. Quotes tell Python it's text, not code.</li>
+          <li>• <strong>Syntax</strong> — The grammar rules of Python. Break them → Python refuses to run.</li>
+          <li>• <strong>Statement</strong> — One instruction for Python. Each line is usually one statement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── DIAGRAM ────────────────────────────────────── -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">How Python Runs Your Code</h3>
+        <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="max-width:600px">
+          <!-- You write code -->
+          <rect x="10" y="60" width="150" height="80" rx="12" fill="rgba(255,107,53,0.12)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="85" y="92" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#E5521A">You Write</text>
+          <text x="85" y="112" text-anchor="middle" font-family="Fira Code" font-size="11" fill="#1A1A2E">print("Hello")</text>
+          <text x="85" y="128" text-anchor="middle" font-family="Nunito" font-size="10" fill="#6A6A90">Python code (.py file)</text>
+
+          <!-- Arrow 1 -->
+          <path d="M 160 100 L 220 100" stroke="#FF6B35" stroke-width="2.5" marker-end="url(#arrow)"/>
+          <text x="190" y="88" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">Python runs it</text>
+          <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#FF6B35"/></marker></defs>
+
+          <!-- Python Interpreter -->
+          <rect x="220" y="50" width="180" height="100" rx="12" fill="rgba(46,196,182,0.12)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="310" y="82" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#1A9E92">🐍 Python</text>
+          <text x="310" y="100" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#1A9E92">Interpreter</text>
+          <text x="310" y="120" text-anchor="middle" font-family="Nunito" font-size="10" fill="#6A6A90">Reads &amp; translates</text>
+          <text x="310" y="134" text-anchor="middle" font-family="Nunito" font-size="10" fill="#6A6A90">your code to machine</text>
+
+          <!-- Arrow 2 -->
+          <path d="M 400 100 L 460 100" stroke="#2EC4B6" stroke-width="2.5" marker-end="url(#arrow2)"/>
+          <text x="430" y="88" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">executes</text>
+          <defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#2EC4B6"/></marker></defs>
+
+          <!-- Output -->
+          <rect x="460" y="60" width="150" height="80" rx="12" fill="rgba(255,209,102,0.18)" stroke="#FFD166" stroke-width="2"/>
+          <text x="535" y="92" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#A07010">Output</text>
+          <text x="535" y="112" text-anchor="middle" font-family="Nunito" font-size="12" fill="#1A1A2E" font-weight="bold">Hello</text>
+          <text x="535" y="128" text-anchor="middle" font-family="Nunito" font-size="10" fill="#6A6A90">appears on screen</text>
+        </svg>
+        <div class="diagram-caption">Your Python code → Python Interpreter → Output on screen. Simple as that.</div>
+      </div>
+    </section>
+
+    <!-- ─── COMIC STRIP ────────────────────────────────── -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The "Hello World" Experience</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch nervous"/>
+          <div class="comic-caption">"Okay. I'm going to write my first Python program. This is it. The moment."</div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/wave.svg" alt="Sarpanch coding"/>
+          <div class="comic-caption"><code style="background:rgba(0,0,0,0.08);padding:2px 6px;border-radius:4px;font-size:0.8rem">pritn("Hello World")</code><br/>
+          <span style="color:var(--text-muted);font-size:0.8rem">(Typo. Classic.)</span></div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch crying"/>
+          <div class="comic-caption">"NameError: name 'pritn' is not defined." <br/><span style="color:var(--orange);font-weight:800">Lesson learned: Python does not autocorrect.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PLAYGROUND ─────────────────────────────────── -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Live Python Playground</h3>
+      <p style="margin-bottom:var(--sp-5)">
+        Edit the code below and click <strong>Run</strong>. Real Python. In your browser. No installation needed.
+        Sarpanch will react to your results.
+      </p>
+
+      <div id="playground-1"></div>
+
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Change the message to print your own name.</li>
+          <li>Add a second print() on the next line.</li>
+          <li>Try printing an emoji. (Yes, Python handles emojis! 🎉)</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ─── QUIZ ───────────────────────────────────────── -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-1"></div>
+    </section>
+
+    <!-- ─── SUMMARY ───────────────────────────────────── -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>What Did We Just Learn? 🐍</h3>
+        <ul>
+          <li>Python is a programming language — a way to give your computer step-by-step instructions.</li>
+          <li>Python reads like English, which makes it the easiest first language to learn.</li>
+          <li><code>print()</code> is your first Python function — it displays text on the screen.</li>
+          <li>Text in quotes (like "Hello") is called a <strong>string</strong>.</li>
+          <li>Python runs code top-to-bottom, one line at a time.</li>
+          <li>Typos matter — Python doesn't autocorrect. Spell everything right.</li>
+        </ul>
+      </div>
+
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/happy.svg" alt="Sarpanch happy"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Stage 1 done! You ran your first Python program. That's actually huge.
+            Most people never even get here. Stage 2 is where the real fun begins — Variables! 🐍
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── NAV BUTTONS ────────────────────────────────── -->
+    <div class="lesson-nav-btns">
+      <a href="roadmap.html" class="btn btn-outline">← Back to Roadmap</a>
+      <a href="practice.html?module=1" class="btn btn-mint">✏️ Take Stage 1 Test</a>
+      <a href="lesson-2.html" class="btn btn-primary">Stage 2: Building Blocks →</a>
+    </div>
+
+  </main>
+</div><!-- /lesson-layout -->
+</div><!-- /main-content -->
+
+<script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/playground.js"></script>
+<script>
+  renderNavbar('lessons.html');
+  renderFooter();
+
+  // Award XP for reading lesson
+  if (!localStorage.getItem('lesson_1_read')) {
+    localStorage.setItem('lesson_1_read', '1');
+    setTimeout(() => {
+      addXP(XP_LESSON);
+      setModuleProgress(1, { status: 'unlocked', progress: 50 });
+    }, 3000);
+  }
+
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','what','analogy','first-code','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Init playground
+  initPlayground({
+    containerId: 'playground-1',
+    defaultCode: `print("Hello! I am Sarpanch.")\nprint("I am not a robot. Probably.")\nprint("Let's learn Python! 🐍")`,
+    onSuccess: (out) => {
+      setModuleProgress(1, { progress: 80 });
+    }
+  });
+
+  // Init inline quiz
+  initInlineQuiz({ containerId: 'quiz-widget-1', moduleId: 1 });
+</script>
+</body>
+</html>

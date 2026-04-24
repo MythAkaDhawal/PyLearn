@@ -1,0 +1,44 @@
+<svg viewBox="0 0 180 220" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Shadow -->
+  <ellipse cx="90" cy="210" rx="50" ry="10" fill="rgba(26,26,46,0.10)"/>
+  <!-- Body -->
+  <ellipse cx="90" cy="155" rx="48" ry="55" fill="#3DCB7A"/>
+  <!-- Belly -->
+  <ellipse cx="90" cy="155" rx="30" ry="38" fill="#6EE6A0" opacity="0.7"/>
+  <!-- Neck -->
+  <ellipse cx="90" cy="110" rx="28" ry="16" fill="#3DCB7A"/>
+  <!-- Head -->
+  <circle cx="90" cy="82" r="46" fill="#4DDA88"/>
+  <!-- Blush -->
+  <circle cx="66" cy="92" r="10" fill="#FF6B35" opacity="0.30"/>
+  <circle cx="114" cy="92" r="10" fill="#FF6B35" opacity="0.30"/>
+  <!-- Eyes - whites -->
+  <circle cx="75" cy="72" r="13" fill="white"/>
+  <circle cx="105" cy="72" r="13" fill="white"/>
+  <!-- Pupils -->
+  <circle cx="77" cy="73" r="7" fill="#1A1A2E"/>
+  <circle cx="107" cy="73" r="7" fill="#1A1A2E"/>
+  <!-- Eye shine -->
+  <circle cx="80" cy="70" r="2.5" fill="white"/>
+  <circle cx="110" cy="70" r="2.5" fill="white"/>
+  <!-- Smile -->
+  <path d="M 72 96 Q 90 112 108 96" stroke="#1A1A2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Tongue -->
+  <line x1="90" y1="110" x2="90" y2="122" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+  <line x1="90" y1="122" x2="83" y2="130" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="90" y1="122" x2="97" y2="130" stroke="#FF6B35" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Arm waving right -->
+  <path d="M 134 148 Q 158 120 150 92" stroke="#3DCB7A" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <circle cx="151" cy="87" r="12" fill="#4DDA88"/>
+  <!-- Hand fingers (tiny circles) -->
+  <circle cx="143" cy="79" r="5" fill="#6EE6A0"/>
+  <circle cx="156" cy="78" r="5" fill="#6EE6A0"/>
+  <circle cx="160" cy="88" r="5" fill="#6EE6A0"/>
+  <!-- Left arm hanging -->
+  <path d="M 46 148 Q 28 168 36 188" stroke="#3DCB7A" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Tail coil -->
+  <path d="M 70 200 Q 50 218 72 224 Q 92 228 88 208" fill="#3DCB7A"/>
+  <!-- Spots on body -->
+  <ellipse cx="80" cy="148" rx="6" ry="8" fill="#2EBC6A" opacity="0.5"/>
+  <ellipse cx="102" cy="162" rx="5" ry="7" fill="#2EBC6A" opacity="0.5"/>
+</svg>

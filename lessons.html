@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lessons Hub — PyLearn</title>
+  <meta name="description" content="Browse all 12 Python lesson stages on PyLearn. Start from First Steps or jump to any topic."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <style>
+    .lessons-hero { text-align:center; padding: var(--sp-12) 0 var(--sp-8); }
+    .lessons-grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--sp-5); margin-top: var(--sp-8); }
+    .lesson-card {
+      background: var(--surface); border-radius: var(--r-lg); padding: var(--sp-6);
+      border: 2px solid var(--border); text-decoration: none; display: block;
+      transition: all var(--ease); position: relative; overflow: hidden;
+    }
+    .lesson-card::before { content:''; position:absolute; top:0;left:0;right:0; height:4px; background: var(--orange); }
+    .lesson-card:nth-child(even)::before { background: var(--mint); }
+    .lesson-card:hover { border-color: var(--orange); transform: translateY(-5px); box-shadow: var(--shadow); }
+    .lesson-card.locked { opacity:0.6; cursor:not-allowed; }
+    .lesson-card.locked:hover { transform:none; box-shadow:none; border-color:var(--border); }
+    .lc-stage { font-size:0.78rem; font-weight:800; color:var(--orange); margin-bottom:var(--sp-2); letter-spacing:0.06em; }
+    .lc-emoji { font-size:2.2rem; margin-bottom:var(--sp-3); }
+    .lc-title { font-family:var(--font-heading); font-size:1.2rem; color:var(--text); margin-bottom:var(--sp-2); }
+    .lc-desc  { font-size:0.88rem; color:var(--text-secondary); line-height:1.6; margin-bottom:var(--sp-4); }
+    .lc-footer { display:flex; align-items:center; justify-content:space-between; }
+  </style>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container">
+  <div class="lessons-hero observe">
+    <div class="pill pill-orange" style="margin-bottom:var(--sp-4)">📚 All Lessons</div>
+    <h1>Choose Your Stage</h1>
+    <p style="max-width:520px;margin:var(--sp-3) auto 0">12 stages from zero to hero. Start at Stage 1 and work your way up — or jump to any topic you need.</p>
+  </div>
+  <div class="lessons-grid stagger" id="lessons-grid"></div>
+</div>
+</div>
+<script src="js/app.js"></script>
+<script>
+  renderNavbar('lessons.html');
+  renderFooter();
+  const stages = [
+    {id:1, emoji:'🐣', name:'First Steps', desc:'What is Python, installing it, running your first line.', href:'lesson-1.html'},
+    {id:2, emoji:'🧱', name:'Building Blocks', desc:'Variables, data types, basic math operators.', href:'lesson-2.html'},
+    {id:3, emoji:'🤔', name:'Making Decisions', desc:'If, elif, else — teach Python to make choices.', href:'lesson-3.html'},
+    {id:4, emoji:'🔁', name:'Doing Things Again', desc:'For loops, while loops, break, continue.', href:'lesson-4.html'},
+    {id:5, emoji:'📦', name:'Grouping Stuff', desc:'Lists, tuples, sets, and dictionaries.', href:'lesson-5.html'},
+    {id:6, emoji:'⚙️', name:'Teaching Python Tricks', desc:'Define functions, use arguments, return values.', href:'lesson-6.html'},
+    {id:7, emoji:'📂', name:'Organising Your Code', desc:'Modules, imports, and the standard library.', href:'lesson-7.html'},
+    {id:8, emoji:'🛡️', name:'Handling Trouble', desc:'Try/except, finally, common error types.', href:'lesson-8.html'},
+    {id:9, emoji:'📁', name:'Working with Files', desc:'Read and write files. Talk to your hard drive.', href:'lesson-9.html'},
+    {id:10, emoji:'🏗️', name:'Going Deeper (OOP)', desc:'Classes, objects, inheritance, __init__.', href:'lesson-10.html'},
+    {id:11, emoji:'🔧', name:'Real World Tools', desc:'NumPy, Pandas, Requests, and pip install.', href:'lesson-11.html'},
+    {id:12, emoji:'🚀', name:'Build Something Real', desc:'Mini projects — calculator, quiz app, weather app.', href:'lesson-12.html'},
+  ];
+  const grid = document.getElementById('lessons-grid');
+  grid.innerHTML = stages.map(s => {
+    const prog = getModuleProgress(s.id);
+    const status = prog.status || (s.id === 1 ? 'unlocked' : 'locked');
+    const statusBadge = status === 'completed'
+      ? `<span class="pill pill-mint">✅ Done</span>`
+      : status === 'locked'
+      ? `<span class="pill pill-yellow">🔒 Locked</span>`
+      : `<span class="pill pill-orange">▶️ Start</span>`;
+    const locked = status === 'locked';
+    return `<${locked ? 'div' : 'a'} ${locked ? '' : `href="${s.href}"`} class="lesson-card ${locked ? 'locked' : ''}">
+      <div class="lc-stage">Stage ${s.id}</div>
+      <div class="lc-emoji">${s.emoji}</div>
+      <div class="lc-title">${s.name}</div>
+      <div class="lc-desc">${s.desc}</div>
+      <div class="lc-footer">${statusBadge}<span style="font-size:0.8rem;color:var(--text-muted)">+10 XP</span></div>
+    </${locked ? 'div' : 'a'}>`;
+  }).join('');
+</script>
+</body>
+</html>

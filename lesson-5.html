@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 5: Grouping Stuff — PyLearn</title>
+  <meta name="description" content="Lists, tuples, sets, and dictionaries — Python's way of organising data. Stage 5 of PyLearn."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <link rel="stylesheet" href="css/lesson.css"/>
+  <link rel="stylesheet" href="css/playground.css"/>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+
+  <div class="lesson-topbar">
+    <div class="lesson-topbar-left">
+      <span class="lesson-stage-badge">Stage 5</span>
+      <span class="lesson-title-sm">Grouping Stuff</span>
+    </div>
+    <span class="lesson-progress-text">Lesson 5 of 12</span>
+  </div>
+
+  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
+    <h1>📦 Grouping Stuff</h1>
+    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Lists, tuples, sets, and dictionaries — Python's way of organising data.</p>
+  </div>
+
+  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
+    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
+    <div class="bubble-wrap">
+      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    </div>
+  </div>
+
+  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 5</div>
+  <div id="playground-5" style="margin-bottom:var(--sp-8)"></div>
+
+  <div class="summary-box" style="margin-bottom:var(--sp-8)">
+    <h3>Coming Soon for Stage 5 ✨</h3>
+    <ul>
+      <li>Full concept explanations with real-life analogies</li>
+      <li>Illustrated diagrams and Sarpanch comic strips</li>
+      <li>Mid-lesson quiz with XP rewards</li>
+      <li>Detailed code examples with line-by-line explanations</li>
+    </ul>
+  </div>
+
+  <div class="lesson-nav-btns">
+    <a href="lesson-4.html" class="btn btn-outline">← Stage 4: Loops</a>
+    <a href="practice.html?module=5" class="btn btn-mint">✏️ Take Stage 5 Test</a>
+    <a href="lesson-6.html" class="btn btn-primary">Stage 6: Functions →</a>
+  </div>
+</div>
+</div>
+<script src="js/app.js"></script>
+<script src="js/playground.js"></script>
+<script>
+  renderNavbar('lessons.html');
+  renderFooter();
+  if (!localStorage.getItem('lesson_5_read')) {
+    localStorage.setItem('lesson_5_read', '1');
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(5, { status: 'unlocked', progress: 30 }); }, 2000);
+  }
+  initPlayground({
+    containerId: 'playground-5',
+    defaultCode: $code
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Progress — PyLearn</title>
+  <meta name="description" content="Track your PyLearn journey. XP earned, badges unlocked, streak, and module completion."/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/navbar.css"/>
+  <style>
+    /* ── Overview Ring ── */
+    .progress-overview {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--sp-10);
+      align-items: center;
+      background: var(--surface);
+      border-radius: var(--r-xl);
+      padding: var(--sp-10);
+      border: 1.5px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: var(--sp-10);
+      flex-wrap: wrap;
+    }
+    @media(max-width:640px) { .progress-overview { grid-template-columns:1fr; text-align:center; } }
+
+    .ring-wrap {
+      position: relative;
+      width: 180px; height: 180px;
+    }
+    .ring-wrap svg { width:100%; height:100%; transform:rotate(-90deg); }
+    .ring-center {
+      position:absolute; inset:0;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+    }
+    .ring-pct   { font-family:var(--font-heading); font-size:2.6rem; color:var(--text); }
+    .ring-label { font-size:0.75rem; font-weight:800; color:var(--text-muted); letter-spacing:0.06em; }
+
+    .overview-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-6); }
+    @media(max-width:480px) { .overview-stats { grid-template-columns:1fr 1fr; } }
+    .stat-card { background:var(--bg-secondary); border-radius:var(--r-md); padding:var(--sp-5); text-align:center; }
+    .stat-num   { font-family:var(--font-heading); font-size:2rem; color:var(--orange); }
+    .stat-label { font-size:0.78rem; font-weight:700; color:var(--text-muted); margin-top:var(--sp-1); }
+
+    /* ── XP System Info ── */
+    .xp-system { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:var(--sp-4); margin-bottom:var(--sp-10); }
+    .xp-row { background:var(--surface); border-radius:var(--r-md); padding:var(--sp-4) var(--sp-5); display:flex; align-items:center; gap:var(--sp-3); border:1px solid var(--border); }
+    .xp-amount { font-family:var(--font-heading); font-size:1.4rem; color:var(--orange); min-width:52px; }
+    .xp-action { font-size:0.88rem; font-weight:700; color:var(--text); }
+
+    /* ── Badges ── */
+    .badges-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:var(--sp-5); margin-bottom:var(--sp-10); }
+
+    /* ── Module Cards ── */
+    .module-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:var(--sp-5); }
+    .module-progress-card {
+      background:var(--surface); border-radius:var(--r-lg); padding:var(--sp-5);
+      border:1.5px solid var(--border); transition:all var(--ease);
+    }
+    .module-progress-card.completed { border-color:var(--mint); background:rgba(46,196,182,0.04); }
+    .module-progress-card.locked    { opacity:0.55; }
+    .mpc-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:var(--sp-3); }
+    .mpc-name   { font-family:var(--font-heading); font-size:1rem; color:var(--text); }
+    .mpc-stage  { font-size:0.75rem; font-weight:800; color:var(--text-muted); }
+    .mpc-stats  { display:flex; gap:var(--sp-4); font-size:0.8rem; color:var(--text-muted); font-weight:700; margin-top:var(--sp-3); }
+  </style>
+</head>
+<body>
+<div class="main-content hero-bg">
+<div class="container" style="padding-top:var(--sp-8)">
+
+  <div style="text-align:center;margin-bottom:var(--sp-8)" class="observe">
+    <div class="pill pill-orange" style="margin-bottom:var(--sp-4)">🏆 My Progress</div>
+    <h1>Your Python Journey</h1>
+    <p style="max-width:500px;margin:var(--sp-3) auto 0">Every lesson read, every quiz passed, every badge earned — all tracked here. Sarpanch keeps score.</p>
+  </div>
+
+  <!-- Overview -->
+  <div class="progress-overview observe" id="progress-overview">
+    <div>
+      <div class="ring-wrap">
+        <svg viewBox="0 0 180 180" id="ring-svg">
+          <circle cx="90" cy="90" r="78" fill="none" stroke="var(--border)" stroke-width="14"/>
+          <circle cx="90" cy="90" r="78" fill="none" stroke="var(--orange)" stroke-width="14"
+            stroke-dasharray="490" stroke-dashoffset="490" stroke-linecap="round"
+            id="ring-circle" style="transition:stroke-dashoffset 1.2s ease"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-pct" id="ring-pct">0%</div>
+          <div class="ring-label">COMPLETE</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 style="margin-bottom:var(--sp-6)" id="progress-greeting">Keep going, champion! 💪</h2>
+      <div class="overview-stats">
+        <div class="stat-card">
+          <div class="stat-num" id="stat-xp">0</div>
+          <div class="stat-label">⚡ Total XP</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-modules">0/12</div>
+          <div class="stat-label">📚 Modules Done</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-badges">0</div>
+          <div class="stat-label">🏅 Badges</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-streak">0</div>
+          <div class="stat-label">🔥 Day Streak</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-quizzes">0</div>
+          <div class="stat-label">✏️ Tests Passed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stat-level">1</div>
+          <div class="stat-label">⭐ Level</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sarpanch reaction -->
+  <div class="sarpanch-panel observe" id="sarpanch-reaction" style="margin-bottom:var(--sp-10)">
+    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px" id="reaction-img"/>
+    <div>
+      <div class="speech-bubble" id="reaction-msg">Start your first lesson to begin earning XP and badges! Stage 1 is ready. 🐍</div>
+    </div>
+  </div>
+
+  <!-- XP System -->
+  <div class="observe" style="margin-bottom:var(--sp-6)">
+    <h2>⚡ How to Earn XP</h2>
+  </div>
+  <div class="xp-system observe">
+    <div class="xp-row"><div class="xp-amount">+10</div><div class="xp-action">Read a lesson</div></div>
+    <div class="xp-row"><div class="xp-amount">+5</div><div class="xp-action">Correct quiz answer</div></div>
+    <div class="xp-row"><div class="xp-amount">+50</div><div class="xp-action">Pass a module test</div></div>
+    <div class="xp-row"><div class="xp-amount">+100</div><div class="xp-action">Complete the Mega Test</div></div>
+    <div class="xp-row"><div class="xp-amount">+25</div><div class="xp-action">Perfect score bonus</div></div>
+    <div class="xp-row"><div class="xp-amount">+30</div><div class="xp-action">7-day streak bonus</div></div>
+  </div>
+
+  <!-- Badges -->
+  <div class="observe" style="margin-bottom:var(--sp-6)">
+    <h2>🏅 Badge Collection</h2>
+    <p style="margin-top:var(--sp-2)">Earn these by completing milestones. Locked badges are greyed out — go unlock them!</p>
+  </div>
+  <div class="badges-grid observe" id="badges-grid"></div>
+
+  <!-- Module Progress -->
+  <div class="observe" style="margin-bottom:var(--sp-6)">
+    <h2>📚 Module Progress</h2>
+  </div>
+  <div class="module-cards observe" id="module-cards"></div>
+
+  <!-- Reset -->
+  <div style="text-align:center;margin-top:var(--sp-16);padding:var(--sp-6);border-top:1px solid var(--border)" class="observe">
+    <p style="color:var(--text-muted);margin-bottom:var(--sp-4);font-size:0.9rem">Need a fresh start? This will erase ALL your progress. Like, all of it.</p>
+    <button class="btn btn-outline btn-sm" onclick="confirmReset()" style="color:var(--text-muted);border-color:var(--border)">🗑️ Reset All Progress</button>
+  </div>
+
+</div>
+</div><!-- /main-content -->
+
+<script src="js/app.js"></script>
+<script>
+  renderNavbar('progress.html');
+  renderFooter();
+
+  const STAGE_NAMES = ['First Steps','Building Blocks','Making Decisions','Doing Things Again','Grouping Stuff','Teaching Python Tricks','Organising Your Code','Handling Trouble','Working with Files','Going Deeper (OOP)','Real World Tools','Build Something Real'];
+  const STAGE_EMOJIS = ['🐣','🧱','🤔','🔁','📦','⚙️','📂','🛡️','📁','🏗️','🔧','🚀'];
+
+  function calcLevel(xp) { return Math.floor(xp / 100) + 1; }
+  function getGreeting(done) {
+    if (done === 0) return 'Ready to start? Stage 1 is waiting! 🐍';
+    if (done < 4)  return 'Great start! Keep the momentum going! 💪';
+    if (done < 8)  return 'Halfway through the journey. You\'re doing amazing! 🌟';
+    if (done < 12) return 'Almost there! Just a few stages left. Push! 🔥';
+    return '🎓 Python Graduate! Sarpanch does a victory dance in your honour!';
+  }
+
+  function renderProgress() {
+    const xp      = getXP();
+    const streak  = getStreak();
+    const badges  = getBadges();
+    const prog    = getProgress();
+    let doneMods  = 0, passedTests = 0;
+    for (let i = 1; i <= 12; i++) {
+      const p = prog[i] || {};
+      if (p.status === 'completed') { doneMods++; passedTests++; }
+    }
+    const pct  = Math.round((doneMods / 12) * 100);
+    const circ = 2 * Math.PI * 78;
+    const offs = circ - (pct / 100) * circ;
+    const lvl  = calcLevel(xp);
+
+    // Ring
+    setTimeout(() => {
+      document.getElementById('ring-circle').style.strokeDashoffset = offs;
+    }, 300);
+    document.getElementById('ring-pct').textContent = pct + '%';
+
+    // Stats
+    const s = id => document.getElementById(id);
+    s('stat-xp').textContent      = xp;
+    s('stat-modules').textContent = `${doneMods}/12`;
+    s('stat-badges').textContent  = badges.length;
+    s('stat-streak').textContent  = streak;
+    s('stat-quizzes').textContent = passedTests;
+    s('stat-level').textContent   = lvl;
+    s('progress-greeting').textContent = getGreeting(doneMods);
+
+    // Sarpanch
+    const reactImg = document.getElementById('reaction-img');
+    const reactMsg = document.getElementById('reaction-msg');
+    if (pct >= 80) { reactImg.src = 'assets/sarpanch/victory.svg'; reactMsg.textContent = '🎉 Look at you! Almost done! Sarpanch could not be prouder!'; }
+    else if (pct >= 40) { reactImg.src = 'assets/sarpanch/happy.svg'; reactMsg.textContent = 'Halfway there and still going strong. You\'re officially a Python learner! 🐍'; }
+    else { reactImg.src = 'assets/sarpanch/wave.svg'; reactMsg.textContent = 'Start your first lesson to earn XP and badges! Stage 1 is ready and waiting. 🐍'; }
+
+    // Badges grid
+    const badgeGrid = document.getElementById('badges-grid');
+    badgeGrid.innerHTML = ALL_BADGES.map(b => {
+      const earned = badges.find(e => e.id === b.id);
+      const date   = earned ? new Date(earned.earnedAt).toLocaleDateString() : null;
+      return `<div class="badge-card ${earned ? 'earned' : 'locked'}" title="${earned ? 'Earned: ' + date : 'Not yet earned'}">
+        <div class="badge-icon">${b.emoji}</div>
+        <div class="badge-name">${b.name}</div>
+        <div class="badge-desc">${b.desc}</div>
+        ${earned ? `<div style="font-size:0.72rem;color:var(--mint-dark);margin-top:var(--sp-2);font-weight:800">Earned ${date} ✓</div>` : `<div style="font-size:0.72rem;color:var(--text-muted);margin-top:var(--sp-2)">🔒 Not yet</div>`}
+      </div>`;
+    }).join('');
+
+    // Module cards
+    const modCards = document.getElementById('module-cards');
+    modCards.innerHTML = Array.from({length:12}, (_,i) => {
+      const id   = i + 1;
+      const p    = prog[id] || {};
+      const st   = p.status || (id === 1 ? 'unlocked' : 'locked');
+      const sc   = p.quizScore;
+      const bar  = p.progress || 0;
+      return `<div class="module-progress-card ${st}">
+        <div class="mpc-header">
+          <div>
+            <div class="mpc-stage">Stage ${id}</div>
+            <div class="mpc-name">${STAGE_EMOJIS[i]} ${STAGE_NAMES[i]}</div>
+          </div>
+          ${st === 'completed' ? '<span class="pill pill-mint">✅ Done</span>' : st === 'locked' ? '<span class="pill pill-yellow">🔒</span>' : '<span class="pill pill-orange">In Progress</span>'}
+        </div>
+        <div class="xp-bar"><div class="xp-bar-fill" style="width:${bar}%"></div></div>
+        <div class="mpc-stats">
+          ${sc != null ? `<span>Quiz: ${sc}%</span>` : '<span>Quiz: —</span>'}
+          <span>${p.xp || 0} XP</span>
+          ${st === 'locked' ? '<span>Complete previous stage first</span>' : `<a href="lesson-${id}.html" style="color:var(--orange)">Continue →</a>`}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  renderProgress();
+
+  window.confirmReset = function() {
+    if (confirm('Are you ABSOLUTELY sure? This deletes ALL XP, badges, and progress. Even Sarpanch can\'t undo this.')) {
+      Object.values(STORAGE).forEach(k => localStorage.removeItem(k));
+      localStorage.removeItem('pylearn_first_run');
+      for (let i=1; i<=12; i++) localStorage.removeItem(`lesson_${i}_read`);
+      alert('All progress reset. Fresh start! Go get \'em. 🐍');
+      location.reload();
+    }
+  };
+</script>
+</body>
+</html>
