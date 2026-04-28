@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Stage 12: Build Something Real — PyLearn</title>
-  <meta name="description" content="Bring everything together and build three real Python mini-projects: a Calculator, a Quiz App, and a Number Guessing Game."/>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="css/navbar.css"/>
-  <link rel="stylesheet" href="css/lesson.css"/>
-  <link rel="stylesheet" href="css/playground.css"/>
+  <meta name="description"
+    content="Bring everything together and build three real Python mini-projects: a Calculator, a Quiz App, and a Number Guessing Game." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/lesson.css" />
+  <link rel="stylesheet" href="css/playground.css" />
   <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js" defer></script>
+
   <style>
     .project-tabs {
       display: flex;
@@ -17,6 +20,7 @@
       flex-wrap: wrap;
       margin-bottom: var(--sp-5);
     }
+
     .project-tab {
       padding: var(--sp-2) var(--sp-5);
       border-radius: 999px;
@@ -29,13 +33,20 @@
       color: var(--text-muted);
       transition: all 0.2s;
     }
+
     .project-tab.active {
       background: var(--orange);
       border-color: var(--orange);
       color: white;
     }
-    .project-panel { display: none; }
-    .project-panel.active { display: block; }
+
+    .project-panel {
+      display: none;
+    }
+
+    .project-panel.active {
+      display: block;
+    }
 
     .skills-grid {
       display: grid;
@@ -43,6 +54,7 @@
       gap: var(--sp-3);
       margin-top: var(--sp-4);
     }
+
     .skill-pill {
       display: flex;
       align-items: center;
@@ -52,6 +64,7 @@
       font-size: 0.85rem;
       font-weight: 700;
     }
+
     .graduation-banner {
       background: linear-gradient(135deg, #1A1A2E 0%, #2d2d5e 100%);
       border-radius: var(--radius-lg);
@@ -60,12 +73,14 @@
       position: relative;
       overflow: hidden;
     }
+
     .graduation-banner::before {
       content: '';
       position: absolute;
       inset: 0;
       background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='white' fill-opacity='0.03'%3E%3Cpath d='M20 20l20-20v40L20 20zm0 0L0 0v40l20-20z'/%3E%3C/g%3E%3C/svg%3E");
     }
+
     .graduation-banner h2 {
       color: #FFD166;
       font-family: var(--font-head);
@@ -73,13 +88,15 @@
       position: relative;
       margin-bottom: var(--sp-4);
     }
+
     .graduation-banner p {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 1.05rem;
       position: relative;
       max-width: 560px;
       margin: 0 auto var(--sp-6);
     }
+
     .cert-badges {
       display: flex;
       flex-wrap: wrap;
@@ -87,9 +104,10 @@
       justify-content: center;
       position: relative;
     }
+
     .cert-badge {
-      background: rgba(255,255,255,0.1);
-      border: 1.5px solid rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
       border-radius: var(--radius);
       padding: var(--sp-3) var(--sp-5);
       color: white;
@@ -97,282 +115,346 @@
       font-weight: 700;
     }
   </style>
+
+  <script src="js/speed-insights.js" defer></script>
 </head>
+
 <body>
-<div class="main-content hero-bg">
-<div class="lesson-layout">
+  <div class="main-content hero-bg">
+    <div class="lesson-layout">
 
-  <!-- Sidebar -->
-  <aside class="lesson-sidebar">
-    <div class="sidebar-card">
-      <div class="sidebar-title">🗂️ In This Lesson</div>
-      <nav>
-        <a href="#intro"        class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
-        <a href="#skills-recap" class="sidebar-nav-item"><div class="nav-dot"></div>Skills Recap</a>
-        <a href="#projects"     class="sidebar-nav-item"><div class="nav-dot"></div>Mini Projects</a>
-        <a href="#quiz"         class="sidebar-nav-item"><div class="nav-dot"></div>Final Quiz</a>
-        <a href="#graduation"   class="sidebar-nav-item"><div class="nav-dot"></div>🎓 Graduation!</a>
-        <a href="#next-steps"   class="sidebar-nav-item"><div class="nav-dot"></div>What's Next?</a>
-      </nav>
+      <!-- Sidebar -->
+      <aside class="lesson-sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">🗂️ In This Lesson</div>
+          <nav>
+            <a href="#intro" class="sidebar-nav-item active">
+              <div class="nav-dot"></div>Introduction
+            </a>
+            <a href="#skills-recap" class="sidebar-nav-item">
+              <div class="nav-dot"></div>Skills Recap
+            </a>
+            <a href="#projects" class="sidebar-nav-item">
+              <div class="nav-dot"></div>Mini Projects
+            </a>
+            <a href="#quiz" class="sidebar-nav-item">
+              <div class="nav-dot"></div>Final Quiz
+            </a>
+            <a href="#graduation" class="sidebar-nav-item">
+              <div class="nav-dot"></div>🎓 Graduation!
+            </a>
+            <a href="#next-steps" class="sidebar-nav-item">
+              <div class="nav-dot"></div>What's Next?
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+          <div class="sidebar-title">⚡ Your Progress</div>
+          <div class="xp-display" id="sidebar-xp">0 XP</div>
+          <div class="xp-bar" style="margin-top:var(--sp-3)">
+            <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main>
+        <div class="lesson-topbar">
+          <div class="lesson-topbar-left">
+            <span class="lesson-stage-badge" style="background:linear-gradient(135deg,#FFD166,#FF6B35)">Stage 12
+              ✨</span>
+            <span class="lesson-title-sm">Build Something Real</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--sp-4)">
+            <span class="lesson-progress-text">Final Lesson!</span>
+            <span class="xp-display">+25 XP 🎉</span>
+          </div>
+        </div>
+
+        <!-- INTRO -->
+        <section class="lesson-section" id="intro">
+          <div class="lesson-section-label">🏆 The Grand Finale</div>
+          <div class="lesson-intro-box"
+            style="border-color:var(--yellow);background:linear-gradient(135deg,rgba(255,209,102,0.08),rgba(255,107,53,0.05))">
+            <h1>Time to Build Something Real</h1>
+            <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+              You started this course not knowing a single line of Python. Now you know variables, loops,
+              functions, classes, file handling, error catching, and how to use the world's best libraries.
+              <br /><br />
+              This final stage isn't a lecture — it's a <strong>workshop</strong>. We're going to put everything
+              together
+              and build three complete, working Python programs from scratch.
+            </p>
+          </div>
+          <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+            <img src="assets/sarpanch/victory.svg" alt="Sarpanch" />
+            <div class="bubble-wrap">
+              <div class="speech-bubble">
+                Every great programmer started exactly where you did — zero knowledge. The only difference between a
+                beginner and an expert is time and practice. Let's build! 🚀
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SKILLS RECAP -->
+        <section class="lesson-section" id="skills-recap">
+          <div class="lesson-section-label">🧠 Your Skills Recap</div>
+          <h3 style="margin-bottom:var(--sp-4)">Everything you've learned so far</h3>
+          <div class="skills-grid">
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Variables</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Data Types</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ If
+              / Else</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              For Loops</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              While Loops</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Lists</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Dictionaries</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Functions</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Modules</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Error Handling</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              File I/O</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              OOP / Classes</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              NumPy</div>
+            <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅
+              Pandas</div>
+          </div>
+        </section>
+
+        <!-- MINI PROJECTS -->
+        <section class="lesson-section" id="projects">
+          <div class="lesson-section-label">🔨 Mini Projects</div>
+          <h3 style="margin-bottom:var(--sp-3)">Three complete programs to run and customise</h3>
+          <p style="margin-bottom:var(--sp-5)">Switch between projects using the tabs. Read the code, understand it,
+            then try the challenge at the bottom!</p>
+
+          <!-- Tabs -->
+          <div class="project-tabs">
+            <button class="project-tab active" onclick="switchProject(event,'calculator')">🧮 Project 1:
+              Calculator</button>
+            <button class="project-tab" onclick="switchProject(event,'quiz')">🎯 Project 2: Quiz Game</button>
+            <button class="project-tab" onclick="switchProject(event,'guessing')">🎲 Project 3: Number Guesser</button>
+          </div>
+
+          <!-- Calculator Panel -->
+          <div class="project-panel active" id="panel-calculator">
+            <div class="concept-box">
+              <h3>🧮 Smart Calculator</h3>
+              <p>Combines functions, conditionals, and a while loop to create a re-usable calculator that keeps running
+                until the user says to quit. Uses try/except to gracefully handle invalid input.</p>
+              <div style="display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)">
+                <span class="skill-pill"
+                  style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">functions</span>
+                <span class="skill-pill"
+                  style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">if/elif/else</span>
+                <span class="skill-pill"
+                  style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">while loop</span>
+                <span class="skill-pill"
+                  style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">try/except</span>
+              </div>
+            </div>
+            <div id="playground-calc" style="margin-top:var(--sp-5)"></div>
+            <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
+              <strong>💡 Challenge:</strong> Add a new function called <code>power(a, b)</code> that returns
+              <code>a ** b</code>. Add a new <code>elif</code> block for the <code>"^"</code> operator to call it!
+            </div>
+          </div>
+
+          <!-- Quiz Panel -->
+          <div class="project-panel" id="panel-quiz">
+            <div class="concept-box">
+              <h3>🎯 Quiz Game</h3>
+              <p>A complete interactive quiz stored in a list of dictionaries. Loops through each question, tracks the
+                score, and gives a final result. This is how real quiz applications work at their core!</p>
+              <div style="display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)">
+                <span class="skill-pill"
+                  style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">lists</span>
+                <span class="skill-pill"
+                  style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">dictionaries</span>
+                <span class="skill-pill"
+                  style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">for loop</span>
+                <span class="skill-pill"
+                  style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">if/else</span>
+              </div>
+            </div>
+            <div id="playground-quiz-game" style="margin-top:var(--sp-5)"></div>
+            <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
+              <strong>💡 Challenge:</strong> Add two more questions of your own to the <code>questions</code> list,
+              following the same dictionary format!
+            </div>
+          </div>
+
+          <!-- Guessing Panel -->
+          <div class="project-panel" id="panel-guessing">
+            <div class="concept-box">
+              <h3>🎲 Number Guessing Game</h3>
+              <p>The classic guessing game! Python picks a secret number, and the program loops, giving "Too high!" or
+                "Too low!" hints until the player guesses it. Tracks how many attempts it took.</p>
+              <div style="display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)">
+                <span class="skill-pill"
+                  style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">random
+                  module</span>
+                <span class="skill-pill"
+                  style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">while loop</span>
+                <span class="skill-pill"
+                  style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">if/elif/else</span>
+                <span class="skill-pill"
+                  style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">variables</span>
+              </div>
+            </div>
+            <div id="playground-guessing" style="margin-top:var(--sp-5)"></div>
+            <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
+              <strong>💡 Challenge:</strong> Add a maximum number of attempts (say, 7). If the player exceeds 7 guesses,
+              print <code>"Game over! The number was X."</code> and break the loop.
+            </div>
+          </div>
+        </section>
+
+        <!-- QUIZ -->
+        <section class="lesson-section" id="quiz">
+          <div id="quiz-widget-12"></div>
+        </section>
+
+        <!-- GRADUATION -->
+        <section class="lesson-section" id="graduation">
+          <div class="graduation-banner">
+            <h2>🎓 You Did It!</h2>
+            <p>
+              You've completed all 12 stages of PyLearn. You started as a complete beginner and
+              you've now written real Python programs. That's not nothing — that's everything.
+            </p>
+            <div class="cert-badges">
+              <div class="cert-badge">✅ Variables & Data Types</div>
+              <div class="cert-badge">✅ Control Flow</div>
+              <div class="cert-badge">✅ Functions & Modules</div>
+              <div class="cert-badge">✅ Data Collections</div>
+              <div class="cert-badge">✅ Error Handling</div>
+              <div class="cert-badge">✅ File I/O</div>
+              <div class="cert-badge">✅ OOP</div>
+              <div class="cert-badge">✅ Real-World Libraries</div>
+              <div class="cert-badge" style="background:rgba(255,209,102,0.2);border-color:#FFD166;color:#FFD166">🏆
+                Mini Projects Built</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NEXT STEPS -->
+        <section class="lesson-section" id="next-steps">
+          <div class="lesson-section-label">🚀 What's Next?</div>
+          <h3 style="margin-bottom:var(--sp-5)">Your Python journey is just beginning</h3>
+          <div style="display:grid;gap:var(--sp-4)">
+
+            <div
+              style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(46,196,182,0.08);border:2px solid rgba(46,196,182,0.25)">
+              <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">🌐 Web Development</div>
+              <p>Learn <strong>Flask</strong> or <strong>Django</strong> to build web applications. Deploy them live on
+                the internet.</p>
+            </div>
+
+            <div
+              style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(255,209,102,0.08);border:2px solid rgba(255,209,102,0.35)">
+              <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">📊 Data Science</div>
+              <p>Go deeper with <strong>NumPy</strong>, <strong>Pandas</strong>, and <strong>Matplotlib</strong> to
+                visualise data and find patterns.</p>
+            </div>
+
+            <div
+              style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(255,107,53,0.08);border:2px solid rgba(255,107,53,0.25)">
+              <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">🤖 Machine Learning</div>
+              <p>Use <strong>scikit-learn</strong> and <strong>TensorFlow</strong> to teach computers how to make
+                predictions and decisions.</p>
+            </div>
+
+            <div
+              style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(138,138,168,0.08);border:2px solid rgba(138,138,168,0.25)">
+              <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">🤖 Automation</div>
+              <p>Use <strong>Selenium</strong> and <strong>Beautiful Soup</strong> to automate tasks, scrape websites,
+                and build bots.</p>
+            </div>
+          </div>
+
+          <div class="sarpanch-panel" style="margin-top:var(--sp-8)">
+            <img src="assets/sarpanch/victory.svg" alt="Sarpanch" />
+            <div class="bubble-wrap">
+              <div class="speech-bubble">
+                From here, the path is yours to choose. Web developer? Data scientist? AI engineer? Game developer? All
+                of them started with "Hello, World". You've already been there. Keep going! 🐍💚
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- NAV -->
+        <div class="lesson-nav-btns">
+          <a href="lesson-11.html" class="btn btn-outline">← Stage 11: Real World Tools</a>
+          <a href="practice.html?module=12" class="btn btn-mint">✏️ Final Stage Test</a>
+          <a href="index.html" class="btn btn-primary">🏠 Back to Home</a>
+        </div>
+      </main>
     </div>
-    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
-      <div class="sidebar-title">⚡ Your Progress</div>
-      <div class="xp-display" id="sidebar-xp">0 XP</div>
-      <div class="xp-bar" style="margin-top:var(--sp-3)">
-        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
-      </div>
-    </div>
-  </aside>
+  </div>
 
-  <!-- Main Content -->
-  <main>
-    <div class="lesson-topbar">
-      <div class="lesson-topbar-left">
-        <span class="lesson-stage-badge" style="background:linear-gradient(135deg,#FFD166,#FF6B35)">Stage 12 ✨</span>
-        <span class="lesson-title-sm">Build Something Real</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:var(--sp-4)">
-        <span class="lesson-progress-text">Final Lesson!</span>
-        <span class="xp-display">+25 XP 🎉</span>
-      </div>
-    </div>
+  <script src="js/app.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/playground.js"></script>
+  <script>
+    renderNavbar('lessons.html');
+    renderFooter();
 
-    <!-- INTRO -->
-    <section class="lesson-section" id="intro">
-      <div class="lesson-section-label">🏆 The Grand Finale</div>
-      <div class="lesson-intro-box" style="border-color:var(--yellow);background:linear-gradient(135deg,rgba(255,209,102,0.08),rgba(255,107,53,0.05))">
-        <h1>Time to Build Something Real</h1>
-        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
-          You started this course not knowing a single line of Python. Now you know variables, loops, 
-          functions, classes, file handling, error catching, and how to use the world's best libraries.
-          <br/><br/>
-          This final stage isn't a lecture — it's a <strong>workshop</strong>. We're going to put everything together 
-          and build three complete, working Python programs from scratch.
-        </p>
-      </div>
-      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
-        <img src="assets/sarpanch/victory.svg" alt="Sarpanch"/>
-        <div class="bubble-wrap">
-          <div class="speech-bubble">
-            Every great programmer started exactly where you did — zero knowledge. The only difference between a beginner and an expert is time and practice. Let's build! 🚀
-          </div>
-        </div>
-      </div>
-    </section>
+    if (!localStorage.getItem('lesson_12_read')) {
+      localStorage.setItem('lesson_12_read', '1');
+      setTimeout(() => {
+        addXP(25);
+        setModuleProgress(12, { status: 'complete', progress: 100 });
+      }, 3000);
+    }
 
-    <!-- SKILLS RECAP -->
-    <section class="lesson-section" id="skills-recap">
-      <div class="lesson-section-label">🧠 Your Skills Recap</div>
-      <h3 style="margin-bottom:var(--sp-4)">Everything you've learned so far</h3>
-      <div class="skills-grid">
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Variables</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Data Types</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ If / Else</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ For Loops</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ While Loops</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Lists</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Dictionaries</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Functions</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Modules</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Error Handling</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ File I/O</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ OOP / Classes</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ NumPy</div>
-        <div class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">✅ Pandas</div>
-      </div>
-    </section>
+    function updateSidebarXP() {
+      const xp = getXP();
+      const el = document.getElementById('sidebar-xp');
+      const bar = document.getElementById('sidebar-xp-bar');
+      if (el) el.textContent = xp + ' XP';
+      if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+    }
+    updateSidebarXP();
 
-    <!-- MINI PROJECTS -->
-    <section class="lesson-section" id="projects">
-      <div class="lesson-section-label">🔨 Mini Projects</div>
-      <h3 style="margin-bottom:var(--sp-3)">Three complete programs to run and customise</h3>
-      <p style="margin-bottom:var(--sp-5)">Switch between projects using the tabs. Read the code, understand it, then try the challenge at the bottom!</p>
-
-      <!-- Tabs -->
-      <div class="project-tabs">
-        <button class="project-tab active" onclick="switchProject(event,'calculator')">🧮 Project 1: Calculator</button>
-        <button class="project-tab" onclick="switchProject(event,'quiz')">🎯 Project 2: Quiz Game</button>
-        <button class="project-tab" onclick="switchProject(event,'guessing')">🎲 Project 3: Number Guesser</button>
-      </div>
-
-      <!-- Calculator Panel -->
-      <div class="project-panel active" id="panel-calculator">
-        <div class="concept-box">
-          <h3>🧮 Smart Calculator</h3>
-          <p>Combines functions, conditionals, and a while loop to create a re-usable calculator that keeps running until the user says to quit. Uses try/except to gracefully handle invalid input.</p>
-          <div style="display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)">
-            <span class="skill-pill" style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">functions</span>
-            <span class="skill-pill" style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">if/elif/else</span>
-            <span class="skill-pill" style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">while loop</span>
-            <span class="skill-pill" style="background:rgba(255,107,53,0.1);border:1.5px solid rgba(255,107,53,0.3)">try/except</span>
-          </div>
-        </div>
-        <div id="playground-calc" style="margin-top:var(--sp-5)"></div>
-        <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
-          <strong>💡 Challenge:</strong> Add a new function called <code>power(a, b)</code> that returns <code>a ** b</code>. Add a new <code>elif</code> block for the <code>"^"</code> operator to call it!
-        </div>
-      </div>
-
-      <!-- Quiz Panel -->
-      <div class="project-panel" id="panel-quiz">
-        <div class="concept-box">
-          <h3>🎯 Quiz Game</h3>
-          <p>A complete interactive quiz stored in a list of dictionaries. Loops through each question, tracks the score, and gives a final result. This is how real quiz applications work at their core!</p>
-          <div style="display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)">
-            <span class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">lists</span>
-            <span class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">dictionaries</span>
-            <span class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">for loop</span>
-            <span class="skill-pill" style="background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3)">if/else</span>
-          </div>
-        </div>
-        <div id="playground-quiz-game" style="margin-top:var(--sp-5)"></div>
-        <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
-          <strong>💡 Challenge:</strong> Add two more questions of your own to the <code>questions</code> list, following the same dictionary format!
-        </div>
-      </div>
-
-      <!-- Guessing Panel -->
-      <div class="project-panel" id="panel-guessing">
-        <div class="concept-box">
-          <h3>🎲 Number Guessing Game</h3>
-          <p>The classic guessing game! Python picks a secret number, and the program loops, giving "Too high!" or "Too low!" hints until the player guesses it. Tracks how many attempts it took.</p>
-          <div style="display:flex;gap:var(--sp-2);flex-wrap:wrap;margin-top:var(--sp-3)">
-            <span class="skill-pill" style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">random module</span>
-            <span class="skill-pill" style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">while loop</span>
-            <span class="skill-pill" style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">if/elif/else</span>
-            <span class="skill-pill" style="background:rgba(255,209,102,0.12);border:1.5px solid rgba(255,209,102,0.4)">variables</span>
-          </div>
-        </div>
-        <div id="playground-guessing" style="margin-top:var(--sp-5)"></div>
-        <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
-          <strong>💡 Challenge:</strong> Add a maximum number of attempts (say, 7). If the player exceeds 7 guesses, print <code>"Game over! The number was X."</code> and break the loop.
-        </div>
-      </div>
-    </section>
-
-    <!-- QUIZ -->
-    <section class="lesson-section" id="quiz">
-      <div id="quiz-widget-12"></div>
-    </section>
-
-    <!-- GRADUATION -->
-    <section class="lesson-section" id="graduation">
-      <div class="graduation-banner">
-        <h2>🎓 You Did It!</h2>
-        <p>
-          You've completed all 12 stages of PyLearn. You started as a complete beginner and 
-          you've now written real Python programs. That's not nothing — that's everything.
-        </p>
-        <div class="cert-badges">
-          <div class="cert-badge">✅ Variables & Data Types</div>
-          <div class="cert-badge">✅ Control Flow</div>
-          <div class="cert-badge">✅ Functions & Modules</div>
-          <div class="cert-badge">✅ Data Collections</div>
-          <div class="cert-badge">✅ Error Handling</div>
-          <div class="cert-badge">✅ File I/O</div>
-          <div class="cert-badge">✅ OOP</div>
-          <div class="cert-badge">✅ Real-World Libraries</div>
-          <div class="cert-badge" style="background:rgba(255,209,102,0.2);border-color:#FFD166;color:#FFD166">🏆 Mini Projects Built</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEXT STEPS -->
-    <section class="lesson-section" id="next-steps">
-      <div class="lesson-section-label">🚀 What's Next?</div>
-      <h3 style="margin-bottom:var(--sp-5)">Your Python journey is just beginning</h3>
-      <div style="display:grid;gap:var(--sp-4)">
-
-        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(46,196,182,0.08);border:2px solid rgba(46,196,182,0.25)">
-          <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">🌐 Web Development</div>
-          <p>Learn <strong>Flask</strong> or <strong>Django</strong> to build web applications. Deploy them live on the internet.</p>
-        </div>
-
-        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(255,209,102,0.08);border:2px solid rgba(255,209,102,0.35)">
-          <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">📊 Data Science</div>
-          <p>Go deeper with <strong>NumPy</strong>, <strong>Pandas</strong>, and <strong>Matplotlib</strong> to visualise data and find patterns.</p>
-        </div>
-
-        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(255,107,53,0.08);border:2px solid rgba(255,107,53,0.25)">
-          <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">🤖 Machine Learning</div>
-          <p>Use <strong>scikit-learn</strong> and <strong>TensorFlow</strong> to teach computers how to make predictions and decisions.</p>
-        </div>
-
-        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(138,138,168,0.08);border:2px solid rgba(138,138,168,0.25)">
-          <div style="font-size:1.5rem;margin-bottom:var(--sp-2)">🤖 Automation</div>
-          <p>Use <strong>Selenium</strong> and <strong>Beautiful Soup</strong> to automate tasks, scrape websites, and build bots.</p>
-        </div>
-      </div>
-
-      <div class="sarpanch-panel" style="margin-top:var(--sp-8)">
-        <img src="assets/sarpanch/victory.svg" alt="Sarpanch"/>
-        <div class="bubble-wrap">
-          <div class="speech-bubble">
-            From here, the path is yours to choose. Web developer? Data scientist? AI engineer? Game developer? All of them started with "Hello, World". You've already been there. Keep going! 🐍💚
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NAV -->
-    <div class="lesson-nav-btns">
-      <a href="lesson-11.html" class="btn btn-outline">← Stage 11: Real World Tools</a>
-      <a href="practice.html?module=12" class="btn btn-mint">✏️ Final Stage Test</a>
-      <a href="index.html" class="btn btn-primary">🏠 Back to Home</a>
-    </div>
-  </main>
-</div>
-</div>
-
-<script src="js/app.js"></script>
-<script src="js/quiz.js"></script>
-<script src="js/playground.js"></script>
-<script>
-  renderNavbar('lessons.html');
-  renderFooter();
-
-  if (!localStorage.getItem('lesson_12_read')) {
-    localStorage.setItem('lesson_12_read', '1');
-    setTimeout(() => {
-      addXP(25);
-      setModuleProgress(12, { status: 'complete', progress: 100 });
-    }, 3000);
-  }
-
-  function updateSidebarXP() {
-    const xp = getXP();
-    const el = document.getElementById('sidebar-xp');
-    const bar = document.getElementById('sidebar-xp-bar');
-    if (el)  el.textContent = xp + ' XP';
-    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
-  }
-  updateSidebarXP();
-
-  const sections = ['intro','skills-recap','projects','quiz','graduation','next-steps'];
-  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
-  window.addEventListener('scroll', () => {
-    let current = 'intro';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top < 120) current = id;
+    const sections = ['intro', 'skills-recap', 'projects', 'quiz', 'graduation', 'next-steps'];
+    const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+    window.addEventListener('scroll', () => {
+      let current = 'intro';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < 120) current = id;
+      });
+      sideLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
     });
-    sideLinks.forEach(l => {
-      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
-    });
-  });
 
-  // Tab switching — receives the event object explicitly (avoids deprecated global `event`)
-  function switchProject(e, project) {
-    document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.project-panel').forEach(p => p.classList.remove('active'));
-    e.currentTarget.classList.add('active');
-    document.getElementById('panel-' + project).classList.add('active');
-  }
+    // Tab switching — receives the event object explicitly (avoids deprecated global `event`)
+    function switchProject(e, project) {
+      document.querySelectorAll('.project-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.project-panel').forEach(p => p.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      document.getElementById('panel-' + project).classList.add('active');
+    }
 
-  // Project 1: Calculator
-  initPlayground({
-    containerId: 'playground-calc',
-    defaultCode: `def add(a, b):      return a + b
+    // Project 1: Calculator
+    initPlayground({
+      containerId: 'playground-calc',
+      defaultCode: `def add(a, b):      return a + b
 def subtract(a, b): return a - b
 def multiply(a, b): return a * b
 def divide(a, b):   return a / b
@@ -401,12 +483,12 @@ for a, op, b in calculations:
     except ZeroDivisionError:
         print("Error: Cannot divide by zero!")
 `,
-  });
+    });
 
-  // Project 2: Quiz Game
-  initPlayground({
-    containerId: 'playground-quiz-game',
-    defaultCode: `questions = [
+    // Project 2: Quiz Game
+    initPlayground({
+      containerId: 'playground-quiz-game',
+      defaultCode: `questions = [
     {
         "question": "What keyword defines a function in Python?",
         "answer":   "def"
@@ -446,12 +528,12 @@ elif score >= len(questions) // 2:
 else:
     print("Review the lessons and try again! 📚")
 `,
-  });
+    });
 
-  // Project 3: Number Guesser
-  initPlayground({
-    containerId: 'playground-guessing',
-    defaultCode: `import random
+    // Project 3: Number Guesser
+    initPlayground({
+      containerId: 'playground-guessing',
+      defaultCode: `import random
 
 secret = random.randint(1, 20)
 attempts = 0
@@ -475,9 +557,10 @@ for guess in guesses:
         print(f"  🎉 Correct! You got it in {attempts} attempts!")
         break
 `,
-  });
+    });
 
-  initInlineQuiz({ containerId: 'quiz-widget-12', moduleId: 12 });
-</script>
+    initInlineQuiz({ containerId: 'quiz-widget-12', moduleId: 12 });
+  </script>
 </body>
+
 </html>
