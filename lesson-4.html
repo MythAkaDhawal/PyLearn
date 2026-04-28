@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 4: Doing Things Again — PyLearn</title>
-  <meta name="description" content="For loops and while loops — the art of not writing the same line 100 times. Stage 4 of PyLearn."/>
+  <meta name="description" content="Learn for loops and while loops in Python. Stop writing the same code over and over again."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,350 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 4</span>
-      <span class="lesson-title-sm">Doing Things Again</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#for-loop"   class="sidebar-nav-item"><div class="nav-dot"></div>The "For" Loop</a>
+        <a href="#while-loop" class="sidebar-nav-item"><div class="nav-dot"></div>The "While" Loop</a>
+        <a href="#control"    class="sidebar-nav-item"><div class="nav-dot"></div>Break & Continue</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 4 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>🔁 Doing Things Again</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">For loops and while loops — the art of not writing the same line 100 times.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 4</div>
-  <div id="playground-4" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 4</span>
+        <span class="lesson-title-sm">Doing Things Again</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 4 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 4 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">🔁 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Loops: Stop Repeating Yourself</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Programmers are notoriously lazy. We hate writing the same code twice. 
+          If you need to print "Hello" 100 times, you don't write <code>print("Hello")</code> 100 times. 
+          You write it once, and tell Python to repeat it 100 times using a <strong>Loop</strong>.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Computers never get bored. They will happily count to a million without complaining. Let them do the boring, repetitive work for you!
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-3.html" class="btn btn-outline">← Stage 3: Making Decisions</a>
-    <a href="practice.html?module=4" class="btn btn-mint">✏️ Take Stage 4 Test</a>
-    <a href="lesson-5.html" class="btn btn-primary">Stage 5: Grouping Stuff →</a>
-  </div>
+    <!-- FOR LOOP -->
+    <section class="lesson-section" id="for-loop">
+      <div class="lesson-section-label">🔂 The "For" Loop</div>
+      <div class="concept-box">
+        <h3>When you know exactly how many times to repeat</h3>
+        <p>
+          A <span class="tooltip-word">for loop<span class="tooltip-content">A loop that repeats a specific block of code a set number of times.</span></span> 
+          is perfect for when you know exactly how many times you want an action to happen. We often use it with a handy built-in function called <code>range()</code>.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>for_loop.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">5</span>):
+    <span class="fn">print</span>(<span class="str">"Push-up number:"</span>, i)</pre>
+          <div class="code-line-explain"><span class="code-line-num">1</span><span class="code-line-text">for i in range(5):</span><span class="code-line-desc">"Hey Python, repeat this 5 times. Use <strong>i</strong> to keep track of the current number." (Don't forget the colon!)</span></div>
+          <div class="code-line-explain"><span class="code-line-num">2</span><span class="code-line-text">    print(...)</span><span class="code-line-desc">Indented code! Python starts counting at 0, so this prints: 0, 1, 2, 3, 4.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHILE LOOP -->
+    <section class="lesson-section" id="while-loop">
+      <div class="lesson-section-label">🔄 The "While" Loop</div>
+      <div class="concept-box">
+        <h3>Repeat until a condition changes</h3>
+        <p>
+          A <span class="tooltip-word">while loop<span class="tooltip-content">A loop that keeps running over and over as long as its condition remains True.</span></span> 
+          doesn't care about numbers. It cares about conditions (just like the <code>if</code> statements we just learned!). 
+          It says: "Keep doing this <em>while</em> the condition is True."
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>while_loop.py</span>
+        </div>
+        <div class="code-block">
+          <pre>energy = <span class="num">3</span>
+
+<span class="kw">while</span> energy > <span class="num">0</span>:
+    <span class="fn">print</span>(<span class="str">"Coding..."</span>)
+    energy = energy - <span class="num">1</span>
+    
+<span class="fn">print</span>(<span class="str">"Time for a nap."</span>)</pre>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">while energy > 0:</span><span class="code-line-desc">As long as energy is greater than 0, run the indented code below.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">5</span><span class="code-line-text">    energy = energy - 1</span><span class="code-line-desc">CRITICAL STEP: We reduce the energy. If we didn't do this, energy would always be 3, and the loop would run forever!</span></div>
+        </div>
+      </div>
+
+      <div class="callout callout-mint" style="margin-top:var(--sp-5)">
+        <strong>👻 The Infinite Loop</strong><br/><br/>
+        If a while loop's condition never becomes False, it runs forever. It will freeze your program and heat up your computer. 
+        Always make sure something inside the loop changes the condition!
+      </div>
+    </section>
+    
+    <!-- CONTROL COMMANDS -->
+    <section class="lesson-section" id="control">
+      <div class="lesson-section-label">🛑 Break & Continue</div>
+      <div class="concept-box">
+        <h3>Taking control of your loops</h3>
+        <p>Sometimes you need to escape a loop early, or skip a step.</p>
+        <ul style="margin-top:var(--sp-4);padding-left:var(--sp-5)">
+          <li style="margin-bottom:var(--sp-2)"><strong>break</strong>: Immediately destroys the loop and escapes it entirely.</li>
+          <li><strong>continue</strong>: Skips the rest of the current loop iteration, and jumps straight back to the top for the next round.</li>
+        </ul>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10</span>):
+    <span class="kw">if</span> i == <span class="num">3</span>:
+        <span class="kw">continue</span>  <span class="cmt"># skips 3</span>
+    <span class="kw">if</span> i == <span class="num">7</span>:
+        <span class="kw">break</span>     <span class="cmt"># completely stops the loop at 7</span>
+    <span class="fn">print</span>(i)
+
+<span class="cmt"># Output will be: 0 1 2 4 5 6</span></pre>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          <strong>For Loop:</strong> Doing 10 pushups. You know exactly how many you are going to do before you start. "For every number from 1 to 10, do a pushup."
+          <br/><br/>
+          <strong>While Loop:</strong> Eating pizza slices until you are full. You don't know how many slices it will take. You just keep taking a slice "while" you are still hungry.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">The Loop Cycle</h3>
+        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="max-width:450px">
+          <!-- Start box -->
+          <rect x="175" y="20" width="150" height="40" rx="20" fill="#1A1A2E"/>
+          <text x="250" y="45" text-anchor="middle" font-family="Nunito" font-size="14" fill="white" font-weight="bold">Start Loop</text>
+
+          <line x1="250" y1="60" x2="250" y2="100" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Condition Diamond -->
+          <polygon points="250,100 350,140 250,180 150,140" fill="rgba(255,107,53,0.15)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="250" y="145" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">Condition True?</text>
+
+          <!-- False Path (Exit) -->
+          <line x1="350" y1="140" x2="420" y2="140" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="385" y="130" text-anchor="middle" font-family="Nunito" font-size="12" fill="#FF6B35" font-weight="bold">False</text>
+          
+          <rect x="380" y="220" width="100" height="40" rx="20" fill="#1A1A2E"/>
+          <text x="430" y="245" text-anchor="middle" font-family="Nunito" font-size="14" fill="white" font-weight="bold">Exit Loop</text>
+          
+          <path d="M 420 140 C 430 140 430 150 430 160 L 430 220" fill="transparent" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- True Path (Execute) -->
+          <line x1="250" y1="180" x2="250" y2="220" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrow-green)"/>
+          <text x="270" y="205" text-anchor="middle" font-family="Nunito" font-size="12" fill="#4CAF50" font-weight="bold">True</text>
+
+          <rect x="175" y="220" width="150" height="50" rx="8" fill="#4CAF50"/>
+          <text x="250" y="243" text-anchor="middle" font-family="Fira Code" font-size="12" fill="white" font-weight="bold">Run indented code</text>
+          <text x="250" y="258" text-anchor="middle" font-family="Nunito" font-size="10" fill="white">print(i)</text>
+
+          <!-- Loop Back Arrow -->
+          <path d="M 175 245 C 80 245 80 140 150 140" fill="transparent" stroke="#2EC4B6" stroke-width="3" stroke-dasharray="8,4" marker-end="url(#arrow-mint)"/>
+          <text x="100" y="190" text-anchor="middle" font-family="Nunito" font-size="12" fill="#2EC4B6" font-weight="bold">Loop Back!</text>
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#8A8AA8" />
+            </marker>
+            <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#4CAF50" />
+            </marker>
+            <marker id="arrow-mint" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#2EC4B6" />
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">The code executes, then jumps back up to check the condition again. It keeps doing this until the condition becomes False.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Infinite Mistake</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I'll write a while loop to count sheep so I can sleep!"<br/><br/><code>sheep = 1<br/>while sheep > 0:<br/>&nbsp;&nbsp;print(sheep)</code></div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"...1043... 1044... 1045..."<br/><br/><span style="color:var(--text-muted);font-size:0.8rem">Hours pass. The computer fans are screaming.</span></div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"...84920... 84921... HELP ME..."<br/><br/><span style="color:var(--orange);font-weight:800">He forgot to change the condition. Infinite loop.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Looping in Action</h3>
+      <p style="margin-bottom:var(--sp-5)">Experiment with loops. Try changing the range or the while condition.</p>
+      <div id="playground-4"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Change the <code>for</code> loop to repeat 10 times instead of 5.</li>
+          <li>In the <code>while</code> loop, change it to count down from 5 to 0. (Set countdown to 5).</li>
+          <li><em>Advanced:</em> Try adding an <code>if</code> statement inside the for loop to <code>break</code> if <code>i == 3</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-4"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Doing Things Again — Done! 🔁</h3>
+        <ul>
+          <li><strong>Loops</strong> let you run the same block of code multiple times.</li>
+          <li>A <strong>for loop</strong> is used when you know exactly how many times you want to loop. (e.g., <code>for i in range(5):</code>)</li>
+          <li>A <strong>while loop</strong> is used when you want to loop until a certain condition becomes False.</li>
+          <li><strong>Infinite loops</strong> happen when your while condition never becomes False. Always update your variables!</li>
+          <li><strong>break</strong> destroys the loop and escapes.</li>
+          <li><strong>continue</strong> skips the rest of the current round and goes to the next round.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            You're a looping master! Just be careful not to get stuck in an infinite loop. We're halfway through the basics. Next up: Grouping stuff together in lists! 📦
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-3.html" class="btn btn-outline">← Stage 3: Making Decisions</a>
+      <a href="practice.html?module=4" class="btn btn-mint">✏️ Take Stage 4 Test</a>
+      <a href="lesson-5.html" class="btn btn-primary">Stage 5: Grouping Stuff →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_4_read')) {
     localStorage.setItem('lesson_4_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(4, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(4, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','for-loop','while-loop','control','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-4',
-    defaultCode: $code
+    defaultCode: `# A For Loop
+print("--- FOR LOOP ---")
+for i in range(5):
+    print("This is round", i)
+
+# A While Loop
+print("\\n--- WHILE LOOP ---")
+countdown = 3
+while countdown > 0:
+    print(countdown)
+    countdown = countdown - 1
+print("BLASTOFF! 🚀")`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-4', moduleId: 4 });
 </script>
 </body>
 </html>

@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 8: Handling Trouble — PyLearn</title>
-  <meta name="description" content="Errors are messages. Learn to catch them gracefully with try/except. Stage 8 of PyLearn."/>
+  <meta name="description" content="Learn how to handle errors and exceptions in Python gracefully."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,374 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 8</span>
-      <span class="lesson-title-sm">Handling Trouble</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#errors"     class="sidebar-nav-item"><div class="nav-dot"></div>Types of Errors</a>
+        <a href="#try-except" class="sidebar-nav-item"><div class="nav-dot"></div>try / except</a>
+        <a href="#else-finally" class="sidebar-nav-item"><div class="nav-dot"></div>else & finally</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 8 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>🛡️ Handling Trouble</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Errors are messages. Learn to catch them gracefully with try/except.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 8</div>
-  <div id="playground-8" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 8</span>
+        <span class="lesson-title-sm">Handling Trouble</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 8 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 8 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">🚨 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Errors: When Things Go Wrong</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Every programmer, no matter how experienced, writes code that breaks. That's completely normal! 
+          The skill isn't in writing <em>perfect</em> code — it's in knowing how to <strong>handle</strong> when things go wrong, 
+          so your program doesn't just crash and die dramatically.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Errors are not your enemies. They're Python telling you exactly what went wrong and where. Learning to read them is a superpower! 🦸
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-7.html" class="btn btn-outline">← Stage 7: Modules</a>
-    <a href="practice.html?module=8" class="btn btn-mint">✏️ Take Stage 8 Test</a>
-    <a href="lesson-9.html" class="btn btn-primary">Stage 9: File Handling →</a>
-  </div>
+    <!-- TYPES OF ERRORS -->
+    <section class="lesson-section" id="errors">
+      <div class="lesson-section-label">🔍 Types of Errors</div>
+      <div class="concept-box">
+        <h3>Not all errors are the same</h3>
+        <p>Python has three main categories of errors. Each is a sign of something different going wrong.</p>
+      </div>
+
+      <div style="display:grid;gap:var(--sp-4);margin-top:var(--sp-5)">
+        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(255,107,53,0.08);border:2px solid rgba(255,107,53,0.25)">
+          <div style="font-weight:800;color:var(--orange);font-size:1.05rem;margin-bottom:var(--sp-2)">❶ Syntax Error</div>
+          <p style="color:var(--text)">You typed Python code incorrectly — like a grammatical mistake. Python can't even read it. It will refuse to run the program at all.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)">
+            <pre><span class="cmt"># Missing the colon!</span>
+<span class="kw">if</span> x > <span class="num">5</span>
+    <span class="fn">print</span>(<span class="str">"Big"</span>)   <span class="cmt"># SyntaxError!</span></pre>
+          </div>
+        </div>
+
+        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(255,209,102,0.08);border:2px solid rgba(255,209,102,0.4)">
+          <div style="font-weight:800;color:#A07010;font-size:1.05rem;margin-bottom:var(--sp-2)">❷ Runtime Error</div>
+          <p style="color:var(--text)">The code looks fine, but something goes wrong <em>while it's running</em>. For example, trying to divide by zero or accessing a list index that doesn't exist.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)">
+            <pre>result = <span class="num">10</span> / <span class="num">0</span>  <span class="cmt"># ZeroDivisionError!</span></pre>
+          </div>
+        </div>
+
+        <div style="padding:var(--sp-5);border-radius:var(--radius-lg);background:rgba(46,196,182,0.08);border:2px solid rgba(46,196,182,0.3)">
+          <div style="font-weight:800;color:var(--mint);font-size:1.05rem;margin-bottom:var(--sp-2)">❸ Logic Error</div>
+          <p style="color:var(--text)">The hardest to find! Python runs the code perfectly without any complaint, but the <em>result is wrong</em> because your logic was off.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)">
+            <pre><span class="cmt"># Trying to get the average, but logic is wrong!</span>
+total = <span class="num">90</span> + <span class="num">80</span> + <span class="num">70</span>
+average = total / <span class="num">2</span>   <span class="cmt"># Should be / 3!</span>
+<span class="fn">print</span>(average)        <span class="cmt"># Runs fine, but prints 120 not 80!</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRY / EXCEPT -->
+    <section class="lesson-section" id="try-except">
+      <div class="lesson-section-label">🛡️ try / except</div>
+      <div class="concept-box">
+        <h3>Catching errors before they crash everything</h3>
+        <p>
+          For runtime errors, Python gives you the <code>try</code> / <code>except</code> blocks. 
+          You put the "risky" code inside <code>try</code>. If an error occurs, instead of crashing, 
+          Python jumps straight into the <code>except</code> block where you can handle it gracefully.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>safe_divide.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">try</span>:
+    number = <span class="fn">int</span>(<span class="fn">input</span>(<span class="str">"Enter a number: "</span>))
+    result = <span class="num">100</span> / number
+    <span class="fn">print</span>(<span class="str">"Result is:"</span>, result)
+
+<span class="kw">except</span> ZeroDivisionError:
+    <span class="fn">print</span>(<span class="str">"Oops! You can't divide by zero."</span>)
+
+<span class="kw">except</span> ValueError:
+    <span class="fn">print</span>(<span class="str">"That's not a valid number!"</span>)</pre>
+          <div class="code-line-explain"><span class="code-line-num">1</span><span class="code-line-text">try:</span><span class="code-line-desc">Everything indented here is the "risky zone". Python will <em>attempt</em> to run it.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">6</span><span class="code-line-text">except ZeroDivisionError:</span><span class="code-line-desc">If a zero-division error happens, run this block instead of crashing. You can have multiple except blocks for different errors!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELSE & FINALLY -->
+    <section class="lesson-section" id="else-finally">
+      <div class="lesson-section-label">✅ else & finally</div>
+      <div class="concept-box">
+        <h3>The full error-handling toolkit</h3>
+        <ul style="margin-top:var(--sp-4);padding-left:var(--sp-5)">
+          <li style="margin-bottom:var(--sp-2)"><strong>else:</strong> Runs if the <code>try</code> block succeeded with <em>no</em> errors.</li>
+          <li><strong>finally:</strong> Always runs, no matter what — whether an error happened or not. Great for cleanup actions like closing a file.</li>
+        </ul>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="kw">try</span>:
+    result = <span class="num">100</span> / <span class="num">5</span>
+<span class="kw">except</span> ZeroDivisionError:
+    <span class="fn">print</span>(<span class="str">"Error!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Success! Result is:"</span>, result)  <span class="cmt"># Runs if no error</span>
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="str">"Attempted division."</span>)  <span class="cmt"># Always runs!</span></pre>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          Think about a <strong>tightrope walker</strong> performing above a circus tent.
+          <br/><br/>
+          <strong>try:</strong> The walker steps onto the rope and attempts to cross.
+          <br/>
+          <strong>except:</strong> There's a safety <em>net</em> underneath. If they fall (an error), they land in the net instead of hitting the ground.
+          <br/>
+          <strong>finally:</strong> After crossing OR falling, the crowd always applauds. That applause <em>always happens</em> no matter what.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">The try/except Flow</h3>
+        <svg viewBox="0 0 520 360" xmlns="http://www.w3.org/2000/svg" style="max-width:480px">
+
+          <!-- Start -->
+          <rect x="185" y="10" width="150" height="40" rx="20" fill="#1A1A2E"/>
+          <text x="260" y="35" text-anchor="middle" font-family="Nunito" font-size="14" fill="white" font-weight="bold">Program Runs</text>
+
+          <line x1="260" y1="50" x2="260" y2="80" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arr)"/>
+
+          <!-- Try block -->
+          <rect x="160" y="80" width="200" height="55" rx="8" fill="rgba(46,196,182,0.12)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="260" y="104" text-anchor="middle" font-family="Fira Code" font-size="14" fill="#1A9E92" font-weight="bold">try:</text>
+          <text x="260" y="122" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">Run the risky code</text>
+
+          <line x1="260" y1="135" x2="260" y2="165" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arr)"/>
+
+          <!-- Decision diamond -->
+          <polygon points="260,165 370,200 260,235 150,200" fill="rgba(255,209,102,0.12)" stroke="#FFD166" stroke-width="2"/>
+          <text x="260" y="205" text-anchor="middle" font-family="Nunito" font-size="13" fill="#1A1A2E" font-weight="bold">Error?</text>
+
+          <!-- NO path (success) -->
+          <line x1="150" y1="200" x2="50" y2="200" stroke="#4CAF50" stroke-width="2" marker-end="url(#arr-green)"/>
+          <text x="100" y="190" text-anchor="middle" font-family="Nunito" font-size="12" fill="#4CAF50" font-weight="bold">No</text>
+          <rect x="10" y="220" width="100" height="40" rx="8" fill="#4CAF50"/>
+          <text x="60" y="243" text-anchor="middle" font-family="Nunito" font-size="13" fill="white" font-weight="bold">else: runs</text>
+          <path d="M 50 200 C 30 200 30 240 60 240" fill="none" stroke="#4CAF50" stroke-width="2" marker-end="url(#arr-green)"/>
+
+          <!-- YES path (error) -->
+          <line x1="370" y1="200" x2="460" y2="200" stroke="#FF6B35" stroke-width="2" marker-end="url(#arr-orange)"/>
+          <text x="415" y="190" text-anchor="middle" font-family="Nunito" font-size="12" fill="#FF6B35" font-weight="bold">Yes</text>
+          <rect x="410" y="220" width="100" height="40" rx="8" fill="#FF6B35"/>
+          <text x="460" y="243" text-anchor="middle" font-family="Nunito" font-size="12" fill="white" font-weight="bold">except: runs</text>
+          <path d="M 460 200 C 480 200 480 240 460 240" fill="none" stroke="#FF6B35" stroke-width="2" marker-end="url(#arr-orange)"/>
+
+          <!-- Both paths merge into finally -->
+          <line x1="60" y1="260" x2="60" y2="310" stroke="#4CAF50" stroke-width="2"/>
+          <line x1="460" y1="260" x2="460" y2="310" stroke="#FF6B35" stroke-width="2"/>
+          <line x1="60" y1="310" x2="460" y2="310" stroke="#8A8AA8" stroke-width="2"/>
+          <line x1="260" y1="310" x2="260" y2="330" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arr)"/>
+
+          <!-- Finally box -->
+          <rect x="175" y="330" width="170" height="40" rx="8" fill="#8A8AA8"/>
+          <text x="260" y="355" text-anchor="middle" font-family="Fira Code" font-size="14" fill="white" font-weight="bold">finally: always runs</text>
+
+          <!-- Markers -->
+          <defs>
+            <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#8A8AA8"/>
+            </marker>
+            <marker id="arr-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#4CAF50"/>
+            </marker>
+            <marker id="arr-orange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FF6B35"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">If an error occurs, execution jumps straight to <code>except</code>. Either way, <code>finally</code> always runs last.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Spellcheck</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I'll write code to print a friendly message!"<br/><br/><code>pritn("Hello!")</code></div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"<span style='color:var(--orange)'>NameError: name 'pritn' is not defined</span>"<br/><br/>He spelled <code>print</code> as <code>pritn</code> 😬</div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Every single beginner makes this exact mistake. And most experienced developers have too. Welcome to the club."</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Catching Errors Safely</h3>
+      <p style="margin-bottom:var(--sp-5)">Run this code, then try causing different errors to see how the except blocks catch them.</p>
+      <div id="playground-8"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Change <code>number = 5</code> to <code>number = 0</code> and run again. See the error message?</li>
+          <li>Change <code>number = 5</code> to <code>number = "hello"</code> and run again. A different error is caught!</li>
+          <li>Add a <code>finally:</code> block at the end that always prints <code>"Division attempt complete."</code></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-8"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Handling Trouble — Done! 🛡️</h3>
+        <ul>
+          <li><strong>Syntax Errors</strong>: You typed code wrong. Python refuses to run at all.</li>
+          <li><strong>Runtime Errors</strong>: Code looks fine but crashes during execution (e.g., dividing by zero).</li>
+          <li><strong>Logic Errors</strong>: Code runs fine, but produces the wrong result. Hardest to find!</li>
+          <li>Use <strong>try / except</strong> to catch runtime errors gracefully instead of crashing.</li>
+          <li><strong>else:</strong> runs only if no error occurred in the <code>try</code> block.</li>
+          <li><strong>finally:</strong> always runs, with or without an error. Perfect for cleanup.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Your code is now crash-proof! You have a safety net under every tightrope walk. Next up we learn to read and write actual files on your computer! 📄
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-7.html" class="btn btn-outline">← Stage 7: Organizing Your Code</a>
+      <a href="practice.html?module=8" class="btn btn-mint">✏️ Take Stage 8 Test</a>
+      <a href="lesson-9.html" class="btn btn-primary">Stage 9: Working with Files →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_8_read')) {
     localStorage.setItem('lesson_8_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(8, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(8, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  const sections = ['intro','errors','try-except','else-finally','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-8',
-    defaultCode: $code
+    defaultCode: `number = 5  # Try changing this to 0 or "hello"
+
+try:
+    result = 100 / number
+    print("100 divided by", number, "=", result)
+
+except ZeroDivisionError:
+    print("Caught it! You can't divide by zero.")
+
+except TypeError:
+    print("Caught it! That's not a valid number.")
+`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-8', moduleId: 8 });
 </script>
 </body>
 </html>

@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stage 10: Going Deeper (OOP) — PyLearn</title>
-  <meta name="description" content="Object-Oriented Programming — blueprints (classes) that create real things (objects). Stage 10 of PyLearn."/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 10: Going Deeper — PyLearn</title>
+  <meta name="description" content="Learn Object-Oriented Programming (OOP) in Python with classes and objects."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,366 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 10</span>
-      <span class="lesson-title-sm">Going Deeper (OOP)</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#class"      class="sidebar-nav-item"><div class="nav-dot"></div>Classes</a>
+        <a href="#objects"    class="sidebar-nav-item"><div class="nav-dot"></div>Objects</a>
+        <a href="#methods"    class="sidebar-nav-item"><div class="nav-dot"></div>Methods</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 10 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>🏗️ Going Deeper (OOP)</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Object-Oriented Programming — blueprints (classes) that create real things (objects).</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 10</div>
-  <div id="playground-10" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 10</span>
+        <span class="lesson-title-sm">Going Deeper</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 10 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 10 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">🏗️ Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Object-Oriented Programming</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Until now, we've been writing a list of instructions for Python to follow from top to bottom. 
+          That works great for small programs. But when programs grow huge, we need a better way to organise things.
+          <strong>Object-Oriented Programming (OOP)</strong> is a completely different way of thinking about code — 
+          by modelling the real world as objects that have properties and can do things.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            The real world is made of "things" — dogs, cars, bank accounts. OOP lets us describe those things in code and create as many of them as we need! 🌍
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-9.html" class="btn btn-outline">← Stage 9: File Handling</a>
-    <a href="practice.html?module=10" class="btn btn-mint">✏️ Take Stage 10 Test</a>
-    <a href="lesson-11.html" class="btn btn-primary">Stage 11: Real World Tools →</a>
-  </div>
+    <!-- CLASSES -->
+    <section class="lesson-section" id="class">
+      <div class="lesson-section-label">🏠 Classes: The Blueprint</div>
+      <div class="concept-box">
+        <h3>What is a Class?</h3>
+        <p>
+          A <span class="tooltip-word">Class<span class="tooltip-content">A blueprint or template that defines the properties and behaviours that all objects of that type will have.</span></span> 
+          is a blueprint. It's not the real thing — it's the <em>design</em> of the real thing.
+          You define a class once, then create as many individual objects from it as you want.
+        </p>
+        <p style="margin-top:var(--sp-3)">
+          Classes are created with the <code>class</code> keyword. Inside a class, you define a special function called <code>__init__</code> 
+          (that's two underscores on each side). This is the <strong>constructor</strong> — it runs automatically every time you create a new object from the class.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>dog.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">class</span> Dog:
+    <span class="kw">def</span> __init__(<span class="kw">self</span>, name, breed):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>.breed = breed</pre>
+          <div class="code-line-explain"><span class="code-line-num">1</span><span class="code-line-text">class Dog:</span><span class="code-line-desc">This creates a blueprint called <code>Dog</code>. Note: class names are written in CapitalCase.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">2</span><span class="code-line-text">def __init__(self, name, breed):</span><span class="code-line-desc">This special function runs when you create a new Dog. <code>self</code> refers to the specific dog being created — it's how Python tracks which dog is which.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">self.name = name</span><span class="code-line-desc">Store the name value as a property of <em>this</em> particular dog object.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OBJECTS -->
+    <section class="lesson-section" id="objects">
+      <div class="lesson-section-label">🐕 Objects: The Real Thing</div>
+      <div class="concept-box">
+        <h3>Creating objects from a class</h3>
+        <p>
+          An <span class="tooltip-word">Object<span class="tooltip-content">A specific instance created from a class. Each object has its own values for the properties defined in the class blueprint.</span></span> 
+          is what you actually build from the blueprint.
+          You can build as many objects as you like from the same class, and each one gets its own data.
+        </p>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="cmt"># Create two different Dog objects from the same blueprint</span>
+dog1 = Dog(<span class="str">"Buddy"</span>, <span class="str">"Labrador"</span>)
+dog2 = Dog(<span class="str">"Max"</span>, <span class="str">"Poodle"</span>)
+
+<span class="fn">print</span>(dog1.name)   <span class="cmt"># Buddy</span>
+<span class="fn">print</span>(dog2.breed)  <span class="cmt"># Poodle</span></pre>
+      </div>
+      <div class="callout callout-mint" style="margin-top:var(--sp-4)">
+        <strong>💡 Key idea:</strong> The <code>Dog</code> class is the blueprint. <code>dog1</code> and <code>dog2</code> are the actual dogs. They share the same blueprint but each has their own name and breed.
+      </div>
+    </section>
+
+    <!-- METHODS -->
+    <section class="lesson-section" id="methods">
+      <div class="lesson-section-label">⚙️ Methods: What Objects Can Do</div>
+      <div class="concept-box">
+        <h3>Functions that belong to a class</h3>
+        <p>
+          A <span class="tooltip-word">Method<span class="tooltip-content">A function defined inside a class. Methods describe what objects of that class can do.</span></span> 
+          is just a function that lives inside a class. It defines what an object can <em>do</em>. 
+          Every method's first parameter must always be <code>self</code> — Python uses this to know which object called the method.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>dog_with_methods.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">class</span> Dog:
+    <span class="kw">def</span> __init__(<span class="kw">self</span>, name, breed):
+        <span class="kw">self</span>.name = name
+        <span class="kw">self</span>.breed = breed
+
+    <span class="kw">def</span> bark(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="kw">self</span>.name + <span class="str">" says: Woof!"</span>)
+
+    <span class="kw">def</span> describe(<span class="kw">self</span>):
+        <span class="fn">print</span>(<span class="kw">self</span>.name, <span class="str">"is a"</span>, <span class="kw">self</span>.breed)
+
+<span class="cmt"># Create and use</span>
+dog1 = Dog(<span class="str">"Buddy"</span>, <span class="str">"Labrador"</span>)
+dog1.bark()
+dog1.describe()</pre>
+          <div class="code-line-explain"><span class="code-line-num">6</span><span class="code-line-text">def bark(self):</span><span class="code-line-desc">A method named <code>bark</code>. <code>self</code> is always the first parameter — but you don't pass it yourself. Python handles that!</span></div>
+          <div class="code-line-explain"><span class="code-line-num">14</span><span class="code-line-text">dog1.bark()</span><span class="code-line-desc">Call the method using dot notation. Python automatically sends <code>dog1</code> as <code>self</code> behind the scenes.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          Think about a <strong>Cookie Cutter</strong> and <strong>Cookies</strong>.
+          <br/><br/>
+          <strong>The Class (Cookie Cutter):</strong> A star-shaped cookie cutter. It's not a cookie itself, but it defines exactly what every star cookie will look like.
+          <br/><br/>
+          <strong>Objects (The Cookies):</strong> Each cookie you press out using that cutter. They all have the same star shape, but you can decorate each one differently (chocolate chips vs sprinkles — different property values!).
+          <br/><br/>
+          <strong>Methods (What Cookies Can Do):</strong> Be eaten. Be photographed. Be sold. These are the actions available to every cookie object.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">Class → Objects</h3>
+        <svg viewBox="0 0 580 290" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+
+          <!-- Class Blueprint box -->
+          <rect x="30" y="60" width="180" height="170" rx="12" fill="rgba(26,26,46,0.05)" stroke="#1A1A2E" stroke-width="3" stroke-dasharray="8,4"/>
+          <text x="120" y="40" text-anchor="middle" font-family="Fredoka One" font-size="18" fill="#1A1A2E">class Dog:</text>
+          <text x="40" y="90" font-family="Fira Code" font-size="12" fill="#8A8AA8">  name</text>
+          <text x="40" y="112" font-family="Fira Code" font-size="12" fill="#8A8AA8">  breed</text>
+          <line x1="40" y1="125" x2="200" y2="125" stroke="#ddd" stroke-width="1"/>
+          <text x="40" y="148" font-family="Fira Code" font-size="12" fill="#2EC4B6">  bark()</text>
+          <text x="40" y="168" font-family="Fira Code" font-size="12" fill="#2EC4B6">  describe()</text>
+          <rect x="40" y="195" width="150" height="25" rx="4" fill="rgba(26,26,46,0.08)"/>
+          <text x="115" y="212" text-anchor="middle" font-family="Nunito" font-size="11" fill="#1A1A2E" font-weight="bold">📋 Blueprint</text>
+
+          <!-- Arrows to objects -->
+          <path d="M 210 120 L 330 90" stroke="#FF6B35" stroke-width="2.5" fill="none" marker-end="url(#arrowoop)"/>
+          <path d="M 210 150 L 330 200" stroke="#FF6B35" stroke-width="2.5" fill="none" marker-end="url(#arrowoop)"/>
+
+          <!-- Object 1 -->
+          <rect x="330" y="40" width="160" height="100" rx="8" fill="rgba(255,107,53,0.1)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="410" y="64" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">dog1 = Dog(...)</text>
+          <text x="345" y="86" font-family="Fira Code" font-size="12" fill="#FF6B35">name = "Buddy"</text>
+          <text x="345" y="104" font-family="Fira Code" font-size="12" fill="#FF6B35">breed = "Labrador"</text>
+          <text x="410" y="130" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">🐕 Object 1</text>
+
+          <!-- Object 2 -->
+          <rect x="330" y="165" width="160" height="100" rx="8" fill="rgba(46,196,182,0.1)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="410" y="189" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">dog2 = Dog(...)</text>
+          <text x="345" y="211" font-family="Fira Code" font-size="12" fill="#2EC4B6">name = "Max"</text>
+          <text x="345" y="229" font-family="Fira Code" font-size="12" fill="#2EC4B6">breed = "Poodle"</text>
+          <text x="410" y="255" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">🐩 Object 2</text>
+
+          <defs>
+            <marker id="arrowoop" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FF6B35"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">One class blueprint creates unlimited unique objects — each with its own property values.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Snake Class</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I'll create a Snake class to describe myself!"<br/><br/><code>class Snake:<br/>&nbsp;&nbsp;def __init__(self, name):<br/>&nbsp;&nbsp;&nbsp;&nbsp;self.name = name</code></div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"And I'll add a method!"<br/><br/><code>def introduce(self):<br/>&nbsp;&nbsp;print(self.name +<br/>&nbsp;&nbsp;" the great!")</code></div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/victory.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Now I can create a thousand Sarpanch clones from one blueprint. Mwahaha."<br/><br/><span style="color:var(--mint);font-weight:800">With great classes comes great responsibility.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Your First Class</h3>
+      <p style="margin-bottom:var(--sp-5)">Create, modify, and extend the Dog class. Then build your own class from scratch!</p>
+      <div id="playground-10"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Create a third dog called <code>dog3</code> with your favourite dog name and breed, then call <code>.bark()</code> on it.</li>
+          <li>Add a new method called <code>sit(self)</code> that prints <code>"[name] sits down."</code></li>
+          <li><em>Advanced:</em> Create a completely new class called <code>Car</code> with properties <code>brand</code> and <code>speed</code>, and a method called <code>drive()</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-10"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Going Deeper (OOP) — Done! 🏗️</h3>
+        <ul>
+          <li>A <strong>Class</strong> is a blueprint. Use the <code>class</code> keyword to define one.</li>
+          <li>An <strong>Object</strong> is a specific instance built from a class. One blueprint, infinite objects.</li>
+          <li><strong>__init__</strong> is the constructor — it runs automatically when you create a new object.</li>
+          <li><strong>self</strong> is how each object refers to itself inside the class.</li>
+          <li><strong>Properties</strong> (like <code>self.name</code>) store an object's data.</li>
+          <li><strong>Methods</strong> are functions inside a class that define what an object can do.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            OOP is how almost all professional software is built! You've just learned one of the most important concepts in all of programming. One more stage before we build real projects! 🚀
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-9.html" class="btn btn-outline">← Stage 9: Working with Files</a>
+      <a href="practice.html?module=10" class="btn btn-mint">✏️ Take Stage 10 Test</a>
+      <a href="lesson-11.html" class="btn btn-primary">Stage 11: Real World Tools →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_10_read')) {
     localStorage.setItem('lesson_10_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(10, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(10, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  const sections = ['intro','class','objects','methods','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-10',
-    defaultCode: $code
+    defaultCode: `class Dog:
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+    def bark(self):
+        print(self.name + " says: Woof! 🐕")
+
+    def describe(self):
+        print(self.name, "is a", self.breed)
+
+# --- Create objects from the blueprint ---
+dog1 = Dog("Buddy", "Labrador")
+dog2 = Dog("Max", "Poodle")
+
+dog1.bark()
+dog2.describe()
+
+print("\\n--- Dog 1 properties ---")
+print("Name:", dog1.name)
+print("Breed:", dog1.breed)
+`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-10', moduleId: 10 });
 </script>
 </body>
 </html>

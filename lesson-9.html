@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 9: Working with Files — PyLearn</title>
-  <meta name="description" content="Read files, write files, save data. Python can talk to your hard drive. Stage 9 of PyLearn."/>
+  <meta name="description" content="Learn how to read and write files using Python."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,393 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 9</span>
-      <span class="lesson-title-sm">Working with Files</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"     class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#open"      class="sidebar-nav-item"><div class="nav-dot"></div>Opening Files</a>
+        <a href="#read"      class="sidebar-nav-item"><div class="nav-dot"></div>Reading Files</a>
+        <a href="#write"     class="sidebar-nav-item"><div class="nav-dot"></div>Writing Files</a>
+        <a href="#with"      class="sidebar-nav-item"><div class="nav-dot"></div>The "with" Block</a>
+        <a href="#analogy"   class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"   class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"     class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"      class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"   class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 9 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>📁 Working with Files</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Read files, write files, save data. Python can talk to your hard drive.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 9</div>
-  <div id="playground-9" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 9</span>
+        <span class="lesson-title-sm">Working with Files</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 9 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 9 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">📄 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Files: Making Data Stick Around</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Everything we have done so far disappears when the program stops. Variables? Gone. Calculated results? Vanished.
+          If you want your Python program to <strong>save data permanently</strong> — like a game saving your high score — you need to write it to a <strong>file</strong>.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Variables live in RAM — temporary memory that gets wiped when you close your program. Files live on your hard drive. That's why we write to files! 💾
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-8.html" class="btn btn-outline">← Stage 8: Error Handling</a>
-    <a href="practice.html?module=9" class="btn btn-mint">✏️ Take Stage 9 Test</a>
-    <a href="lesson-10.html" class="btn btn-primary">Stage 10: OOP →</a>
-  </div>
+    <!-- OPENING FILES -->
+    <section class="lesson-section" id="open">
+      <div class="lesson-section-label">📂 Opening Files</div>
+      <div class="concept-box">
+        <h3>The open() function and modes</h3>
+        <p>
+          Everything starts with the built-in <code>open()</code> function. It takes two things: the filename, and a <strong>mode</strong> that tells Python what you intend to do with the file.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--sp-3);margin-top:var(--sp-5)">
+          <div style="padding:var(--sp-4);border-radius:var(--radius);background:rgba(46,196,182,0.1);border:1.5px solid rgba(46,196,182,0.3);text-align:center">
+            <div style="font-size:2rem">📖</div>
+            <code style="display:block;font-size:1rem;color:var(--mint);font-weight:800;margin:var(--sp-2) 0">"r"</code>
+            <div style="font-size:0.85rem;color:var(--text-muted)"><strong>Read</strong><br/>Open to read. Fails if file doesn't exist.</div>
+          </div>
+          <div style="padding:var(--sp-4);border-radius:var(--radius);background:rgba(255,107,53,0.08);border:1.5px solid rgba(255,107,53,0.3);text-align:center">
+            <div style="font-size:2rem">✏️</div>
+            <code style="display:block;font-size:1rem;color:var(--orange);font-weight:800;margin:var(--sp-2) 0">"w"</code>
+            <div style="font-size:0.85rem;color:var(--text-muted)"><strong>Write</strong><br/>Creates file if needed. Overwrites existing content.</div>
+          </div>
+          <div style="padding:var(--sp-4);border-radius:var(--radius);background:rgba(255,209,102,0.1);border:1.5px solid rgba(255,209,102,0.4);text-align:center">
+            <div style="font-size:2rem">➕</div>
+            <code style="display:block;font-size:1rem;color:#A07010;font-weight:800;margin:var(--sp-2) 0">"a"</code>
+            <div style="font-size:0.85rem;color:var(--text-muted)"><strong>Append</strong><br/>Adds to the end without deleting existing content.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- READING -->
+    <section class="lesson-section" id="read">
+      <div class="lesson-section-label">📖 Reading Files</div>
+      <div class="concept-box">
+        <h3>Getting data out of a file</h3>
+        <p>After opening a file in read mode, you can use several methods to get its contents.</p>
+        <ul style="margin-top:var(--sp-3);padding-left:var(--sp-5)">
+          <li style="margin-bottom:var(--sp-2)"><code>.read()</code> — returns the <em>entire</em> file as one big string.</li>
+          <li style="margin-bottom:var(--sp-2)"><code>.readline()</code> — returns just one line at a time.</li>
+          <li><code>.readlines()</code> — returns a <strong>list</strong> where each item is one line of the file.</li>
+        </ul>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre>file = <span class="fn">open</span>(<span class="str">"notes.txt"</span>, <span class="str">"r"</span>)
+content = file.read()
+<span class="fn">print</span>(content)
+file.close()   <span class="cmt"># Always close when done!</span></pre>
+      </div>
+    </section>
+
+    <!-- WRITING -->
+    <section class="lesson-section" id="write">
+      <div class="lesson-section-label">✏️ Writing Files</div>
+      <div class="concept-box">
+        <h3>Saving data to a file</h3>
+        <p>
+          Open the file in write mode <code>"w"</code> to create a file and write to it. 
+          Use <code>"a"</code> (append) if you want to <em>add</em> to a file without destroying what's already there.
+        </p>
+      </div>
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>save_score.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="cmt"># Write mode — creates or overwrites</span>
+file = <span class="fn">open</span>(<span class="str">"score.txt"</span>, <span class="str">"w"</span>)
+file.write(<span class="str">"High Score: 9500\n"</span>)
+file.close()
+
+<span class="cmt"># Append mode — adds to the end</span>
+file = <span class="fn">open</span>(<span class="str">"score.txt"</span>, <span class="str">"a"</span>)
+file.write(<span class="str">"Second Run: 8700\n"</span>)
+file.close()</pre>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">file.write("...")</span><span class="code-line-desc">Write does NOT add a newline automatically. You add <code>\n</code> yourself to move to the next line.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">4</span><span class="code-line-text">file.close()</span><span class="code-line-desc">You MUST close the file when done. Leaving it open wastes system resources and can corrupt data.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WITH BLOCK -->
+    <section class="lesson-section" id="with">
+      <div class="lesson-section-label">🤝 The "with" Block</div>
+      <div class="concept-box">
+        <h3>The safer, smarter way to open files</h3>
+        <p>
+          Remembering to call <code>file.close()</code> every time is annoying and easy to forget.
+          Python provides a cleaner approach: the <code>with</code> statement. 
+          It <strong>automatically closes the file</strong> for you the moment you're done with it, even if an error occurs.
+        </p>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="cmt"># The Pythonic way — no manual close() needed!</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"notes.txt"</span>, <span class="str">"r"</span>) <span class="kw">as</span> file:
+    content = file.read()
+    <span class="fn">print</span>(content)
+
+<span class="cmt"># File is automatically closed here ✅</span></pre>
+      </div>
+      <div class="callout callout-mint" style="margin-top:var(--sp-4)">
+        <strong>💡 Pro Tip:</strong> Always use <code>with open(...) as file:</code>. It's cleaner, safer, and it's what professional Python developers use.
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          Working with files is like working with a <strong>physical notebook</strong>.
+          <br/><br/>
+          <strong>open("r"):</strong> Taking the notebook off the shelf to read it.
+          <br/>
+          <strong>open("w"):</strong> Tearing out all the pages and starting fresh on a blank notebook.
+          <br/>
+          <strong>open("a"):</strong> Opening to the last page and continuing to write from where you left off.
+          <br/>
+          <strong>close() / with:</strong> Putting the notebook back on the shelf when you're done. If you don't, it could fall off the desk and get damaged!
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">Read vs Write vs Append</h3>
+        <svg viewBox="0 0 580 300" xmlns="http://www.w3.org/2000/svg" style="max-width:540px">
+
+          <!-- File icon (representing the file on disk) -->
+          <rect x="240" y="100" width="100" height="120" rx="4" fill="#f5f5f5" stroke="#1A1A2E" stroke-width="2"/>
+          <polygon points="280,100 340,100 340,116 280,116" fill="#1A1A2E"/>
+          <text x="290" y="112" font-family="Nunito" font-size="9" fill="white">notes.txt</text>
+          <line x1="260" y1="135" x2="320" y2="135" stroke="#ccc" stroke-width="1"/>
+          <line x1="260" y1="148" x2="310" y2="148" stroke="#ccc" stroke-width="1"/>
+          <line x1="260" y1="161" x2="315" y2="161" stroke="#ccc" stroke-width="1"/>
+          <line x1="260" y1="174" x2="305" y2="174" stroke="#ccc" stroke-width="1"/>
+          <text x="290" y="208" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">on disk</text>
+
+          <!-- READ arrow (left) -->
+          <path d="M 240 155 L 120 155" stroke="#2EC4B6" stroke-width="3" marker-end="url(#arr-teal)"/>
+          <text x="180" y="145" text-anchor="middle" font-family="Nunito" font-size="13" fill="#2EC4B6" font-weight="bold">read()</text>
+
+          <rect x="20" y="120" width="100" height="60" rx="8" fill="rgba(46,196,182,0.1)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="70" y="148" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">Python</text>
+          <text x="70" y="165" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">variable</text>
+
+          <!-- WRITE arrow (right, overwrite) -->
+          <path d="M 340 140 L 450 140" stroke="#FF6B35" stroke-width="3" marker-end="url(#arr-orange2)"/>
+          <text x="395" y="128" text-anchor="middle" font-family="Nunito" font-size="13" fill="#FF6B35" font-weight="bold">write("w")</text>
+          <text x="395" y="143" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">OVERWRITES!</text>
+
+          <rect x="450" y="95" width="100" height="45" rx="8" fill="rgba(255,107,53,0.1)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="500" y="115" text-anchor="middle" font-family="Nunito" font-size="12" fill="#1A1A2E" font-weight="bold">New content</text>
+          <text x="500" y="132" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">replaces all</text>
+
+          <!-- APPEND arrow (right, add to end) -->
+          <path d="M 340 175 L 450 195" stroke="#FFD166" stroke-width="3" marker-end="url(#arr-yellow2)"/>
+          <text x="395" y="200" text-anchor="middle" font-family="Nunito" font-size="13" fill="#A07010" font-weight="bold">append("a")</text>
+          <text x="395" y="215" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">adds to end</text>
+
+          <rect x="450" y="175" width="100" height="45" rx="8" fill="rgba(255,209,102,0.12)" stroke="#FFD166" stroke-width="2"/>
+          <text x="500" y="195" text-anchor="middle" font-family="Nunito" font-size="12" fill="#1A1A2E" font-weight="bold">Old content</text>
+          <text x="500" y="212" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">+ new line</text>
+
+          <!-- Markers -->
+          <defs>
+            <marker id="arr-teal" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#2EC4B6"/>
+            </marker>
+            <marker id="arr-orange2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FF6B35"/>
+            </marker>
+            <marker id="arr-yellow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FFD166"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">Read pulls data from disk into Python. Write and Append push data from Python back to disk.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Diary</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I wrote 3 whole pages of my diary. Time to add today's entry!"<br/><br/><code>open("diary.txt", "w")</code></div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Perfect! I wrote today's entry. Let me read it back..."</div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"It only shows today's entry. Those 3 pages are gone forever."<br/><br/><span style="color:var(--orange);font-weight:800">"w" mode overwrites. He needed "a" mode!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Reading and Writing Files</h3>
+      <p style="margin-bottom:var(--sp-5)">
+        Since we're running in the browser, we'll simulate file reading and writing using Python's built-in tools.
+      </p>
+      <div id="playground-9"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Read the file back using <code>open("scores.txt", "r")</code> and print the contents.</li>
+          <li>Change the write mode to <code>"a"</code> and see how a second run appends instead of overwriting.</li>
+          <li>Loop over <code>readlines()</code> to print each score on its own line.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-9"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Working with Files — Done! 📄</h3>
+        <ul>
+          <li>Use <strong>open(filename, mode)</strong> to open a file.</li>
+          <li><strong>"r"</strong> = Read, <strong>"w"</strong> = Write (overwrites!), <strong>"a"</strong> = Append (adds to end).</li>
+          <li>After opening, use <strong>.read()</strong>, <strong>.readline()</strong>, or <strong>.readlines()</strong> to get content.</li>
+          <li>Use <strong>.write("text")</strong> to write. Remember <code>\n</code> for new lines.</li>
+          <li>Always <strong>close()</strong> a file when done, or better yet use the <code>with open(...) as file:</code> block which closes automatically.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Your programs can now have a memory! They can save data, read it back, and keep track of things even after closing. Next up is one of the biggest ideas in programming: Object-Oriented Programming! 🏗️
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-8.html" class="btn btn-outline">← Stage 8: Handling Trouble</a>
+      <a href="practice.html?module=9" class="btn btn-mint">✏️ Take Stage 9 Test</a>
+      <a href="lesson-10.html" class="btn btn-primary">Stage 10: Going Deeper →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_9_read')) {
     localStorage.setItem('lesson_9_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(9, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(9, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  const sections = ['intro','open','read','write','with','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-9',
-    defaultCode: $code
+    defaultCode: `# Simulating file write and read in the browser
+# Python's open() works the same way on your local machine!
+
+import io
+
+# --- WRITE to an in-memory file ---
+memory_file = io.StringIO()
+memory_file.write("High Score: 9500\\n")
+memory_file.write("Second Run: 8700\\n")
+memory_file.write("Third Run: 7100\\n")
+
+print("File written successfully!")
+
+# --- READ it back ---
+memory_file.seek(0)  # Go back to the start
+content = memory_file.read()
+print("\\n--- File Contents ---")
+print(content)
+
+# --- READLINES: each line as a list item ---
+memory_file.seek(0)
+lines = memory_file.readlines()
+print("\\n--- Line by Line ---")
+for line in lines:
+    print(line.strip())  # .strip() removes the trailing \\n
+`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-9', moduleId: 9 });
 </script>
 </body>
 </html>

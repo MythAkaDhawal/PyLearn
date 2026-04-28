@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 3: Making Decisions — PyLearn</title>
   <meta name="description" content="If, elif, else — teach Python to make choices like a human brain. Stage 3 of PyLearn."/>
   <link rel="stylesheet" href="css/style.css"/>
@@ -12,61 +13,393 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 3</span>
-      <span class="lesson-title-sm">Making Decisions</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#booleans"   class="sidebar-nav-item"><div class="nav-dot"></div>True or False</a>
+        <a href="#if-else"    class="sidebar-nav-item"><div class="nav-dot"></div>If and Else</a>
+        <a href="#elif"       class="sidebar-nav-item"><div class="nav-dot"></div>Elif (Multiple Choices)</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 3 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>🤔 Making Decisions</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">If, elif, else — teach Python to make choices like a human brain.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 3</div>
-  <div id="playground-3" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 3</span>
+        <span class="lesson-title-sm">Making Decisions</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 3 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 3 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">🤔 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Making Decisions</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Without decisions, a program is just a boring list of commands that always does the exact same thing.
+          By teaching Python to make choices using <strong>if</strong> and <strong>else</strong>, your code becomes smart.
+          It can react to different situations!
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Every day you make choices. "If it's raining, I'll take an umbrella. Else, I won't." Python does the exact same thing, but it never forgets its umbrella. ☔
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-2.html" class="btn btn-outline">← Stage 2: Building Blocks</a>
-    <a href="practice.html?module=3" class="btn btn-mint">✏️ Take Stage 3 Test</a>
-    <a href="lesson-4.html" class="btn btn-primary">Stage 4: Doing Things Again →</a>
-  </div>
+    <!-- BOOLEANS AND COMPARISONS -->
+    <section class="lesson-section" id="booleans">
+      <div class="lesson-section-label">⚖️ True or False</div>
+      <div class="concept-box">
+        <h3>Comparing Things</h3>
+        <p>
+          Before Python can make a decision, it needs to ask a question.
+          In Python, questions are called <span class="tooltip-word">conditions<span class="tooltip-content">A condition is a statement that is either True or False. Python uses them to decide what to do.</span></span>.
+          A condition is always either <strong>True</strong> or <strong>False</strong>.
+        </p>
+        <p>Here are the tools Python uses to compare things:</p>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:var(--sp-5);gap:var(--sp-4)">
+        <div class="card">
+          <div style="font-size:1.4rem;font-weight:bold;margin-bottom:var(--sp-2)">==</div>
+          <h4>Is equal to</h4>
+          <p style="margin-top:var(--sp-2)">Notice the double equals! Single = is for variables, == is for comparing.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre><span class="num">5</span> == <span class="num">5</span>    <span class="cmt"># True</span>
+<span class="num">5</span> == <span class="num">6</span>    <span class="cmt"># False</span></pre></div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.4rem;font-weight:bold;margin-bottom:var(--sp-2)">!=</div>
+          <h4>Is NOT equal to</h4>
+          <p style="margin-top:var(--sp-2)">The exclamation mark means "not".</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre><span class="num">5</span> != <span class="num">6</span>    <span class="cmt"># True</span>
+<span class="str">"hi"</span> != <span class="str">"hi"</span> <span class="cmt"># False</span></pre></div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.4rem;font-weight:bold;margin-bottom:var(--sp-2)">&lt; and &gt;</div>
+          <h4>Less than / Greater than</h4>
+          <p style="margin-top:var(--sp-2)">Standard math symbols.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre><span class="num">10</span> > <span class="num">5</span>    <span class="cmt"># True</span>
+<span class="num">2</span> &lt; <span class="num">1</span>     <span class="cmt"># False</span></pre></div>
+        </div>
+        <div class="card">
+          <div style="font-size:1.4rem;font-weight:bold;margin-bottom:var(--sp-2)">&lt;= and &gt;=</div>
+          <h4>Less/Greater or Equal</h4>
+          <p style="margin-top:var(--sp-2)">Includes the number itself.</p>
+          <div class="code-block" style="margin-top:var(--sp-3)"><pre><span class="num">5</span> >= <span class="num">5</span>    <span class="cmt"># True</span>
+<span class="num">10</span> &lt;= <span class="num">9</span>   <span class="cmt"># False</span></pre></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IF AND ELSE -->
+    <section class="lesson-section" id="if-else">
+      <div class="lesson-section-label">🔀 If and Else</div>
+      <div class="concept-box">
+        <h3>Taking Action</h3>
+        <p>
+          Now that we can ask questions, let's use the <strong>if</strong> and <strong>else</strong> statements to actually do something.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>decisions.py</span>
+        </div>
+        <div class="code-block">
+          <pre>age = <span class="num">20</span>
+
+<span class="kw">if</span> age >= <span class="num">18</span>:
+    <span class="fn">print</span>(<span class="str">"You can buy a car!"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Sorry, you need to walk."</span>)</pre>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">if age >= 18:</span><span class="code-line-desc">Python checks: is 20 greater than or equal to 18? Yes (True). Also, don't forget the colon <strong>:</strong> at the end!</span></div>
+          <div class="code-line-explain"><span class="code-line-num">4</span><span class="code-line-text">    print(...)</span><span class="code-line-desc">Notice the space at the start? That's an <strong>indent</strong>. It tells Python that this code belongs to the "if".</span></div>
+          <div class="code-line-explain"><span class="code-line-num">5</span><span class="code-line-text">else:</span><span class="code-line-desc">If the condition above was False, Python would jump here. (Also needs a colon!)</span></div>
+        </div>
+      </div>
+
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>⚠️ The Importance of Indentation (Spaces)</strong><br/><br/>
+        In many languages, you use curly brackets <code>{}</code> to group code.
+        Python uses spaces (indentation) instead. If you forget to indent the code inside an <code>if</code>,
+        Python will throw an <strong>IndentationError</strong>. Python is very neat and expects you to be neat too!
+      </div>
+    </section>
+
+    <!-- ELIF -->
+    <section class="lesson-section" id="elif">
+      <div class="lesson-section-label">🚦 Elif (Else If)</div>
+      <div class="concept-box">
+        <h3>Multiple Choices</h3>
+        <p>
+          What if there are more than two options? Like grades: A, B, C, or F?
+          We use <strong>elif</strong> (which stands for "else if"). You can have as many <code>elif</code> blocks as you want.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>grades.py</span>
+        </div>
+        <div class="code-block">
+          <pre>score = <span class="num">85</span>
+
+<span class="kw">if</span> score >= <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">"Grade: A. Sarpanch is proud."</span>)
+<span class="kw">elif</span> score >= <span class="num">80</span>:
+    <span class="fn">print</span>(<span class="str">"Grade: B. Not bad!"</span>)
+<span class="kw">elif</span> score >= <span class="num">70</span>:
+    <span class="fn">print</span>(<span class="str">"Grade: C. Need to study more."</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Grade: F. Oh dear."</span>)</pre>
+        </div>
+      </div>
+      <p style="margin-top:var(--sp-3);font-size:0.95rem;color:var(--text-light)">
+        <em>Note: Python checks conditions from top to bottom. As soon as it finds one that is True, it runs that code and skips all the rest.</em>
+      </p>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          Think of <code>if/elif/else</code> like standing at a crossroads with signposts.
+          <br/><br/>
+          <strong>if</strong>: Is this the right path? If yes, go down it.
+          <br/>
+          <strong>elif</strong>: If not, what about this other path? If yes, take it.
+          <br/>
+          <strong>else</strong>: If none of the paths were right, take the default path (usually the one home).
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">The Pizza Flowchart</h3>
+        <svg viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg" style="max-width:550px">
+          <!-- Start box -->
+          <rect x="225" y="20" width="150" height="40" rx="20" fill="#1A1A2E"/>
+          <text x="300" y="45" text-anchor="middle" font-family="Nunito" font-size="14" fill="white" font-weight="bold">Start</text>
+
+          <line x1="300" y1="60" x2="300" y2="100" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Decision Diamond (If) -->
+          <polygon points="300,100 400,140 300,180 200,140" fill="rgba(255,107,53,0.15)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="300" y="145" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">Am I hungry?</text>
+          
+          <!-- IF TRUE path -->
+          <line x1="400" y1="140" x2="480" y2="140" stroke="#4CAF50" stroke-width="2" marker-end="url(#arrow-green)"/>
+          <text x="440" y="130" text-anchor="middle" font-family="Nunito" font-size="14" fill="#4CAF50" font-weight="bold">True</text>
+          
+          <!-- IF FALSE path -->
+          <line x1="300" y1="180" x2="300" y2="230" stroke="#FF6B35" stroke-width="2" marker-end="url(#arrow)"/>
+          <text x="270" y="210" text-anchor="middle" font-family="Nunito" font-size="14" fill="#FF6B35" font-weight="bold">False</text>
+
+          <!-- True Action -->
+          <rect x="420" y="120" width="120" height="40" rx="8" fill="#4CAF50"/>
+          <text x="480" y="145" text-anchor="middle" font-family="Fira Code" font-size="14" fill="white" font-weight="bold">eat_pizza()</text>
+          
+          <!-- Else Action -->
+          <rect x="225" y="230" width="150" height="40" rx="8" fill="#FF6B35"/>
+          <text x="300" y="255" text-anchor="middle" font-family="Fira Code" font-size="14" fill="white" font-weight="bold">keep_coding()</text>
+
+          <!-- End lines -->
+          <line x1="480" y1="160" x2="480" y2="300" stroke="#8A8AA8" stroke-width="2"/>
+          <line x1="480" y1="300" x2="300" y2="300" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arrow)"/>
+          
+          <line x1="300" y1="270" x2="300" y2="290" stroke="#8A8AA8" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- End box -->
+          <rect x="225" y="300" width="150" height="40" rx="20" fill="#1A1A2E"/>
+          <text x="300" y="325" text-anchor="middle" font-family="Nunito" font-size="14" fill="white" font-weight="bold">End</text>
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#8A8AA8" />
+            </marker>
+            <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#4CAF50" />
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">An <code>if</code> statement checks a condition. If it's True, it takes one path. If False, it takes the <code>else</code> path.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Food Order</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I made a smart Python script to order food!"<br/><br/><code>if hungry:<br/>&nbsp;&nbsp;order_food()</code></div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Wait, I accidentally set <code>hungry = False</code>... what happens now?"</div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">The script finishes without doing anything.<br/><br/>"Oh no... I forgot the <code>else</code>. Now I'm starving!"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Making Decisions</h3>
+      <p style="margin-bottom:var(--sp-5)">Change the <code>temperature</code> variable and see how Python's decision changes.</p>
+      <div id="playground-3"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Change the temperature to 15. What prints?</li>
+          <li>Change it to 35. What prints?</li>
+          <li>Add a new <code>elif</code> condition for when it's exactly 25.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-3"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Decisions — Done! 🚦</h3>
+        <ul>
+          <li><strong>Conditions</strong> are questions that evaluate to <code>True</code> or <code>False</code>.</li>
+          <li>Use <strong>==</strong> to check if things are equal, and <strong>!=</strong> for not equal.</li>
+          <li><strong>if</strong> statements execute code only if the condition is True.</li>
+          <li><strong>elif</strong> lets you check another condition if the first one was False.</li>
+          <li><strong>else</strong> provides a catch-all if absolutely none of the conditions were True.</li>
+          <li><strong>Indentation</strong> (spaces) tells Python which code belongs inside the if/else block!</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Awesome! Your code is now smart enough to make choices. Next up, we learn how to make Python do things over and over again without getting tired! 🔄
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-2.html" class="btn btn-outline">← Stage 2: Building Blocks</a>
+      <a href="practice.html?module=3" class="btn btn-mint">✏️ Take Stage 3 Test</a>
+      <a href="lesson-4.html" class="btn btn-primary">Stage 4: Doing Things Again →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_3_read')) {
     localStorage.setItem('lesson_3_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(3, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(3, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','booleans','if-else','elif','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-3',
-    defaultCode: $code
+    defaultCode: `# Change this value to see different results!
+temperature = 30
+
+if temperature > 28:
+    print("It's very hot! Stay hydrated.")
+elif temperature > 20:
+    print("It's a nice day.")
+elif temperature > 10:
+    print("It's a bit chilly, bring a jacket.")
+else:
+    print("It's freezing! Stay inside with some hot chai.")
+
+# Let's check boolean directly
+raining = False
+
+if raining == True:
+    print("Bring an umbrella!")
+else:
+    print("No umbrella needed.")`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-3', moduleId: 3 });
 </script>
 </body>
 </html>

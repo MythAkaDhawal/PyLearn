@@ -107,31 +107,30 @@
 
   function switchTab(tabId) {
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabId));
-    panels.forEach(p => p.classList.toggle('active',
-      p.id === 'panel-' + tabId || (tabId === 'module-tests' && p.id === 'panel-module-tests')));
+    panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + tabId));
   }
   tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
 
   // ── Module Test Grid ──
   const testMeta = [
-    {id:1, name:'First Steps',           icon:'🐣', qs:5,  badge:'first_step'},
-    {id:2, name:'Building Blocks',        icon:'🧱', qs:5,  badge:''},
-    {id:3, name:'Making Decisions',       icon:'🤔', qs:4,  badge:'decision_maker'},
-    {id:4, name:'Doing Things Again',     icon:'🔁', qs:3,  badge:'loop_champion'},
-    {id:5, name:'Grouping Stuff',         icon:'📦', qs:2,  badge:'list_master'},
-    {id:6, name:'Teaching Python Tricks', icon:'⚙️',  qs:2,  badge:'function_writer'},
-    {id:7, name:'Organising Your Code',   icon:'📂', qs:1,  badge:''},
-    {id:8, name:'Handling Trouble',       icon:'🛡️', qs:1,  badge:''},
-    {id:9, name:'Working with Files',     icon:'📁', qs:1,  badge:'file_handler'},
-    {id:10,name:'Going Deeper (OOP)',     icon:'🏗️', qs:1,  badge:''},
-    {id:11,name:'Real World Tools',       icon:'🔧', qs:1,  badge:''},
-    {id:12,name:'Build Something Real',   icon:'🚀', qs:1,  badge:'big_test'},
+    {id:1,  name:'First Steps',           icon:'🐣', qs:5,  badge:'first_step'},
+    {id:2,  name:'Building Blocks',        icon:'🧱', qs:5,  badge:''},
+    {id:3,  name:'Making Decisions',       icon:'🤔', qs:5,  badge:'decision_maker'},
+    {id:4,  name:'Doing Things Again',     icon:'🔁', qs:5,  badge:'loop_champion'},
+    {id:5,  name:'Grouping Stuff',         icon:'📦', qs:5,  badge:'list_master'},
+    {id:6,  name:'Teaching Python Tricks', icon:'⚙️',  qs:4,  badge:'function_writer'},
+    {id:7,  name:'Organising Your Code',   icon:'📂', qs:4,  badge:''},
+    {id:8,  name:'Handling Trouble',       icon:'🛡️', qs:4,  badge:''},
+    {id:9,  name:'Working with Files',     icon:'📁', qs:4,  badge:'file_handler'},
+    {id:10, name:'Going Deeper (OOP)',     icon:'🏗️', qs:4,  badge:''},
+    {id:11, name:'Real World Tools',       icon:'🔧', qs:4,  badge:''},
+    {id:12, name:'Build Something Real',   icon:'🚀', qs:4,  badge:'big_test'},
   ];
 
   const grid = document.getElementById('module-test-grid');
   grid.innerHTML = testMeta.map(m => {
     const prog = getModuleProgress(m.id);
-    const status = prog.status || (m.id === 1 ? 'unlocked' : 'locked');
+    const status = prog.status || 'unlocked';  // all modules open by default
     const locked = status === 'locked';
     const score  = prog.quizScore;
     return `<div class="test-card ${status} ${locked ? 'locked' : ''}" data-module="${m.id}" ${locked ? '' : 'style="cursor:pointer"'}>
@@ -196,13 +195,15 @@
       </div>`;
     } else if (q.type === 'fill') {
       optionsHTML = `<input class="fill-blank-input" id="fill-answer" placeholder="Type your answer..." autocomplete="off"/>
-        <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-3)" onclick="checkFill()">Check Answer</button>`;
+        <button class="btn btn-primary btn-sm" style="margin-top:var(--sp-3)" id="fill-check-btn">Check Answer</button>`;
     } else if (q.type === 'short') {
       optionsHTML = `<div class="callout-yellow callout"><strong>Sample answer:</strong> ${q.sampleAnswer}</div>
         <button class="btn btn-mint" onclick="selfMark()">I understood this ✓</button>`;
     }
 
-    const codeHTML = q.code ? `<div class="question-code">${q.code}</div>` : '';
+    const codeHTML = q.code
+      ? `<div class="question-code"><pre>${q.code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre></div>`
+      : '';
     const typeName = {mc:'Multiple Choice',tf:'True / False',output:'Code Output',bug:'Spot the Bug',fill:'Fill in the Blank',short:'Short Answer'}[q.type] || q.type;
 
     content.innerHTML = `
@@ -242,6 +243,12 @@
     document.querySelectorAll('.mc-option').forEach(btn => {
       btn.addEventListener('click', () => handleAnswer(btn, q));
     });
+
+    // Fill-in-blank: check button + Enter key
+    const fillCheckBtn = document.getElementById('fill-check-btn');
+    const fillInput    = document.getElementById('fill-answer');
+    if (fillCheckBtn) fillCheckBtn.addEventListener('click', checkFill);
+    if (fillInput)    fillInput.addEventListener('keydown', e => { if (e.key === 'Enter') checkFill(); });
   }
 
   function handleAnswer(btn, q) {
@@ -270,12 +277,13 @@
     document.getElementById('next-btn').style.display = 'flex';
   }
 
-  window.checkFill = function() {
+  function checkFill() {
     const q = questions[currentQ];
     const input = document.getElementById('fill-answer');
-    if (!input) return;
+    if (!input || input.readOnly) return;
     clearInterval(timerInterval);
-    const correct = input.value.trim().toLowerCase() === q.answer.toLowerCase();
+    const val = input.value.trim().toLowerCase();
+    const correct = val === q.answer.toLowerCase();
     input.className = 'fill-blank-input ' + (correct ? 'correct' : 'wrong');
     input.readOnly = true;
     if (correct) { score++; addXP(XP_QUIZ_Q); }
@@ -283,7 +291,8 @@
     fb.className = 'question-feedback show ' + (correct ? 'correct' : 'wrong');
     fb.textContent = (correct ? '✅ Correct! ' : '❌ Not quite. ') + q.explanation;
     document.getElementById('next-btn').style.display = 'flex';
-  };
+  }
+  window.checkFill = checkFill;
 
   window.selfMark = function() { score++; addXP(XP_QUIZ_Q); nextQ(); };
   window.skipQuestion = function() { nextQ(); };
@@ -312,8 +321,15 @@
       <h2>${pct >= 80 ? '🎉 Excellent!' : pct >= 60 ? '👍 Good job!' : '💪 Keep practising!'}</h2>
       <p style="margin-top:var(--sp-3)">${pct >= 80 ? 'Badge unlocked! Module complete! Sarpanch is doing a victory dance.' : 'Review the questions below and try again. You\'ve got this!'}</p>
       <div class="score-ring" style="margin:var(--sp-6) auto">
-        <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="10"/>
-          <circle cx="60" cy="60" r="54" fill="none" stroke="${pct >= 80 ? '#2EC4B6' : pct >= 60 ? '#FF6B35' : '#FF4444'}" stroke-width="10" stroke-dasharray="${circumference}" stroke-dashoffset="${offset}" stroke-linecap="round" style="transition:stroke-dashoffset 1s ease"/>
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="54" fill="none" stroke="var(--border)" stroke-width="10"/>
+          <circle cx="60" cy="60" r="54" fill="none"
+            stroke="${pct >= 80 ? '#2EC4B6' : pct >= 60 ? '#FF6B35' : '#FF4444'}"
+            stroke-width="10"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${offset}"
+            stroke-linecap="round"
+            style="transition:stroke-dashoffset 1s ease"/>
         </svg>
         <div class="score-ring-text"><div class="score-ring-pct">${pct}%</div><div class="score-ring-label">Score</div></div>
       </div>
@@ -325,14 +341,21 @@
       </div>
       <div class="results-actions">
         <button class="btn btn-outline" onclick="retakeTest()">↺ Try Again</button>
-        <a href="lesson-${activeModule+1 <= 12 ? activeModule+1 : 12}.html" class="btn btn-primary">Next Module →</a>
+        <a href="${activeModule !== 'mega' && activeModule + 1 <= 12 ? 'lesson-' + (activeModule + 1) + '.html' : 'lessons.html'}" class="btn btn-primary">
+          ${activeModule !== 'mega' ? 'Next Module →' : '📚 Back to Lessons'}
+        </a>
       </div>
     `;
   }
 
   window.retakeTest = function() {
+    // Reset quiz state before returning to module list
+    activeModule = null;
+    questions = [];
+    currentQ = 0;
+    score = 0;
+    clearInterval(timerInterval);
     document.getElementById('panel-results').classList.remove('active');
-    document.getElementById('panel-module-tests').classList.add('active');
     switchTab('module-tests');
   };
 
@@ -391,6 +414,38 @@
       options:['next_age should be next_Age','age is a string, not a number','print() can\'t show numbers','+ should be +='],
       correct:1
     },
+    {
+      id:5, title:'The Indentation Error', difficulty:'Easy',
+      broken:`def greet():\nprint("Hello!")`,
+      fixed:`def greet():\n    print("Hello!")`,
+      hint:'Python uses indentation (spaces) to define what is inside a function.',
+      options:['Missing colon after greet()','print() is not indented inside the function','greet is not a valid name','Missing return statement'],
+      correct:1
+    },
+    {
+      id:6, title:'The Boolean Trap', difficulty:'Medium',
+      broken:`is_logged_in = "True"\nif is_logged_in:\n    print("Welcome!")\nelse:\n    print("Please log in.")`,
+      fixed:`is_logged_in = True\nif is_logged_in:\n    print("Welcome!")\nelse:\n    print("Please log in.")`,
+      hint:'"True" (with quotes) is a string. True (without quotes) is a boolean. They behave differently!',
+      options:['if should be while','"True" is a string, not a boolean — any non-empty string is truthy but the intent is wrong','is_logged_in needs to be logged_in','print is wrong'],
+      correct:1
+    },
+    {
+      id:7, title:'The Off-By-One', difficulty:'Hard',
+      broken:`scores = [90, 85, 78]\nprint(scores[3])`,
+      fixed:`scores = [90, 85, 78]\nprint(scores[2])`,
+      hint:'Python lists start at index 0. A 3-item list has valid indexes: 0, 1, 2.',
+      options:['scores is not defined','Index 3 is out of range (list has 3 items, so last index is 2)','print() cannot print lists','scores should use { } not [ ]'],
+      correct:1
+    },
+    {
+      id:8, title:'The Missing Return', difficulty:'Hard',
+      broken:`def add(a, b):\n    result = a + b\n\nprint(add(3, 4))`,
+      fixed:`def add(a, b):\n    result = a + b\n    return result\n\nprint(add(3, 4))`,
+      hint:'Without a return statement, a function sends back None, not the result.',
+      options:['add() should be called differently','Missing return result — the function computes but never sends the value back','a + b is wrong syntax','print() cannot call a function'],
+      correct:1
+    },
   ];
 
   let debugIdx = 0;
@@ -399,6 +454,7 @@
   function renderDebug() {
     const ch = debugChallenges[debugIdx];
     if (!ch) {
+      if (debugScore >= 5) awardBadge('bug_spotter');
       document.getElementById('debug-game-container').innerHTML = `
         <div style="text-align:center;padding:var(--sp-8)">
           <img src="assets/sarpanch/victory.svg" style="width:130px;margin:0 auto var(--sp-5)" alt="Sarpanch"/>
@@ -415,7 +471,7 @@
           <span class="pill pill-${ch.difficulty==='Easy'?'mint':'orange'}">${ch.difficulty}</span>
         </div>
         <div class="question-text">What is wrong with this code?</div>
-        <div class="question-code">${ch.broken}</div>
+        <div class="question-code"><pre>${ch.broken.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre></div>
         <div class="mc-options" id="debug-options">
           ${ch.options.map((o,i) => `<button class="mc-option" data-debug-idx="${i}"><span class="opt-letter">${['A','B','C','D'][i]}</span>${o}</button>`).join('')}
         </div>
@@ -432,8 +488,18 @@
         else { btn.classList.add('wrong'); document.querySelector(`[data-debug-idx="${ch.correct}"]`).classList.add('correct'); }
         const fb = document.getElementById('debug-feedback');
         fb.className = 'question-feedback show ' + (correct?'correct':'wrong');
-        fb.innerHTML = `${correct?'✅':'❌'} ${correct?'Correct! ':'Wrong. '}${ch.hint}<br/><strong>Fixed code:</strong> <code style="background:rgba(0,0,0,0.08);padding:2px 5px;border-radius:4px">${ch.fixed.replace(/\n/g,'  ')}</code>`;
-        setTimeout(() => { debugIdx++; renderDebug(); }, 2500);
+        const escapedFixed = ch.fixed.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        fb.innerHTML = `
+          ${correct?'✅':'❌'} ${correct?'Correct! ':'Wrong. '}${ch.hint}
+          <div style="margin-top:var(--sp-3)"><strong>Fixed code:</strong></div>
+          <div class="question-code" style="margin-top:var(--sp-2)"><pre>${escapedFixed}</pre></div>
+        `;
+        document.getElementById('next-debug-btn')?.remove();
+        fb.insertAdjacentHTML('afterend', '<button id="next-debug-btn" class="btn btn-primary" style="margin-top:var(--sp-4);display:flex;width:100%;justify-content:center">Next Challenge →</button>');
+        document.getElementById('next-debug-btn').addEventListener('click', () => {
+          debugIdx++;
+          renderDebug();
+        });
       });
     });
   }

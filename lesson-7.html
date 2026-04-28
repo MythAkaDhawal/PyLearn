@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stage 7: Organising Your Code — PyLearn</title>
-  <meta name="description" content="Modules, imports, the standard library, and clean code organisation. Stage 7 of PyLearn."/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stage 7: Organizing Your Code — PyLearn</title>
+  <meta name="description" content="Learn how to use Modules and Imports in Python."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,327 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 7</span>
-      <span class="lesson-title-sm">Organising Your Code</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#modules"    class="sidebar-nav-item"><div class="nav-dot"></div>What is a Module?</a>
+        <a href="#import"     class="sidebar-nav-item"><div class="nav-dot"></div>The Import Keyword</a>
+        <a href="#batteries"  class="sidebar-nav-item"><div class="nav-dot"></div>Batteries Included</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 7 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>📂 Organising Your Code</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Modules, imports, the standard library, and clean code organisation.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 7</div>
-  <div id="playground-7" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 7</span>
+        <span class="lesson-title-sm">Organizing Your Code</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 7 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 7 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">📁 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Modules: Keep It Tidy</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Imagine reading a 10,000-page book that had no chapters, no paragraphs, and no index. It would be impossible to find anything! 
+          The same goes for code. If you put all your code in one massive file, it becomes a nightmare to manage.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Professional programmers don't write 10,000-line files. They split their code into smaller, organized files called Modules. Let's learn how! 🗂️
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-6.html" class="btn btn-outline">← Stage 6: Functions</a>
-    <a href="practice.html?module=7" class="btn btn-mint">✏️ Take Stage 7 Test</a>
-    <a href="lesson-8.html" class="btn btn-primary">Stage 8: Error Handling →</a>
-  </div>
+    <!-- MODULES -->
+    <section class="lesson-section" id="modules">
+      <div class="lesson-section-label">🧩 What is a Module?</div>
+      <div class="concept-box">
+        <h3>Just another Python file</h3>
+        <p>
+          A <span class="tooltip-word">Module<span class="tooltip-content">A file containing Python code (functions, variables, etc.) that can be imported into other files.</span></span> 
+          is literally just a <code>.py</code> file with some functions and variables inside it. That's it!
+          <br/><br/>
+          If you create a file called <code>math_tricks.py</code> and write some cool math functions in it, you have just created a module.
+        </p>
+      </div>
+    </section>
+
+    <!-- IMPORT -->
+    <section class="lesson-section" id="import">
+      <div class="lesson-section-label">🚚 The Import Keyword</div>
+      <div class="concept-box">
+        <h3>Borrowing code from other files</h3>
+        <p>
+          To use the functions from a module in your main program, you use the <code>import</code> keyword. 
+          Once imported, you use a dot <code>.</code> to access the functions inside it.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>main.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="cmt"># Import the math_tricks module</span>
+<span class="kw">import</span> math_tricks
+
+<span class="cmt"># Use a function from that module using a dot</span>
+result = math_tricks.add(<span class="num">5</span>, <span class="num">10</span>)
+<span class="fn">print</span>(result)</pre>
+          <div class="code-line-explain"><span class="code-line-num">2</span><span class="code-line-text">import math_tricks</span><span class="code-line-desc">This tells Python: "Go find the file named <code>math_tricks.py</code> and bring all its code here."</span></div>
+          <div class="code-line-explain"><span class="code-line-num">5</span><span class="code-line-text">math_tricks.add(5, 10)</span><span class="code-line-desc">The dot <code>.</code> means "look inside math_tricks and run the add function".</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BATTERIES INCLUDED -->
+    <section class="lesson-section" id="batteries">
+      <div class="lesson-section-label">🔋 Batteries Included</div>
+      <div class="concept-box">
+        <h3>Python's Built-in Modules</h3>
+        <p>
+          You don't always have to write your own modules. Python comes with a massive library of built-in modules that are ready to use immediately! They call this the "batteries included" philosophy.
+        </p>
+        <ul style="margin-top:var(--sp-4);padding-left:var(--sp-5)">
+          <li style="margin-bottom:var(--sp-2)"><code>import math</code> - Advanced math functions (square roots, trigonometry, pi).</li>
+          <li style="margin-bottom:var(--sp-2)"><code>import random</code> - Generate random numbers, pick random items from a list.</li>
+          <li><code>import datetime</code> - Work with dates and times.</li>
+        </ul>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="kw">import</span> random
+
+<span class="cmt"># Roll a 6-sided die!</span>
+dice_roll = random.randint(<span class="num">1</span>, <span class="num">6</span>)
+<span class="fn">print</span>(<span class="str">"You rolled a:"</span>, dice_roll)</pre>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          Think of <strong>Modules</strong> like <strong>Toolboxes</strong>.
+          <br/><br/>
+          You don't carry every single tool you own in your pockets at all times. That would be too heavy! (This is why Python doesn't load every function automatically).
+          <br/><br/>
+          Instead, if you are doing plumbing, you go to your truck and <code>import plumbing_toolbox</code>. If you are doing electricity, you <code>import electrical_toolbox</code>.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">How Imports Work</h3>
+        <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" style="max-width:550px">
+          
+          <!-- Module 1: math.py -->
+          <rect x="50" y="30" width="120" height="80" rx="8" fill="rgba(46,196,182,0.1)" stroke="#2EC4B6" stroke-width="2" stroke-dasharray="4"/>
+          <text x="110" y="55" text-anchor="middle" font-family="Fira Code" font-size="14" fill="#1A9E92" font-weight="bold">math.py</text>
+          <text x="110" y="75" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">sqrt()</text>
+          <text x="110" y="95" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">pi</text>
+
+          <!-- Module 2: random.py -->
+          <rect x="50" y="140" width="120" height="80" rx="8" fill="rgba(255,209,102,0.1)" stroke="#FFD166" stroke-width="2" stroke-dasharray="4"/>
+          <text x="110" y="165" text-anchor="middle" font-family="Fira Code" font-size="14" fill="#A07010" font-weight="bold">random.py</text>
+          <text x="110" y="185" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">randint()</text>
+          <text x="110" y="205" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">choice()</text>
+
+          <!-- Arrows connecting -->
+          <path d="M 180 70 L 320 110" stroke="#2EC4B6" stroke-width="3" fill="none" marker-end="url(#arrow-mint)"/>
+          <text x="250" y="80" text-anchor="middle" font-family="Nunito" font-size="12" fill="#2EC4B6" font-weight="bold" transform="rotate(15, 250, 80)">import math</text>
+          
+          <path d="M 180 180 L 320 140" stroke="#FFD166" stroke-width="3" fill="none" marker-end="url(#arrow-yellow)"/>
+          <text x="250" y="170" text-anchor="middle" font-family="Nunito" font-size="12" fill="#A07010" font-weight="bold" transform="rotate(-15, 250, 170)">import random</text>
+
+          <!-- Main File -->
+          <rect x="330" y="50" width="220" height="150" rx="12" fill="rgba(26,26,46,0.05)" stroke="#1A1A2E" stroke-width="3"/>
+          <text x="440" y="80" text-anchor="middle" font-family="Fira Code" font-size="16" fill="#1A1A2E" font-weight="bold">main.py</text>
+          
+          <rect x="350" y="100" width="180" height="30" rx="4" fill="white" stroke="#2EC4B6"/>
+          <text x="440" y="120" text-anchor="middle" font-family="Fira Code" font-size="12" fill="#1A9E92">math.sqrt(16)</text>
+
+          <rect x="350" y="145" width="180" height="30" rx="4" fill="white" stroke="#FFD166"/>
+          <text x="440" y="165" text-anchor="middle" font-family="Fira Code" font-size="12" fill="#A07010">random.randint(1,10)</text>
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrow-mint" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#2EC4B6" />
+            </marker>
+            <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FFD166" />
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">The main file acts as the controller, pulling in tools from external modules using the import keyword.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">Reinventing the Wheel</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I need to write a complex mathematical algorithm to generate a perfectly random number from scratch..."</div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"It will take me 5 weeks, 3 math degrees, and 400 lines of code!"</div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Oh wait... <code>import random</code>... done. 😎"<br/><br/><span style="color:var(--orange);font-weight:800">Don't reinvent the wheel. Someone else probably already built the module!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Importing Tools</h3>
+      <p style="margin-bottom:var(--sp-5)">Try using Python's built-in <code>random</code> and <code>math</code> modules.</p>
+      <div id="playground-7"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Run the code to see what random number you get. Run it multiple times!</li>
+          <li>Use <code>random.choice()</code> to pick a random fruit from the list instead of a random number.</li>
+          <li>Import the <code>math</code> module at the top, and print out <code>math.pi</code>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-7"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Organizing Your Code — Done! 📁</h3>
+        <ul>
+          <li>A <strong>Module</strong> is simply a `.py` file containing Python code.</li>
+          <li>You use the <strong>import</strong> keyword to bring a module into your current file.</li>
+          <li>Use the <strong>dot (.)</strong> to access functions inside a module, like <code>math.sqrt()</code>.</li>
+          <li>Python has "batteries included". Modules like <code>random</code> and <code>math</code> are pre-installed and ready to import.</li>
+          <li>Modules are like toolboxes—only import the ones you need!</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            You just gained access to millions of pre-written functions! You never have to write complex math algorithms from scratch again. Next up: What happens when things break? We learn how to handle Errors! 🚨
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-6.html" class="btn btn-outline">← Stage 6: Teaching Python Tricks</a>
+      <a href="practice.html?module=7" class="btn btn-mint">✏️ Take Stage 7 Test</a>
+      <a href="lesson-8.html" class="btn btn-primary">Stage 8: Handling Trouble →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_7_read')) {
     localStorage.setItem('lesson_7_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(7, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(7, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','modules','import','batteries','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-7',
-    defaultCode: $code
+    defaultCode: `import random
+
+print("--- RANDOM DICE ROLL ---")
+roll = random.randint(1, 6)
+print("You rolled a:", roll)
+
+print("\\n--- RANDOM CHOICE ---")
+fruits = ["Apple", "Banana", "Mango", "Grapes"]
+# Challenge: Use random.choice(fruits) to pick one!
+
+# Challenge: Import math and print math.pi
+`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-7', moduleId: 7 });
 </script>
 </body>
 </html>

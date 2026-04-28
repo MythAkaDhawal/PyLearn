@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 6: Teaching Python Tricks — PyLearn</title>
-  <meta name="description" content="Write a function once, use it forever. Like making chai — define it, call it. Stage 6 of PyLearn."/>
+  <meta name="description" content="Learn how to define and use Functions in Python."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,347 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 6</span>
-      <span class="lesson-title-sm">Teaching Python Tricks</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#defining"   class="sidebar-nav-item"><div class="nav-dot"></div>Defining Functions</a>
+        <a href="#arguments"  class="sidebar-nav-item"><div class="nav-dot"></div>Arguments (Input)</a>
+        <a href="#return"     class="sidebar-nav-item"><div class="nav-dot"></div>Return (Output)</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 6 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>⚙️ Teaching Python Tricks</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Write a function once, use it forever. Like making chai — define it, call it.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 6</div>
-  <div id="playground-6" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 6</span>
+        <span class="lesson-title-sm">Teaching Python Tricks</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 6 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 6 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">🎩 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Functions: Define it once, use it forever</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          Writing the same code multiple times is bad practice. In Python, you can package a block of code, give it a name, and then run it whenever you want just by calling that name. 
+          This magical package is called a <strong>Function</strong>.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            If you teach a dog to "Sit", you don't have to explain how to bend their legs every time. You just say "Sit". Functions are how we teach Python new tricks! 🐕
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-5.html" class="btn btn-outline">← Stage 5: Collections</a>
-    <a href="practice.html?module=6" class="btn btn-mint">✏️ Take Stage 6 Test</a>
-    <a href="lesson-7.html" class="btn btn-primary">Stage 7: Modules →</a>
-  </div>
+    <!-- DEFINING FUNCTIONS -->
+    <section class="lesson-section" id="defining">
+      <div class="lesson-section-label">🛠️ Defining Functions</div>
+      <div class="concept-box">
+        <h3>The "def" Keyword</h3>
+        <p>
+          To create a <span class="tooltip-word">Function<span class="tooltip-content">A reusable block of code that only runs when it is called.</span></span>, 
+          you start with the keyword <code>def</code> (short for define). You give the function a name, followed by parentheses <code>()</code>, and a colon <code>:</code>.
+        </p>
+        <p>
+          <strong>Warning:</strong> Defining a function doesn't run it! It just creates it. You have to "call" the function later to actually make it do something.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>hello_func.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="cmt"># 1. Define the function</span>
+<span class="kw">def</span> say_hello():
+    <span class="fn">print</span>(<span class="str">"Hello!"</span>)
+    <span class="fn">print</span>(<span class="str">"How are you?"</span>)
+
+<span class="cmt"># 2. Call the function</span>
+say_hello()
+say_hello()</pre>
+          <div class="code-line-explain"><span class="code-line-num">2</span><span class="code-line-text">def say_hello():</span><span class="code-line-desc">Creates a new function named <code>say_hello</code>. Everything indented below it belongs to the function.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">7</span><span class="code-line-text">say_hello()</span><span class="code-line-desc">This "calls" the function. Python pauses, jumps up to run the code inside <code>say_hello</code>, and then comes back here. We call it twice!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARGUMENTS (INPUT) -->
+    <section class="lesson-section" id="arguments">
+      <div class="lesson-section-label">📥 Arguments</div>
+      <div class="concept-box">
+        <h3>Giving data to a function</h3>
+        <p>
+          Functions become really powerful when you give them information to work with. These pieces of information are called <strong>Arguments</strong> or <strong>Parameters</strong>. You put them inside the parentheses.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>greeting.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">def</span> greet(name):
+    <span class="fn">print</span>(<span class="str">"Hello, "</span> + name + <span class="str">"!"</span>)
+
+greet(<span class="str">"Sarpanch"</span>)
+greet(<span class="str">"Priya"</span>)</pre>
+          <div class="code-line-explain"><span class="code-line-num">1</span><span class="code-line-text">def greet(name):</span><span class="code-line-desc"><code>name</code> is a variable that will catch whatever value we pass into the function.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">4</span><span class="code-line-text">greet("Sarpanch")</span><span class="code-line-desc">"Sarpanch" is passed into the function. Inside the function, <code>name</code> becomes "Sarpanch".</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RETURN (OUTPUT) -->
+    <section class="lesson-section" id="return">
+      <div class="lesson-section-label">📤 Return Values</div>
+      <div class="concept-box">
+        <h3>Getting data back from a function</h3>
+        <p>
+          Often, you don't just want a function to print something. You want it to calculate a result and give that result <em>back</em> to you so you can use it in a variable. You do this using the <strong>return</strong> keyword.
+        </p>
+        <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
+          <strong>⚠️ return vs print:</strong> <code>print()</code> just shows text on the screen for the human. <code>return</code> actually hands data back to the Python program. As soon as a function hits <code>return</code>, the function stops immediately.
+        </div>
+      </div>
+
+      <div class="code-block" style="margin-top:var(--sp-5)">
+<pre><span class="kw">def</span> add_numbers(x, y):
+    result = x + y
+    <span class="kw">return</span> result  <span class="cmt"># Give the answer back!</span>
+
+<span class="cmt"># Save the returned value into a variable</span>
+my_total = add_numbers(<span class="num">5</span>, <span class="num">10</span>)
+<span class="fn">print</span>(my_total)  <span class="cmt"># Prints 15</span></pre>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          A function is exactly like a <strong>Blender</strong> in your kitchen.
+          <br/><br/>
+          <strong>Defining the function:</strong> Buying the blender and plugging it in. It doesn't do anything yet.
+          <br/>
+          <strong>Arguments (Input):</strong> Putting strawberries and milk into the top of the blender.
+          <br/>
+          <strong>Calling the function:</strong> Pressing the "Blend" button.
+          <br/>
+          <strong>Return value (Output):</strong> Pouring the finished strawberry smoothie out of the blender to drink.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">The Function Machine</h3>
+        <svg viewBox="0 0 600 250" xmlns="http://www.w3.org/2000/svg" style="max-width:550px">
+          
+          <!-- Input Arrow -->
+          <path d="M 50 125 L 180 125" stroke="#FF6B35" stroke-width="4" marker-end="url(#arrow-orange)"/>
+          
+          <!-- Input Data -->
+          <rect x="50" y="90" width="80" height="30" rx="4" fill="rgba(255,107,53,0.15)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="90" y="110" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">5, 10</text>
+          <text x="90" y="145" text-anchor="middle" font-family="Nunito" font-size="12" fill="#FF6B35" font-weight="bold">Arguments</text>
+          <text x="90" y="160" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">(Input)</text>
+
+          <!-- The Machine (Function) -->
+          <rect x="200" y="50" width="200" height="150" rx="16" fill="rgba(46,196,182,0.1)" stroke="#2EC4B6" stroke-width="4"/>
+          <text x="300" y="80" text-anchor="middle" font-family="Fredoka One" font-size="16" fill="#1A9E92">def add_numbers(x,y):</text>
+          
+          <rect x="230" y="100" width="140" height="40" rx="8" fill="#2EC4B6"/>
+          <text x="300" y="125" text-anchor="middle" font-family="Fira Code" font-size="14" fill="white" font-weight="bold">return x + y</text>
+          <text x="300" y="170" text-anchor="middle" font-family="Nunito" font-size="12" fill="#2EC4B6" font-weight="bold">The Black Box</text>
+
+          <!-- Output Arrow -->
+          <path d="M 420 125 L 550 125" stroke="#FFD166" stroke-width="4" marker-end="url(#arrow-yellow)"/>
+
+          <!-- Output Data -->
+          <rect x="470" y="90" width="80" height="30" rx="4" fill="rgba(255,209,102,0.2)" stroke="#FFD166" stroke-width="2"/>
+          <text x="510" y="110" text-anchor="middle" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">15</text>
+          <text x="510" y="145" text-anchor="middle" font-family="Nunito" font-size="12" fill="#A07010" font-weight="bold">Return Value</text>
+          <text x="510" y="160" text-anchor="middle" font-family="Nunito" font-size="10" fill="#8A8AA8">(Output)</text>
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FF6B35" />
+            </marker>
+            <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,6 L9,3 z" fill="#FFD166" />
+            </marker>
+          </defs>
+        </svg>
+        <div class="diagram-caption">Data goes in as Arguments. The function does its job inside. The result comes out as a Return Value.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Chai Function</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Everyone keeps asking me to make chai. It takes 15 steps! Boil water, add tea, add sugar, add milk..."</div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I'll write a Python function!"<br/><br/><code>def make_chai(sugar_spoons):<br/>&nbsp;&nbsp;return "Hot Chai ☕"</code></div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/victory.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Now when they want tea, I just run <code>make_chai(2)</code> and go back to sleep. 😎"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Writing Functions</h3>
+      <p style="margin-bottom:var(--sp-5)">Try calling the pre-written functions, and then create your own!</p>
+      <div id="playground-6"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Call <code>calculate_dog_years()</code> passing in your own age, and print the result.</li>
+          <li>Write a function called <code>multiply(a, b)</code> that returns <code>a * b</code>. Call it and print the result!</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-6"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Functions — Done! 🎩</h3>
+        <ul>
+          <li>Use <strong>def</strong> to create a function. E.g., <code>def my_func():</code></li>
+          <li>Defining a function doesn't run it! You have to <strong>call</strong> it by writing its name followed by parentheses: <code>my_func()</code>.</li>
+          <li><strong>Arguments</strong> (or parameters) are variables you pass <em>into</em> the function inside the parentheses.</li>
+          <li><strong>return</strong> is used to pass a value <em>back out</em> of the function to whoever called it.</li>
+          <li><code>print()</code> displays text for humans. <code>return</code> gives data to Python. They are different!</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Congratulations! You're officially writing reusable code. You're half way through the entire course! Next up, we learn how to keep our code super organized using Files and Modules. 📁
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-5.html" class="btn btn-outline">← Stage 5: Grouping Stuff</a>
+      <a href="practice.html?module=6" class="btn btn-mint">✏️ Take Stage 6 Test</a>
+      <a href="lesson-7.html" class="btn btn-primary">Stage 7: Organizing Your Code →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_6_read')) {
     localStorage.setItem('lesson_6_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(6, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(6, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','defining','arguments','return','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-6',
-    defaultCode: $code
+    defaultCode: `def say_hello(name):
+    print("Hello there, " + name + "!")
+
+def calculate_dog_years(human_years):
+    dog_years = human_years * 7
+    return dog_years
+
+# Let's call the functions!
+say_hello("Learner")
+
+my_age = 15
+dog_age = calculate_dog_years(my_age)
+print("In dog years, I am:", dog_age)`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-6', moduleId: 6 });
 </script>
 </body>
 </html>

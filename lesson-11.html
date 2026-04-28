@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 11: Real World Tools — PyLearn</title>
-  <meta name="description" content="Popular Python libraries — NumPy, Pandas, Requests and the world of pip. Stage 11 of PyLearn."/>
+  <meta name="description" content="Explore Python's powerful ecosystem of popular libraries like requests, NumPy, and Pandas."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,385 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 11</span>
-      <span class="lesson-title-sm">Real World Tools</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"      class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#pip"        class="sidebar-nav-item"><div class="nav-dot"></div>pip — The App Store</a>
+        <a href="#numpy"      class="sidebar-nav-item"><div class="nav-dot"></div>NumPy</a>
+        <a href="#pandas"     class="sidebar-nav-item"><div class="nav-dot"></div>Pandas</a>
+        <a href="#requests"   class="sidebar-nav-item"><div class="nav-dot"></div>Requests</a>
+        <a href="#analogy"    class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"    class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"      class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground" class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"       class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"    class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 11 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>🔧 Real World Tools</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Popular Python libraries — NumPy, Pandas, Requests and the world of pip.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 11</div>
-  <div id="playground-11" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 11</span>
+        <span class="lesson-title-sm">Real World Tools</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 11 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 11 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">🌐 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Python's Superpower: Its Ecosystem</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          What makes Python the world's most popular programming language isn't just the language itself — 
+          it's the <strong>massive ecosystem of free libraries</strong> built by developers around the world. 
+          There are over <strong>450,000 free packages</strong> available. Whatever you want to build, someone has probably already built the hardest parts for you.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Python is popular because it doesn't make you build everything from scratch. Data science, web scraping, AI, building websites — there's a library for all of it! 🚀
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-10.html" class="btn btn-outline">← Stage 10: OOP</a>
-    <a href="practice.html?module=11" class="btn btn-mint">✏️ Take Stage 11 Test</a>
-    <a href="lesson-12.html" class="btn btn-primary">Stage 12: Build Something Real →</a>
-  </div>
+    <!-- PIP -->
+    <section class="lesson-section" id="pip">
+      <div class="lesson-section-label">📦 pip — Python's App Store</div>
+      <div class="concept-box">
+        <h3>Installing libraries with pip</h3>
+        <p>
+          <span class="tooltip-word">pip<span class="tooltip-content">Python's package manager. Use it in your terminal to download and install libraries from the internet.</span></span> 
+          is Python's package manager — think of it as an App Store for Python libraries. 
+          You run it in your <strong>terminal</strong> (not inside Python code) to install new libraries.
+        </p>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="cmt"># Run this in your TERMINAL (not Python!):</span>
+pip install numpy
+pip install pandas
+pip install requests
+
+<span class="cmt"># Then import it inside your Python code as usual:</span>
+<span class="kw">import</span> numpy <span class="kw">as</span> np</pre>
+      </div>
+      <div class="callout callout-mint" style="margin-top:var(--sp-4)">
+        <strong>💡 Pro Tip:</strong> The <code>as np</code> part is an alias — just a shorter nickname so you don't have to type <code>numpy</code> every time. <code>import numpy as np</code> and <code>import pandas as pd</code> are industry-wide conventions.
+      </div>
+    </section>
+
+    <!-- NUMPY -->
+    <section class="lesson-section" id="numpy">
+      <div class="lesson-section-label">🔢 NumPy — Number Crunching</div>
+      <div class="concept-box">
+        <h3>Fast math with huge datasets</h3>
+        <p>
+          <strong>NumPy</strong> (Numerical Python) is the foundation of almost all data science in Python. 
+          It introduces the <strong>array</strong> — a super-powered list that can do math on millions of numbers <em>simultaneously</em>, 
+          hundreds of times faster than a regular Python loop.
+        </p>
+      </div>
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>numpy_demo.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">import</span> numpy <span class="kw">as</span> np
+
+scores = np.array([<span class="num">88</span>, <span class="num">92</span>, <span class="num">79</span>, <span class="num">95</span>, <span class="num">85</span>])
+
+<span class="fn">print</span>(<span class="str">"Average:"</span>, np.mean(scores))
+<span class="fn">print</span>(<span class="str">"Max:"</span>, np.max(scores))
+<span class="fn">print</span>(<span class="str">"Min:"</span>, np.min(scores))
+<span class="fn">print</span>(<span class="str">"Doubled:"</span>, scores * <span class="num">2</span>)</pre>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">np.array([...])</span><span class="code-line-desc">Creates a NumPy array. It looks like a list, but it has math superpowers.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">8</span><span class="code-line-text">scores * 2</span><span class="code-line-desc">Doubles every single number in the array at once. Try doing that easily with a regular Python list!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANDAS -->
+    <section class="lesson-section" id="pandas">
+      <div class="lesson-section-label">🐼 Pandas — Working with Tables</div>
+      <div class="concept-box">
+        <h3>Python's Excel</h3>
+        <p>
+          <strong>Pandas</strong> lets you work with tabular data (like a spreadsheet) directly in Python. 
+          It introduces the <strong>DataFrame</strong> — a table with rows and columns that you can filter, 
+          sort, group, and analyse with incredibly simple code.
+        </p>
+      </div>
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>pandas_demo.py</span>
+        </div>
+        <div class="code-block">
+          <pre><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+data = {
+    <span class="str">"Name"</span>:  [<span class="str">"Alice"</span>, <span class="str">"Bob"</span>, <span class="str">"Charlie"</span>],
+    <span class="str">"Score"</span>: [<span class="num">88</span>, <span class="num">92</span>, <span class="num">79</span>]
+}
+
+df = pd.DataFrame(data)
+<span class="fn">print</span>(df)
+<span class="fn">print</span>(<span class="str">"\nAverage Score:"</span>, df[<span class="str">"Score"</span>].mean())</pre>
+          <div class="code-line-explain"><span class="code-line-num">8</span><span class="code-line-text">pd.DataFrame(data)</span><span class="code-line-desc">Turns the dictionary into a proper table with rows and columns.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">10</span><span class="code-line-text">df["Score"].mean()</span><span class="code-line-desc">Select the "Score" column and instantly calculate the average — no loop needed!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REQUESTS -->
+    <section class="lesson-section" id="requests">
+      <div class="lesson-section-label">🌍 Requests — Talking to the Internet</div>
+      <div class="concept-box">
+        <h3>Fetching data from websites and APIs</h3>
+        <p>
+          The <strong>requests</strong> library lets your Python program act like a web browser — 
+          it can fetch web pages and talk to APIs (Application Programming Interfaces) to retrieve real-time data like weather, cryptocurrency prices, or news headlines.
+        </p>
+      </div>
+      <div class="code-block" style="margin-top:var(--sp-4)">
+<pre><span class="kw">import</span> requests
+
+<span class="cmt"># Fetch data from a public API</span>
+response = requests.get(<span class="str">"https://api.github.com"</span>)
+
+<span class="fn">print</span>(<span class="str">"Status:"</span>, response.status_code)  <span class="cmt"># 200 = OK!</span>
+<span class="fn">print</span>(<span class="str">"Response:"</span>, response.json())      <span class="cmt"># Get data as a dict</span></pre>
+      </div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-4)">
+        <strong>⚠️ Browser Note:</strong> The <code>requests</code> library requires an actual internet connection and runs locally. You can't run it in our in-browser playground, but it works perfectly in any local Python install!
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          Think about building a house. You <em>could</em> chop down trees, mill your own lumber, smelt your own nails, and fire your own bricks from raw clay.
+          <br/><br/>
+          Or you could just go to <strong>B&amp;Q</strong> and buy pre-made lumber, nails, and bricks — then use them to build something great without starting from zero.
+          <br/><br/>
+          Python libraries are the B&amp;Q of programming. Someone else did the hard, boring foundational work. You just <code>pip install</code> it and build the interesting parts.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">The Python Ecosystem</h3>
+        <svg viewBox="0 0 560 310" xmlns="http://www.w3.org/2000/svg" style="max-width:520px">
+
+          <!-- Centre: Python -->
+          <circle cx="280" cy="155" r="52" fill="#1A1A2E"/>
+          <text x="280" y="149" text-anchor="middle" font-family="Fredoka One" font-size="20" fill="white">Python</text>
+          <text x="280" y="170" text-anchor="middle" font-family="Nunito" font-size="12" fill="#8A8AA8">core language</text>
+
+          <!-- NumPy bubble -->
+          <circle cx="110" cy="70" r="46" fill="rgba(46,196,182,0.12)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="110" y="65" text-anchor="middle" font-family="Fredoka One" font-size="16" fill="#2EC4B6">NumPy</text>
+          <text x="110" y="82" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">Numbers &amp;</text>
+          <text x="110" y="95" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">Arrays</text>
+          <line x1="152" y1="96" x2="236" y2="126" stroke="#2EC4B6" stroke-width="1.5" stroke-dasharray="4"/>
+
+          <!-- Pandas bubble -->
+          <circle cx="110" cy="245" r="46" fill="rgba(255,209,102,0.12)" stroke="#FFD166" stroke-width="2"/>
+          <text x="110" y="240" text-anchor="middle" font-family="Fredoka One" font-size="16" fill="#A07010">Pandas</text>
+          <text x="110" y="257" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">Tables &amp;</text>
+          <text x="110" y="270" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">Dataframes</text>
+          <line x1="153" y1="222" x2="236" y2="183" stroke="#FFD166" stroke-width="1.5" stroke-dasharray="4"/>
+
+          <!-- Requests bubble -->
+          <circle cx="450" cy="70" r="46" fill="rgba(255,107,53,0.1)" stroke="#FF6B35" stroke-width="2"/>
+          <text x="450" y="65" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#FF6B35">Requests</text>
+          <text x="450" y="82" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">APIs &amp;</text>
+          <text x="450" y="95" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">Web</text>
+          <line x1="408" y1="96" x2="325" y2="126" stroke="#FF6B35" stroke-width="1.5" stroke-dasharray="4"/>
+
+          <!-- Flask/Django bubble -->
+          <circle cx="450" cy="245" r="46" fill="rgba(138,138,168,0.1)" stroke="#8A8AA8" stroke-width="2"/>
+          <text x="450" y="236" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#8A8AA8">Flask /</text>
+          <text x="450" y="253" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#8A8AA8">Django</text>
+          <text x="450" y="270" text-anchor="middle" font-family="Nunito" font-size="11" fill="#8A8AA8">Web Apps</text>
+          <line x1="408" y1="222" x2="325" y2="183" stroke="#8A8AA8" stroke-width="1.5" stroke-dasharray="4"/>
+
+          <!-- pip label in middle -->
+          <text x="280" y="275" text-anchor="middle" font-family="Fira Code" font-size="13" fill="#8A8AA8">pip install ⬇️</text>
+
+        </svg>
+        <div class="diagram-caption">Python's ecosystem extends its power in every direction — data, web, APIs, and more.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Data Scientist</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I need to analyse 10,000 rows of exam scores. I'll write a loop for every calculation..."</div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Wait a moment. <code>pip install pandas</code>..."<br/><br/><code>df["Score"].mean()</code><br/><code>df["Score"].max()</code></div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/victory.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Entire analysis done in 3 lines. I have been a data scientist for 5 minutes and already I'm too powerful." 😎</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">NumPy & Pandas in Action</h3>
+      <p style="margin-bottom:var(--sp-5)">
+        NumPy and Pandas are available right here in the browser via Pyodide. Try them out!
+      </p>
+      <div id="playground-11"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Change the scores array. Try using <code>np.min()</code> to find the lowest score.</li>
+          <li>Add a third student "Charlie" with a score of 79 to the DataFrame and print it again.</li>
+          <li>Try <code>df.describe()</code> — it generates a full statistical summary in one line!</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-11"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Real World Tools — Done! 🌐</h3>
+        <ul>
+          <li>Python has <strong>450,000+ free libraries</strong> available to install.</li>
+          <li>Use <strong>pip install library-name</strong> in your terminal to download any library.</li>
+          <li><strong>NumPy</strong>: Super-powered arrays for fast number crunching. Import as <code>np</code>.</li>
+          <li><strong>Pandas</strong>: Work with table data (like Excel spreadsheets) in Python. Import as <code>pd</code>.</li>
+          <li><strong>Requests</strong>: Let your Python code talk to the internet and fetch data from APIs.</li>
+          <li><code>import library as alias</code> lets you use a shorter name when calling functions.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            You now know how to tap into the world's most powerful programming ecosystem. The final stage is the most exciting one — we're going to BUILD REAL PROJECTS! 🏗️
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-10.html" class="btn btn-outline">← Stage 10: Going Deeper</a>
+      <a href="practice.html?module=11" class="btn btn-mint">✏️ Take Stage 11 Test</a>
+      <a href="lesson-12.html" class="btn btn-primary">Stage 12: Build Something Real →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_11_read')) {
     localStorage.setItem('lesson_11_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(11, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(11, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  const sections = ['intro','pip','numpy','pandas','requests','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-11',
-    defaultCode: $code
+    defaultCode: `import numpy as np
+import pandas as pd
+
+# --- NumPy ---
+print("=== NumPy ===")
+scores = np.array([88, 92, 79, 95, 85])
+print("Scores:", scores)
+print("Average:", np.mean(scores))
+print("Max:", np.max(scores))
+print("Doubled:", scores * 2)
+
+# --- Pandas ---
+print("\\n=== Pandas ===")
+data = {
+    "Name":  ["Alice", "Bob"],
+    "Score": [88, 92],
+    "Grade": ["B", "A"]
+}
+df = pd.DataFrame(data)
+print(df)
+print("\\nAverage Score:", df["Score"].mean())
+`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-11', moduleId: 11 });
 </script>
 </body>
 </html>

@@ -369,7 +369,29 @@ y = <span class="num">3</span>
     setTimeout(() => { addXP(XP_LESSON); setModuleProgress(2, { status: 'unlocked', progress: 50 }); }, 3000);
   }
 
-  document.getElementById('sidebar-xp').textContent = getXP() + ' XP';
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','variables','datatypes','math','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
 
   initPlayground({
     containerId: 'playground-2',

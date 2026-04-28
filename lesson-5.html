@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stage 5: Grouping Stuff — PyLearn</title>
-  <meta name="description" content="Lists, tuples, sets, and dictionaries — Python's way of organising data. Stage 5 of PyLearn."/>
+  <meta name="description" content="Learn Lists and Dictionaries in Python to store groups of data."/>
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/navbar.css"/>
   <link rel="stylesheet" href="css/lesson.css"/>
@@ -12,61 +13,336 @@
 </head>
 <body>
 <div class="main-content hero-bg">
-<div class="container" style="max-width:860px;padding-top:var(--sp-8)">
+<div class="lesson-layout">
 
-  <div class="lesson-topbar">
-    <div class="lesson-topbar-left">
-      <span class="lesson-stage-badge">Stage 5</span>
-      <span class="lesson-title-sm">Grouping Stuff</span>
+  <!-- Sidebar -->
+  <aside class="lesson-sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">🗂️ In This Lesson</div>
+      <nav>
+        <a href="#intro"        class="sidebar-nav-item active"><div class="nav-dot"></div>Introduction</a>
+        <a href="#lists"        class="sidebar-nav-item"><div class="nav-dot"></div>Lists</a>
+        <a href="#dictionaries" class="sidebar-nav-item"><div class="nav-dot"></div>Dictionaries</a>
+        <a href="#analogy"      class="sidebar-nav-item"><div class="nav-dot"></div>Analogy</a>
+        <a href="#diagram"      class="sidebar-nav-item"><div class="nav-dot"></div>Diagram</a>
+        <a href="#comic"        class="sidebar-nav-item"><div class="nav-dot"></div>Sarpanch Comic</a>
+        <a href="#playground"   class="sidebar-nav-item"><div class="nav-dot"></div>Try It Yourself</a>
+        <a href="#quiz"         class="sidebar-nav-item"><div class="nav-dot"></div>Quick Check Quiz</a>
+        <a href="#summary"      class="sidebar-nav-item"><div class="nav-dot"></div>Summary</a>
+      </nav>
     </div>
-    <span class="lesson-progress-text">Lesson 5 of 12</span>
-  </div>
-
-  <div class="lesson-intro-box" style="margin-bottom:var(--sp-8)">
-    <h1>📦 Grouping Stuff</h1>
-    <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">Lists, tuples, sets, and dictionaries — Python's way of organising data.</p>
-  </div>
-
-  <div class="sarpanch-panel" style="margin-bottom:var(--sp-8)">
-    <img src="assets/sarpanch/wave.svg" alt="Sarpanch" style="width:90px"/>
-    <div class="bubble-wrap">
-      <div class="speech-bubble">This stage is being filled with epic content! For now, jump into the playground and experiment with the example code below. Learning by doing is the best way! 🐍</div>
+    <div class="sidebar-card" style="background:rgba(255,107,53,0.06);border-color:rgba(255,107,53,0.2)">
+      <div class="sidebar-title">⚡ Your Progress</div>
+      <div class="xp-display" id="sidebar-xp">0 XP</div>
+      <div class="xp-bar" style="margin-top:var(--sp-3)">
+        <div class="xp-bar-fill" style="width:0%" id="sidebar-xp-bar"></div>
+      </div>
     </div>
-  </div>
+  </aside>
 
-  <div class="lesson-section-label" style="margin-bottom:var(--sp-4)">🚀 Live Playground — Stage 5</div>
-  <div id="playground-5" style="margin-bottom:var(--sp-8)"></div>
+  <!-- Main Content -->
+  <main>
+    <div class="lesson-topbar">
+      <div class="lesson-topbar-left">
+        <span class="lesson-stage-badge">Stage 5</span>
+        <span class="lesson-title-sm">Grouping Stuff</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--sp-4)">
+        <span class="lesson-progress-text">Lesson 5 of 12</span>
+        <span class="xp-display">+10 XP</span>
+      </div>
+    </div>
 
-  <div class="summary-box" style="margin-bottom:var(--sp-8)">
-    <h3>Coming Soon for Stage 5 ✨</h3>
-    <ul>
-      <li>Full concept explanations with real-life analogies</li>
-      <li>Illustrated diagrams and Sarpanch comic strips</li>
-      <li>Mid-lesson quiz with XP rewards</li>
-      <li>Detailed code examples with line-by-line explanations</li>
-    </ul>
-  </div>
+    <!-- INTRO -->
+    <section class="lesson-section" id="intro">
+      <div class="lesson-section-label">📦 Introduction</div>
+      <div class="lesson-intro-box">
+        <h1>Collections: Don't Lose Your Data</h1>
+        <p style="margin-top:var(--sp-4);font-size:1.1rem;color:var(--text)">
+          So far, we've used variables to store one thing at a time. One name, one number, one boolean.
+          But what if you need to store 100 names? Creating <code>name1</code>, <code>name2</code>, <code>name3</code>... is a terrible idea.
+          Instead, we group them together into a <strong>Collection</strong>.
+        </p>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/wave.svg" alt="Sarpanch"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            A single variable is like carrying one potato. A Collection is like bringing a shopping bag. You can put as many potatoes in the bag as you want! 🥔🛍️
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class="lesson-nav-btns">
-    <a href="lesson-4.html" class="btn btn-outline">← Stage 4: Loops</a>
-    <a href="practice.html?module=5" class="btn btn-mint">✏️ Take Stage 5 Test</a>
-    <a href="lesson-6.html" class="btn btn-primary">Stage 6: Functions →</a>
-  </div>
+    <!-- LISTS -->
+    <section class="lesson-section" id="lists">
+      <div class="lesson-section-label">📋 Lists</div>
+      <div class="concept-box">
+        <h3>The humble List</h3>
+        <p>
+          A <span class="tooltip-word">List<span class="tooltip-content">An ordered collection of items. You create them using square brackets [ ].</span></span> 
+          is simply an ordered sequence of items. It uses square brackets <code>[]</code>.
+        </p>
+        <div class="code-block" style="margin-top:var(--sp-4)">
+          <pre>friends = [<span class="str">"Rahul"</span>, <span class="str">"Priya"</span>, <span class="str">"Amit"</span>]</pre>
+        </div>
+        <p style="margin-top:var(--sp-4)">
+          To get an item out of the list, you ask for its position (called an <strong>index</strong>). 
+          But beware: <strong>Python starts counting at 0, not 1!</strong>
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>lists.py</span>
+        </div>
+        <div class="code-block">
+          <pre>fruits = [<span class="str">"Apple"</span>, <span class="str">"Banana"</span>, <span class="str">"Mango"</span>]
+
+<span class="fn">print</span>(fruits[<span class="num">0</span>])  <span class="cmt"># Prints Apple</span>
+<span class="fn">print</span>(fruits[<span class="num">1</span>])  <span class="cmt"># Prints Banana</span>
+
+fruits.append(<span class="str">"Orange"</span>)
+<span class="fn">print</span>(fruits)</pre>
+          <div class="code-line-explain"><span class="code-line-num">3</span><span class="code-line-text">print(fruits[0])</span><span class="code-line-desc">Index 0 is the FIRST item. Index 1 is the SECOND.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">6</span><span class="code-line-text">fruits.append(...)</span><span class="code-line-desc"><strong>.append()</strong> adds a new item to the very end of the list.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DICTIONARIES -->
+    <section class="lesson-section" id="dictionaries">
+      <div class="lesson-section-label">📖 Dictionaries</div>
+      <div class="concept-box">
+        <h3>Storing Key-Value Pairs</h3>
+        <p>
+          Lists are great, but sometimes numbers aren't the best way to look things up. 
+          A <span class="tooltip-word">Dictionary<span class="tooltip-content">A collection of key-value pairs. You look up the 'key' to find its 'value'. Uses curly braces { }.</span></span> 
+          lets you use a name (a "key") to look up data (a "value"). It uses curly braces <code>{}</code>.
+        </p>
+      </div>
+
+      <div class="code-example" style="margin-top:var(--sp-5)">
+        <div class="code-example-header">
+          <div class="dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+          <span>dictionary.py</span>
+        </div>
+        <div class="code-block">
+          <pre>student = {
+    <span class="str">"name"</span>: <span class="str">"Sarpanch"</span>,
+    <span class="str">"age"</span>: <span class="num">5</span>,
+    <span class="str">"is_snake"</span>: <span class="kw">True</span>
+}
+
+<span class="fn">print</span>(student[<span class="str">"name"</span>])  <span class="cmt"># Prints Sarpanch</span>
+student[<span class="str">"age"</span>] = <span class="num">6</span>      <span class="cmt"># Happy birthday!</span></pre>
+          <div class="code-line-explain"><span class="code-line-num">1</span><span class="code-line-text">student = { ... }</span><span class="code-line-desc">Dictionaries use curly braces. Inside, it's always <strong>key: value</strong>.</span></div>
+          <div class="code-line-explain"><span class="code-line-num">7</span><span class="code-line-text">print(student["name"])</span><span class="code-line-desc">Instead of asking for index [0], you ask for the key ["name"].</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALOGY -->
+    <section class="lesson-section" id="analogy">
+      <div class="lesson-section-label">💡 Real-Life Analogy</div>
+      <div class="analogy-box">
+        <p>
+          <strong>A List</strong> is like a shelf of numbered jars. You say "Give me jar number 0" or "Put this in the next available space at the end."
+          <br/><br/>
+          <strong>A Dictionary</strong> is like an actual contact book in your phone. You don't say "Call contact number 42." You say "Call 'Mom'." The <em>Key</em> is the name, the <em>Value</em> is the phone number.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIAGRAM -->
+    <section class="lesson-section" id="diagram">
+      <div class="lesson-section-label">🖼️ Diagram</div>
+      <div class="diagram-container">
+        <h3 style="margin-bottom:var(--sp-6)">Lists vs Dictionaries</h3>
+        <svg viewBox="0 0 650 250" xmlns="http://www.w3.org/2000/svg" style="max-width:600px">
+          
+          <!-- LIST -->
+          <text x="30" y="30" font-family="Nunito" font-size="16" fill="#1A1A2E" font-weight="bold">List (Numbered)</text>
+          
+          <!-- Box 0 -->
+          <rect x="30" y="60" width="100" height="60" rx="8" fill="rgba(46,196,182,0.15)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="80" y="95" text-anchor="middle" font-family="Nunito" font-size="16" fill="#1A1A2E" font-weight="bold">"Apple"</text>
+          <rect x="30" y="120" width="100" height="25" rx="4" fill="#2EC4B6"/>
+          <text x="80" y="137" text-anchor="middle" font-family="Fira Code" font-size="12" fill="white">[0]</text>
+
+          <!-- Box 1 -->
+          <rect x="140" y="60" width="100" height="60" rx="8" fill="rgba(46,196,182,0.15)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="190" y="95" text-anchor="middle" font-family="Nunito" font-size="16" fill="#1A1A2E" font-weight="bold">"Banana"</text>
+          <rect x="140" y="120" width="100" height="25" rx="4" fill="#2EC4B6"/>
+          <text x="190" y="137" text-anchor="middle" font-family="Fira Code" font-size="12" fill="white">[1]</text>
+
+          <!-- Box 2 -->
+          <rect x="250" y="60" width="100" height="60" rx="8" fill="rgba(46,196,182,0.15)" stroke="#2EC4B6" stroke-width="2"/>
+          <text x="300" y="95" text-anchor="middle" font-family="Nunito" font-size="16" fill="#1A1A2E" font-weight="bold">"Mango"</text>
+          <rect x="250" y="120" width="100" height="25" rx="4" fill="#2EC4B6"/>
+          <text x="300" y="137" text-anchor="middle" font-family="Fira Code" font-size="12" fill="white">[2]</text>
+
+          <!-- DICTIONARY -->
+          <text x="420" y="30" font-family="Nunito" font-size="16" fill="#1A1A2E" font-weight="bold">Dictionary (Key: Value)</text>
+
+          <rect x="420" y="60" width="200" height="100" rx="12" fill="rgba(255,107,53,0.15)" stroke="#FF6B35" stroke-width="2"/>
+          
+          <text x="440" y="90" font-family="Fira Code" font-size="14" fill="#E5521A">"name"</text>
+          <text x="510" y="90" font-family="Fira Code" font-size="14" fill="#8A8AA8">→</text>
+          <text x="530" y="90" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">"Sarpanch"</text>
+
+          <text x="440" y="120" font-family="Fira Code" font-size="14" fill="#E5521A">"age"</text>
+          <text x="510" y="120" font-family="Fira Code" font-size="14" fill="#8A8AA8">→</text>
+          <text x="530" y="120" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">5</text>
+
+          <text x="440" y="150" font-family="Fira Code" font-size="14" fill="#E5521A">"food"</text>
+          <text x="510" y="150" font-family="Fira Code" font-size="14" fill="#8A8AA8">→</text>
+          <text x="530" y="150" font-family="Nunito" font-size="14" fill="#1A1A2E" font-weight="bold">"Mice"</text>
+
+        </svg>
+        <div class="diagram-caption">Lists use numeric indexes (starting at 0). Dictionaries use custom string keys.</div>
+      </div>
+    </section>
+
+    <!-- COMIC -->
+    <section class="lesson-section" id="comic">
+      <div class="lesson-section-label">😂 Sarpanch's Corner</div>
+      <h3 style="margin-bottom:var(--sp-4)">The Address Book</h3>
+      <div class="comic-strip">
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 1</div>
+          <img src="assets/sarpanch/happy.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"I made an address book dictionary!"<br/><br/><code>book = {"Rahul": "123 Main St"}</code></div>
+        </div>
+        <div class="comic-panel" style="background:var(--bg-secondary)">
+          <div class="comic-panel-num">Panel 2</div>
+          <img src="assets/sarpanch/nervous.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"Now to find who lives at 123 Main St..."<br/><br/><code>print(book["123 Main St"])</code></div>
+        </div>
+        <div class="comic-panel">
+          <div class="comic-panel-num">Panel 3</div>
+          <img src="assets/sarpanch/sad.svg" alt="Sarpanch"/>
+          <div class="comic-caption">"KeyError: '123 Main St'"<br/><br/><span style="color:var(--orange);font-weight:800">You can look up the value using the key, but you can't look up the key using the value!</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYGROUND -->
+    <section class="lesson-section" id="playground">
+      <div class="lesson-section-label">🚀 Try It Yourself</div>
+      <h3 style="margin-bottom:var(--sp-3)">Collections in Action</h3>
+      <p style="margin-bottom:var(--sp-5)">Try adding and changing elements in the List and Dictionary.</p>
+      <div id="playground-5"></div>
+      <div class="callout callout-yellow" style="margin-top:var(--sp-5)">
+        <strong>💡 Challenges:</strong>
+        <ol style="margin-top:var(--sp-2);padding-left:var(--sp-5)">
+          <li>Use <code>.append()</code> to add your own name to the end of the <code>users</code> list.</li>
+          <li>Print the 2nd user in the list (Careful! What index is the 2nd user?).</li>
+          <li>Add a new key to the <code>profile</code> dictionary for <code>"hobby"</code> and print the whole dictionary.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="lesson-section" id="quiz">
+      <div id="quiz-widget-5"></div>
+    </section>
+
+    <!-- SUMMARY -->
+    <section class="lesson-section" id="summary">
+      <div class="lesson-section-label">✅ Summary</div>
+      <div class="summary-box">
+        <h3>Grouping Stuff — Done! 📦</h3>
+        <ul>
+          <li><strong>Lists</strong> use <code>[]</code> and store items in an ordered sequence.</li>
+          <li>Lists start counting at <strong>index 0</strong>. The first item is <code>my_list[0]</code>.</li>
+          <li>You can add items to the end of a list using <code>.append("item")</code>.</li>
+          <li><strong>Dictionaries</strong> use <code>{}</code> and store data in <code>"key": "value"</code> pairs.</li>
+          <li>You look up data in a dictionary using its key, like <code>my_dict["name"]</code>.</li>
+        </ul>
+      </div>
+      <div class="sarpanch-panel" style="margin-top:var(--sp-6)">
+        <img src="assets/sarpanch/victory.svg" alt="Sarpanch victorious"/>
+        <div class="bubble-wrap">
+          <div class="speech-bubble">
+            Now you can store massive amounts of data without losing your mind! You're officially a data wrangler. Next, we'll learn how to write our own custom Python functions! 🛠️
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAV -->
+    <div class="lesson-nav-btns">
+      <a href="lesson-4.html" class="btn btn-outline">← Stage 4: Doing Things Again</a>
+      <a href="practice.html?module=5" class="btn btn-mint">✏️ Take Stage 5 Test</a>
+      <a href="lesson-6.html" class="btn btn-primary">Stage 6: Teaching Python Tricks →</a>
+    </div>
+  </main>
 </div>
 </div>
+
 <script src="js/app.js"></script>
+<script src="js/quiz.js"></script>
 <script src="js/playground.js"></script>
 <script>
   renderNavbar('lessons.html');
   renderFooter();
+
   if (!localStorage.getItem('lesson_5_read')) {
     localStorage.setItem('lesson_5_read', '1');
-    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(5, { status: 'unlocked', progress: 30 }); }, 2000);
+    setTimeout(() => { addXP(XP_LESSON); setModuleProgress(5, { status: 'unlocked', progress: 50 }); }, 3000);
   }
+
+  // Sidebar XP update
+  function updateSidebarXP() {
+    const xp = getXP();
+    const el = document.getElementById('sidebar-xp');
+    const bar = document.getElementById('sidebar-xp-bar');
+    if (el)  el.textContent = xp + ' XP';
+    if (bar) bar.style.width = Math.min(xp / 2, 100) + '%';
+  }
+  updateSidebarXP();
+
+  // Sidebar active section on scroll
+  const sections = ['intro','lists','dictionaries','analogy','diagram','comic','playground','quiz','summary'];
+  const sideLinks = document.querySelectorAll('.sidebar-nav-item');
+  window.addEventListener('scroll', () => {
+    let current = 'intro';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 120) current = id;
+    });
+    sideLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+
   initPlayground({
     containerId: 'playground-5',
-    defaultCode: $code
+    defaultCode: `# --- LISTS ---
+users = ["Alice", "Bob", "Charlie"]
+print("The first user is:", users[0])
+
+# Add a user to the list
+users.append("Dave")
+print("All users:", users)
+
+print("\\n--- DICTIONARIES ---")
+profile = {
+    "username": "coder_snake",
+    "level": 42
+}
+
+# Accessing a dictionary value
+print("Username:", profile["username"])
+
+# Modifying a value
+profile["level"] = 43
+print("Updated Profile:", profile)`,
   });
+
+  initInlineQuiz({ containerId: 'quiz-widget-5', moduleId: 5 });
 </script>
 </body>
 </html>
